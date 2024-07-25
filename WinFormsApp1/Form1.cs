@@ -26,15 +26,12 @@ namespace WinFormsApp1
 
         private void customizeDesign()
         {
-            panel_stdsubmenu.Visible = false;
             panel_courseSubmenu.Visible = false;
             panel_scoreSubmenu.Visible = false;
         }
 
         private void hideSubmenu()
         {
-            if (panel_stdsubmenu.Visible == true)
-                panel_stdsubmenu.Visible = false;
             if (panel_courseSubmenu.Visible == true)
                 panel_courseSubmenu.Visible = false;
             if (panel_scoreSubmenu.Visible == true)
@@ -55,33 +52,9 @@ namespace WinFormsApp1
 
         private void button_std_Click(object sender, EventArgs e)
         {
-            showSubmenu(panel_stdsubmenu);
-        }
-
-        #region StdSubmenu
-        private void button_registration_ClicK(object sender, EventArgs e)
-        {
-            openChildForm(new RegistrationForm());
-            hideSubmenu();
-        }
-        private void button_manageStd_Click(object sender, EventArgs e)
-        {
             openChildForm(new ManageStudentForm());
-            hideSubmenu();
         }
 
-        private void button_status_Click(object sender, EventArgs e)
-        {
-            //..
-            hideSubmenu();
-        }
-
-        private void button_stdPrint_Click(object sender, EventArgs e)
-        {
-            //....
-            hideSubmenu();
-        }
-        #endregion StdSubmenu
         private void button_course_Click(object sender, EventArgs e)
         {
             showSubmenu(panel_courseSubmenu);

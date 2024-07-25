@@ -38,13 +38,14 @@ namespace WinFormsApp1
             // add new course
             string courseID = textBox_courseID.Text;
             string courseName = textBox_courseName.Text;
-            string credits = textBox_credits.Text;
+            string teacherID = textBox_teacherID.Text;
+            string semester = textBox_semester.Text;
 
             if (verify())
             {
                 try
                 {
-                    if (course.insertCourse(courseID, courseName, credits))
+                    if (course.insertCourse(courseID, courseName, teacherID, semester))
                     {
                         MessageBox.Show("New course added.", "Add course.", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         showTable();
@@ -66,7 +67,7 @@ namespace WinFormsApp1
 
         bool verify()
         {
-            if ((textBox_courseID.Text == "") || (textBox_courseName.Text == "") || (textBox_credits.Text == ""))
+            if ((textBox_courseID.Text == "") || (textBox_courseName.Text == "") || (textBox_teacherID.Text == ""))
             {
                 return false;
             }
@@ -80,7 +81,7 @@ namespace WinFormsApp1
         {
             textBox_courseID.Clear();
             textBox_courseName.Clear();
-            textBox_credits.Clear();
+            textBox_teacherID.Clear();
         }
 
         private void button_searchCourse_Click(object sender, EventArgs e)
@@ -102,6 +103,14 @@ namespace WinFormsApp1
 
         }
 
+        private void button_addCourse_Click_1(object sender, EventArgs e)
+        {
 
+        }
+
+        private void textBox_semester_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -46,11 +46,6 @@
             button_manageCourse = new Button();
             button_newCourse = new Button();
             button_course = new Button();
-            panel_stdsubmenu = new Panel();
-            button_stdPrint = new Button();
-            button_status = new Button();
-            button_manageStd = new Button();
-            button_registration = new Button();
             button_std = new Button();
             panel_logo = new Panel();
             pictureBox2 = new PictureBox();
@@ -77,7 +72,6 @@
             panel_slide.SuspendLayout();
             panel_scoreSubmenu.SuspendLayout();
             panel_courseSubmenu.SuspendLayout();
-            panel_stdsubmenu.SuspendLayout();
             panel_logo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel_main.SuspendLayout();
@@ -100,7 +94,6 @@
             panel_slide.Controls.Add(button_score);
             panel_slide.Controls.Add(panel_courseSubmenu);
             panel_slide.Controls.Add(button_course);
-            panel_slide.Controls.Add(panel_stdsubmenu);
             panel_slide.Controls.Add(button_std);
             panel_slide.Controls.Add(panel_logo);
             panel_slide.Dock = DockStyle.Left;
@@ -117,7 +110,7 @@
             button_Enrollment.FlatStyle = FlatStyle.Flat;
             button_Enrollment.Font = new Font("Century Gothic", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button_Enrollment.ForeColor = Color.White;
-            button_Enrollment.Location = new Point(0, 974);
+            button_Enrollment.Location = new Point(0, 770);
             button_Enrollment.Name = "button_Enrollment";
             button_Enrollment.Padding = new Padding(10, 0, 0, 0);
             button_Enrollment.Size = new Size(170, 48);
@@ -135,7 +128,7 @@
             button_semester.FlatStyle = FlatStyle.Flat;
             button_semester.Font = new Font("Century Gothic", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button_semester.ForeColor = Color.White;
-            button_semester.Location = new Point(0, 926);
+            button_semester.Location = new Point(0, 722);
             button_semester.Name = "button_semester";
             button_semester.Padding = new Padding(10, 0, 0, 0);
             button_semester.Size = new Size(170, 48);
@@ -153,7 +146,7 @@
             button_exit1.FlatStyle = FlatStyle.Flat;
             button_exit1.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button_exit1.ForeColor = Color.White;
-            button_exit1.Location = new Point(0, 878);
+            button_exit1.Location = new Point(0, 674);
             button_exit1.Name = "button_exit1";
             button_exit1.Padding = new Padding(10, 0, 0, 0);
             button_exit1.Size = new Size(170, 48);
@@ -170,7 +163,7 @@
             button_dashboard.FlatStyle = FlatStyle.Flat;
             button_dashboard.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button_dashboard.ForeColor = Color.White;
-            button_dashboard.Location = new Point(0, 830);
+            button_dashboard.Location = new Point(0, 626);
             button_dashboard.Name = "button_dashboard";
             button_dashboard.Padding = new Padding(10, 0, 0, 0);
             button_dashboard.Size = new Size(170, 48);
@@ -188,7 +181,7 @@
             panel_scoreSubmenu.Controls.Add(button_manageScore);
             panel_scoreSubmenu.Controls.Add(button_newScore);
             panel_scoreSubmenu.Dock = DockStyle.Top;
-            panel_scoreSubmenu.Location = new Point(0, 679);
+            panel_scoreSubmenu.Location = new Point(0, 475);
             panel_scoreSubmenu.Name = "panel_scoreSubmenu";
             panel_scoreSubmenu.Size = new Size(170, 151);
             panel_scoreSubmenu.TabIndex = 5;
@@ -285,7 +278,7 @@
             button_score.FlatStyle = FlatStyle.Flat;
             button_score.Font = new Font("Century Gothic", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button_score.ForeColor = Color.White;
-            button_score.Location = new Point(0, 631);
+            button_score.Location = new Point(0, 427);
             button_score.Name = "button_score";
             button_score.Padding = new Padding(10, 0, 0, 0);
             button_score.Size = new Size(170, 48);
@@ -301,7 +294,7 @@
             panel_courseSubmenu.Controls.Add(button_manageCourse);
             panel_courseSubmenu.Controls.Add(button_newCourse);
             panel_courseSubmenu.Dock = DockStyle.Top;
-            panel_courseSubmenu.Location = new Point(0, 479);
+            panel_courseSubmenu.Location = new Point(0, 275);
             panel_courseSubmenu.Name = "panel_courseSubmenu";
             panel_courseSubmenu.Size = new Size(170, 152);
             panel_courseSubmenu.TabIndex = 3;
@@ -365,7 +358,7 @@
             button_course.FlatStyle = FlatStyle.Flat;
             button_course.Font = new Font("Century Gothic", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button_course.ForeColor = Color.White;
-            button_course.Location = new Point(0, 431);
+            button_course.Location = new Point(0, 227);
             button_course.Name = "button_course";
             button_course.Padding = new Padding(10, 0, 0, 0);
             button_course.Size = new Size(170, 48);
@@ -374,88 +367,6 @@
             button_course.TextAlign = ContentAlignment.MiddleLeft;
             button_course.UseVisualStyleBackColor = false;
             button_course.Click += button_course_Click;
-            // 
-            // panel_stdsubmenu
-            // 
-            panel_stdsubmenu.BackColor = Color.MidnightBlue;
-            panel_stdsubmenu.Controls.Add(button_stdPrint);
-            panel_stdsubmenu.Controls.Add(button_status);
-            panel_stdsubmenu.Controls.Add(button_manageStd);
-            panel_stdsubmenu.Controls.Add(button_registration);
-            panel_stdsubmenu.Dock = DockStyle.Top;
-            panel_stdsubmenu.ForeColor = Color.White;
-            panel_stdsubmenu.Location = new Point(0, 227);
-            panel_stdsubmenu.Name = "panel_stdsubmenu";
-            panel_stdsubmenu.Size = new Size(170, 204);
-            panel_stdsubmenu.TabIndex = 1;
-            // 
-            // button_stdPrint
-            // 
-            button_stdPrint.Dock = DockStyle.Top;
-            button_stdPrint.FlatAppearance.BorderSize = 0;
-            button_stdPrint.FlatStyle = FlatStyle.Flat;
-            button_stdPrint.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button_stdPrint.ForeColor = Color.White;
-            button_stdPrint.Location = new Point(0, 150);
-            button_stdPrint.Name = "button_stdPrint";
-            button_stdPrint.Padding = new Padding(35, 0, 0, 0);
-            button_stdPrint.Size = new Size(170, 51);
-            button_stdPrint.TabIndex = 3;
-            button_stdPrint.Text = "Print";
-            button_stdPrint.TextAlign = ContentAlignment.MiddleLeft;
-            button_stdPrint.UseVisualStyleBackColor = true;
-            button_stdPrint.Click += button_stdPrint_Click;
-            // 
-            // button_status
-            // 
-            button_status.Dock = DockStyle.Top;
-            button_status.FlatAppearance.BorderSize = 0;
-            button_status.FlatStyle = FlatStyle.Flat;
-            button_status.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button_status.ForeColor = Color.White;
-            button_status.Location = new Point(0, 100);
-            button_status.Name = "button_status";
-            button_status.Padding = new Padding(35, 0, 0, 0);
-            button_status.Size = new Size(170, 50);
-            button_status.TabIndex = 2;
-            button_status.Text = "Status";
-            button_status.TextAlign = ContentAlignment.MiddleLeft;
-            button_status.UseVisualStyleBackColor = true;
-            button_status.Click += button_status_Click;
-            // 
-            // button_manageStd
-            // 
-            button_manageStd.Dock = DockStyle.Top;
-            button_manageStd.FlatAppearance.BorderSize = 0;
-            button_manageStd.FlatStyle = FlatStyle.Flat;
-            button_manageStd.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button_manageStd.ForeColor = Color.White;
-            button_manageStd.Location = new Point(0, 50);
-            button_manageStd.Name = "button_manageStd";
-            button_manageStd.Padding = new Padding(35, 0, 0, 0);
-            button_manageStd.Size = new Size(170, 50);
-            button_manageStd.TabIndex = 1;
-            button_manageStd.Text = "Manage Student";
-            button_manageStd.TextAlign = ContentAlignment.MiddleLeft;
-            button_manageStd.UseVisualStyleBackColor = true;
-            button_manageStd.Click += button_manageStd_Click;
-            // 
-            // button_registration
-            // 
-            button_registration.Dock = DockStyle.Top;
-            button_registration.FlatAppearance.BorderSize = 0;
-            button_registration.FlatStyle = FlatStyle.Flat;
-            button_registration.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button_registration.ForeColor = Color.White;
-            button_registration.Location = new Point(0, 0);
-            button_registration.Name = "button_registration";
-            button_registration.Padding = new Padding(35, 0, 0, 0);
-            button_registration.Size = new Size(170, 50);
-            button_registration.TabIndex = 0;
-            button_registration.Text = "Registration";
-            button_registration.TextAlign = ContentAlignment.MiddleLeft;
-            button_registration.UseVisualStyleBackColor = true;
-            button_registration.Click += button_registration_ClicK;
             // 
             // button_std
             // 
@@ -729,7 +640,6 @@
             panel_slide.ResumeLayout(false);
             panel_scoreSubmenu.ResumeLayout(false);
             panel_courseSubmenu.ResumeLayout(false);
-            panel_stdsubmenu.ResumeLayout(false);
             panel_logo.ResumeLayout(false);
             panel_logo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
@@ -750,11 +660,6 @@
         private Panel panel_slide;
         private Panel panel_logo;
         private Button button_std;
-        private Panel panel_stdsubmenu;
-        private Button button_stdPrint;
-        private Button button_status;
-        private Button button_manageStd;
-        private Button button_registration;
         private Panel panel_scoreSubmenu;
         private Button button_scorePrint;
         private Button button_manageScore;

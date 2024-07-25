@@ -40,10 +40,11 @@
             textBox_courseID = new TextBox();
             textBox_courseName = new TextBox();
             label_courseName = new Label();
-            textBox_credits = new TextBox();
+            textBox_teacherID = new TextBox();
             label2 = new Label();
             button_clearCourse = new Button();
             guna2DataGridView_Course = new Guna.UI2.WinForms.Guna2DataGridView();
+            textBox_semester = new TextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView_Course).BeginInit();
             SuspendLayout();
@@ -106,6 +107,7 @@
             button_addCourse.TabIndex = 2;
             button_addCourse.Text = "Add";
             button_addCourse.UseVisualStyleBackColor = false;
+            button_addCourse.Click += button_addCourse_Click_1;
             // 
             // label1
             // 
@@ -149,14 +151,14 @@
             label_courseName.TabIndex = 5;
             label_courseName.Text = "Course Name : ";
             // 
-            // textBox_credits
+            // textBox_teacherID
             // 
-            textBox_credits.Anchor = AnchorStyles.Bottom;
-            textBox_credits.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox_credits.Location = new Point(242, 517);
-            textBox_credits.Name = "textBox_credits";
-            textBox_credits.Size = new Size(125, 32);
-            textBox_credits.TabIndex = 8;
+            textBox_teacherID.Anchor = AnchorStyles.Bottom;
+            textBox_teacherID.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox_teacherID.Location = new Point(242, 517);
+            textBox_teacherID.Name = "textBox_teacherID";
+            textBox_teacherID.Size = new Size(125, 32);
+            textBox_teacherID.TabIndex = 8;
             // 
             // label2
             // 
@@ -243,14 +245,25 @@
             guna2DataGridView_Course.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             guna2DataGridView_Course.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             // 
+            // textBox_semester
+            // 
+            textBox_semester.Anchor = AnchorStyles.Bottom;
+            textBox_semester.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox_semester.Location = new Point(438, 517);
+            textBox_semester.Name = "textBox_semester";
+            textBox_semester.Size = new Size(125, 32);
+            textBox_semester.TabIndex = 37;
+            textBox_semester.Click += textBox_semester_Click;
+            // 
             // NewCourseForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(932, 603);
+            Controls.Add(textBox_semester);
             Controls.Add(guna2DataGridView_Course);
             Controls.Add(button_clearCourse);
-            Controls.Add(textBox_credits);
+            Controls.Add(textBox_teacherID);
             Controls.Add(label2);
             Controls.Add(textBox_courseName);
             Controls.Add(label_courseName);
@@ -276,11 +289,12 @@
         private TextBox textBox_courseID;
         private TextBox textBox_courseName;
         private Label label_courseName;
-        private TextBox textBox_credits;
+        private TextBox textBox_teacherID;
         private Label label2;
         private Button button_searchCourse;
         private TextBox textBox_searchCourse;
         private Button button_clearCourse;
         private Guna.UI2.WinForms.Guna2DataGridView guna2DataGridView_Course;
+        private TextBox textBox_semester;
     }
 }

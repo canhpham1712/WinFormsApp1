@@ -18,7 +18,7 @@ namespace WinFormsApp1
             this.dBconnect = new DBConnect();
         }
 
-        public bool insertCourse(string courseID, string courseName, string courseCredits)
+        public bool insertCourse(string courseID, string courseName, string teacherID, string semester)
         {
             try
             {
@@ -26,14 +26,15 @@ namespace WinFormsApp1
                 {
                     dBconnect.OpenConnection(connection);
 
-                    var query = @"insert into Courses (CourseID, CourseName, Credits) 
-                        values (@CourseID, @CourseName, @Credits)";
+                    var query = @"insert into Courses (CourseID, CourseName, TeacherID, Semester) 
+                        values (@CourseID, @CourseName, @TeacherID, @Semester)";
 
                     using (var command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@CourseID", courseID);
                         command.Parameters.AddWithValue("@CourseName", courseName);
-                        command.Parameters.AddWithValue("Credits", courseCredits);
+                        command.Parameters.AddWithValue("TeacherID", teacherID);
+                        command.Parameters.AddWithValue("Semester", semester);
 
                         int rowsAffected = command.ExecuteNonQuery();
                         return rowsAffected > 0;
