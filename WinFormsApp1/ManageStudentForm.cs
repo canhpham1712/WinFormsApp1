@@ -17,30 +17,20 @@ namespace WinFormsApp1
 {
     public partial class ManageStudentForm : Form
     {
-        StudentClass student = new StudentClass();
-        private const string PlaceholderText = "dd/mm/yyyy";
-        private const string PlaceholderName = "Nhập họ và tên";
-        private const string PlaceholderAddress = "Nhập địa chỉ thường trú";
+        StudentClass student = new StudentClass(); // object for take method from Student Class
 
         public ManageStudentForm()
         {
             InitializeComponent();
             InitializeAddressControls();
-            InitializeTextBoxPlaceholder();
-            InitializeTextBoxPlaceholderName();
             button_update.Click += button_update_Click;
             button_manaStdSearch.Click += button_manaStdSearch_Click;
             button_delete.Click += button_delete_Click;
-
-            //guna2ComboBox_Nations.SelectedIndex = 0;
-            // Handle click out of text box
-            this.Click += Form_CLick;
-            guna2DataGridView_manaStd.CellClick += guna2DataGridView_manaStd_CellClick;
         }
 
         private void InitializeAddressControls()
         {
-            // Dummy data for demonstration purposes
+            // demo data for demonstration purposes
             var nations = new List<string> { "Việt Nam", "United States", "United Kingdom" };
             var provinces = new Dictionary<string, List<string>>
             {
@@ -49,14 +39,14 @@ namespace WinFormsApp1
                 {"United Kingdom", new List<string>{"Liverpool", "London"}}
             };
 
-            guna2ComboBox_Nations.Items.AddRange(nations.ToArray());
-            guna2ComboBox_Nations.SelectedIndexChanged += (s, e) =>
+            comboBox_nation.Items.AddRange(nations.ToArray());
+            comboBox_nation.SelectedIndexChanged += (s, e) =>
             {
-                var selectedNation = guna2ComboBox_Nations.SelectedItem.ToString();
-                guna2ComboBox_CitiesOrProvinces.Items.Clear();
-                guna2ComboBox_Districts.Items.Clear();
-                guna2ComboBox_WardsOrCommunes.Items.Clear();
-                guna2ComboBox_CitiesOrProvinces.Items.AddRange(provinces[selectedNation].ToArray());
+                var selectedNation = comboBox_nation.SelectedItem.ToString();
+                combobox_city.Items.Clear();
+                combobox_district.Items.Clear();
+                combobox_ward.Items.Clear();
+                combobox_city.Items.AddRange(provinces[selectedNation].ToArray());
             };
 
             var districts = new Dictionary<string, List<string>>
@@ -65,14 +55,14 @@ namespace WinFormsApp1
                 {"Hồ Chí Minh", new List<string>{"District 1", "District 2", "District 3" }},
                 {"Hải Phòng", new List<string>{"Hải Châu", "Sơn Trà" }}
             };
-            guna2ComboBox_CitiesOrProvinces.SelectedIndexChanged += (s, e) =>
+            combobox_city.SelectedIndexChanged += (s, e) =>
             {
-                var selectedProvinces = guna2ComboBox_CitiesOrProvinces.SelectedItem.ToString();
-                guna2ComboBox_Districts.Items.Clear();
-                guna2ComboBox_WardsOrCommunes.Items.Clear();
+                var selectedProvinces = combobox_city.SelectedItem.ToString();
+                combobox_district.Items.Clear();
+                combobox_ward.Items.Clear();
                 if (districts.ContainsKey(selectedProvinces))
                 {
-                    guna2ComboBox_Districts.Items.AddRange(districts[selectedProvinces].ToArray());
+                    combobox_district.Items.AddRange(districts[selectedProvinces].ToArray());
                 }
             };
 
@@ -82,89 +72,15 @@ namespace WinFormsApp1
                 {"Tây Hồ", new List<string>{"Nhật Tân", "Quảng An", "Thụy Khuê"} },
                 {"Hai Bà Trưng", new List<string>{"Bách Khoa", "Bạch Đằng", "Bạch Mai"} }
             };
-            guna2ComboBox_Districts.SelectedIndexChanged += (s, e) =>
+            combobox_district.SelectedIndexChanged += (s, e) =>
             {
-                var selectedDistricts = guna2ComboBox_Districts.SelectedItem.ToString();
-                guna2ComboBox_WardsOrCommunes.Items.Clear();
+                var selectedDistricts = combobox_district.SelectedItem.ToString();
+                combobox_ward.Items.Clear();
                 if (communes.ContainsKey(selectedDistricts))
                 {
-                    guna2ComboBox_WardsOrCommunes.Items.AddRange(communes[selectedDistricts].ToArray());
+                    combobox_ward.Items.AddRange(communes[selectedDistricts].ToArray());
                 }
             };
-        }
-
-        private (string street, string nation, string city, string district, string commune) ExtractAddressComponents(string address)
-        {
-            string[] addressParts = address.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
-                                           .Select(part => part.Trim())
-                                           .ToArray();
-
-            string street = addressParts.Length > 0 ? addressParts[0] : string.Empty;
-            string commune = addressParts.Length > 1 ? addressParts[1] : string.Empty;
-            string district = addressParts.Length > 2 ? addressParts[2] : string.Empty;
-            string city = addressParts.Length > 3 ? addressParts[3] : string.Empty;
-            string nation = addressParts.Length > 4 ? addressParts[4] : string.Empty;
-
-            return (street, nation, city, district, commune);
-        }
-
-        // Cell click event handler
-        private void guna2DataGridView_manaStd_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            guna2ComboBox_Nations.Items.Clear();
-            guna2ComboBox_Districts.Items.Clear();
-            guna2ComboBox_CitiesOrProvinces.Items.Clear();
-            guna2ComboBox_WardsOrCommunes.Items.Clear();
-            InitializeAddressControls();
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = guna2DataGridView_manaStd.Rows[e.RowIndex];
-
-                // Set text boxes
-                textBox_manaStdID.Text = row.Cells["StudentID"].Value.ToString();
-                textBox_Name.Text = row.Cells["Name"].Value.ToString();
-
-                // Format DateOfBirth cell value to "dd/MM/yyyy"
-                if (DateTime.TryParse(row.Cells["DateOfBirth"].Value.ToString(), out DateTime dob))
-                {
-                    textBox_DoB.Text = dob.ToString("dd/MM/yyyy");
-                }
-
-                // Set gender
-                string gender = row.Cells["Gender"].Value.ToString();
-                radioButton_manaStdMale.Checked = gender == "Nam";
-                radioButton_manaStdFemale.Checked = gender == "Nữ";
-
-                // Extract address
-                string address = row.Cells["Address"].Value.ToString();
-                string[] addressComponents = address.Split(',').Select(c => c.Trim()).ToArray();
-
-                // Clear combo boxes
-                guna2ComboBox_Nations.SelectedIndex = -1;
-                guna2ComboBox_CitiesOrProvinces.SelectedIndex = -1;
-                guna2ComboBox_Districts.SelectedIndex = -1;
-                guna2ComboBox_WardsOrCommunes.SelectedIndex = -1;
-                guna2TextBox_Street.Text = string.Empty;
-
-                // Populate address components
-                if (addressComponents.Length == 5)
-                {
-                    // Address contains street
-                    guna2TextBox_Street.Text = addressComponents[0];
-                    guna2ComboBox_Nations.SelectedItem = addressComponents[1];
-                    guna2ComboBox_CitiesOrProvinces.SelectedItem = addressComponents[2];
-                    guna2ComboBox_Districts.SelectedItem = addressComponents[3];
-                    guna2ComboBox_WardsOrCommunes.SelectedItem = addressComponents[4];
-                }
-                else if (addressComponents.Length == 4)
-                {
-                    // Address does not contain street
-                    guna2ComboBox_Nations.SelectedItem = addressComponents[0];
-                    guna2ComboBox_CitiesOrProvinces.SelectedItem = addressComponents[1];
-                    guna2ComboBox_Districts.SelectedItem = addressComponents[2];
-                    guna2ComboBox_WardsOrCommunes.SelectedItem = addressComponents[3];
-                }
-            }
         }
 
         private void InitializeCustomComboBox()
@@ -172,134 +88,47 @@ namespace WinFormsApp1
             var autoCompleteSource = new AutoCompleteStringCollection();
             autoCompleteSource.AddRange(new string[] { "Vietnam", "USA", "Canada" });
 
-            guna2ComboBox_Nations.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            guna2ComboBox_Nations.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            guna2ComboBox_Nations.AutoCompleteCustomSource = autoCompleteSource;
+            comboBox_nation.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            comboBox_nation.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            comboBox_nation.AutoCompleteCustomSource = autoCompleteSource;
         }
+
         private void Guna2ComboBox_Districts_SelectedIndexChanged(object? sender, EventArgs e)
         {
             throw new NotImplementedException();
         }
 
-        private void InitializeTextBoxPlaceholder()
-        {
-            // Set the initial placeholder text
-            textBox_DoB.Text = PlaceholderText;
-            textBox_DoB.ForeColor = Color.Gray; // Placeholder text color
-            textBox_DoB.Enter += TextBox_DoB_Enter;
-            textBox_DoB.Leave += TextBox_DoB_Leave;
-        }
-
-        private void InitializeTextBoxPlaceholderName()
-        {
-            textBox_Name.Text = PlaceholderName;
-            textBox_Name.ForeColor = Color.Gray;
-            textBox_Name.Enter += TextBox_Name_Enter;
-            textBox_Name.Leave += TextBox_Name_Leave;
-        }
-
-
-        private void TextBox_Name_Enter(object sender, EventArgs e)
-        {
-            // Clear placeholder text when the user focuses on the textbox
-            if (textBox_Name.Text == PlaceholderName)
-            {
-                textBox_Name.Text = "";
-                textBox_Name.ForeColor = Color.Black;
-            }
-        }
-
-        private void TextBox_Name_Leave(object sender, EventArgs e)
-        {
-            // Restore placeholder text if the textbox is empty
-            if (string.IsNullOrWhiteSpace(textBox_Name.Text))
-            {
-                textBox_Name.Text = PlaceholderName;
-                textBox_Name.ForeColor = Color.Gray;
-            }
-        }
-
-       
-
-        private void TextBox_DoB_Enter(object sender, EventArgs e)
-        {
-            // Clear placeholder text when the user focuses on the textbox
-            if (textBox_DoB.Text == PlaceholderText)
-            {
-                textBox_DoB.Text = "";
-                textBox_DoB.ForeColor = Color.Black; // Text color for user input
-            }
-        }
-
-        private void TextBox_DoB_Leave(object sender, EventArgs e)
-        {
-            // Restore placeholder text if the textbox is empty
-            if (string.IsNullOrWhiteSpace(textBox_DoB.Text))
-            {
-                textBox_DoB.Text = PlaceholderText;
-                textBox_DoB.ForeColor = Color.Gray; // Placeholder text color
-            }
-        }
         private void button_manaStdClear_Click(object sender, EventArgs e)
         {
             textBox_manaStdID.Clear();
             textBox_Name.Clear();
             textBox_DoB.Clear();
-            guna2TextBox_Street.Clear();
+            textbox_street.Clear();
 
             // Change the radio button to male status
             radioButton_manaStdFemale.Checked = false;
             radioButton_manaStdMale.Checked = true;
 
-            //guna2ComboBox_Nations.SelectedIndex = -1;
-            guna2ComboBox_Nations.Items.Clear();
-            guna2ComboBox_Districts.Items.Clear();
-            guna2ComboBox_CitiesOrProvinces.Items.Clear();
-            guna2ComboBox_WardsOrCommunes.Items.Clear();
-            InitializeAddressControls();
-
-            // Redisplay the blur format for the date of birth
-            InitializeTextBoxPlaceholder();
-            InitializeTextBoxPlaceholderName();
+            //comboBox_nation.SelectedIndex = -1;
+            comboBox_nation.Text = string.Empty;
+            combobox_city.Text = string.Empty;
+            combobox_city.Items.Clear();
+            combobox_district.Text = string.Empty;
+            combobox_district.Items.Clear();
+            combobox_ward.Text = string.Empty;
+            combobox_ward.Items.Clear();
         }
 
         bool verify()
         {
-            bool isValid = true;
-
-            // Check if name is filled
-            isValid = !string.IsNullOrWhiteSpace(textBox_Name.Text) && textBox_Name.Text != PlaceholderName;
-
-            // Check if Date of Birth is filled and valid
-            if (isValid)
-            {
-                isValid = !string.IsNullOrWhiteSpace(textBox_DoB.Text) && textBox_DoB.Text != PlaceholderText;
-
-                // Optionally validate the Date of Birth format
-                if (isValid && !DateTime.TryParseExact(textBox_DoB.Text, "dd/MM/yyyy", null, System.Globalization.DateTimeStyles.None, out _))
-                {
-                    isValid = false;
-                }
-            }
-
-            // Check if gender is selected
-            if (isValid)
-            {
-                isValid = radioButton_manaStdMale.Checked || radioButton_manaStdFemale.Checked;
-            }
-
-            // Check if address fields are filled in order
-            if (isValid)
-            {
-                isValid = !string.IsNullOrWhiteSpace(guna2ComboBox_Nations.SelectedItem?.ToString()) &&
-                          !string.IsNullOrWhiteSpace(guna2ComboBox_CitiesOrProvinces.SelectedItem?.ToString()) &&
-                          !string.IsNullOrWhiteSpace(guna2ComboBox_Districts.SelectedItem?.ToString()) &&
-                          !string.IsNullOrWhiteSpace(guna2ComboBox_WardsOrCommunes.SelectedItem?.ToString());
-            }
-
-            return isValid;
+            return !string.IsNullOrWhiteSpace(textBox_Name.Text) &&
+                    !string.IsNullOrWhiteSpace(textBox_DoB.Text) &&
+                    comboBox_nation.SelectedItem != null &&
+                    combobox_city.SelectedItem != null &&
+                    combobox_district.SelectedItem != null &&
+                    combobox_ward.SelectedItem != null &&
+                    !string.IsNullOrWhiteSpace(textbox_street.Text);
         }
-
 
         private void ManageStudentForm_Load(object sender, EventArgs e)
         {
@@ -325,13 +154,13 @@ namespace WinFormsApp1
             if (guna2DataGridView_manaStd.Columns["Gender"] != null)
             {
                 guna2DataGridView_manaStd.Columns["Gender"].HeaderText = "Giới tính";
-            }        
+            }
+            if (guna2DataGridView_manaStd.Columns["Address"] != null)
+            {
+                guna2DataGridView_manaStd.Columns["Address"].HeaderText = "Địa chỉ";
+            }
         }
 
-        private void Form_CLick (object sender, EventArgs e)
-        {
-            this.ActiveControl = null;
-        }
         private void button_manaStdSearch_Click(object sender, EventArgs e)
         {
             string searchTerm = textBox_manaStdSearch.Text;
@@ -358,16 +187,17 @@ namespace WinFormsApp1
                     string gender = radioButton_manaStdMale.Checked ? "Nam" : "Nữ";
 
                     // Handle address components, allowing for optional fields
-                    string nation = guna2ComboBox_Nations.SelectedItem != null ? guna2ComboBox_Nations.SelectedItem.ToString() : string.Empty;
-                    string city = guna2ComboBox_CitiesOrProvinces.SelectedItem != null ? guna2ComboBox_CitiesOrProvinces.SelectedItem.ToString() : string.Empty;
-                    string district = guna2ComboBox_Districts.SelectedItem != null ? guna2ComboBox_Districts.SelectedItem.ToString() : string.Empty;
-                    string commune = guna2ComboBox_WardsOrCommunes.SelectedItem != null ? guna2ComboBox_WardsOrCommunes.SelectedItem.ToString() : string.Empty;
-                    string street = guna2TextBox_Street.Text;
+                    string nation = comboBox_nation.SelectedItem.ToString();
+                    string city = combobox_city.SelectedItem.ToString();
+                    string district = combobox_district.SelectedItem.ToString();
+                    string commune = combobox_ward.SelectedItem.ToString();
+                    string street = textbox_street.Text;
+                    string address = $"{street}, {commune}, {district}, {city}, {nation}";
 
                     // Ensure the address is handled even if some fields are empty
-                    if (student.updateStudent(studentID, name, dob, gender, nation, city, district, commune, street))
+                    if (student.updateStudent(studentID, name, dob, gender, address))
                     {
-                        MessageBox.Show("Student information updated.", "Update Student", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Cập nhật thành công.", "Cập nhật thông tin", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         showTable();
                     }
                     else
@@ -386,26 +216,47 @@ namespace WinFormsApp1
             }
         }
 
-
-
         private void button_delete_Click(object sender, EventArgs e)
         {
             if (int.TryParse(textBox_manaStdID.Text, out int studentID))
             {
-                if (student.deleteStudent(studentID))
+                var confirmResult = MessageBox.Show("Are you sure to remove this student?",
+                                                     "Confirm Delete",
+                                                     MessageBoxButtons.YesNo,
+                                                     MessageBoxIcon.Question);
+
+                if (confirmResult == DialogResult.Yes)
                 {
-                    MessageBox.Show("Student deleted successfully.", "Delete Student", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    showTable();
-                }
-                else
-                {
-                    MessageBox.Show("No student found with the provided information.", "Delete Student", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    if (student.deleteStudent(studentID))
+                    {
+                        MessageBox.Show("Student deleted successfully.", "Delete Student", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        showTable();
+                    }
+                    else
+                    {
+                        MessageBox.Show("No student found with the provided information.", "Delete Student", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
             else
             {
                 MessageBox.Show("Please provide a valid student ID.", "Delete Student", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+            textBox_manaStdID.Clear();
+            textBox_Name.Clear();
+            textBox_DoB.Clear();
+            textbox_street.Clear();
+
+            // Change the radio button to male status
+            radioButton_manaStdFemale.Checked = false;
+            radioButton_manaStdMale.Checked = true;
+
+            //comboBox_nation.SelectedIndex = -1;
+            comboBox_nation.Items.Clear();
+            combobox_district.Items.Clear();
+            combobox_city.Items.Clear();
+            combobox_ward.Items.Clear();
+            InitializeAddressControls();
         }
 
         private void button_addStd_Click(object sender, EventArgs e)
@@ -416,11 +267,11 @@ namespace WinFormsApp1
                 string dob = textBox_DoB.Text;
                 string gender = radioButton_manaStdMale.Checked ? "Nam" : "Nữ";
 
-                string nation = guna2ComboBox_Nations.SelectedItem != null ? guna2ComboBox_Nations.SelectedItem.ToString() : string.Empty;
-                string city = guna2ComboBox_CitiesOrProvinces.SelectedItem != null ? guna2ComboBox_CitiesOrProvinces.SelectedItem.ToString() : string.Empty;
-                string district = guna2ComboBox_Districts.SelectedItem != null ? guna2ComboBox_Districts.SelectedItem.ToString() : string.Empty;
-                string commune = guna2ComboBox_WardsOrCommunes.SelectedItem != null ? guna2ComboBox_WardsOrCommunes.SelectedItem.ToString() : string.Empty;
-                string street = guna2TextBox_Street.Text;
+                string nation = comboBox_nation.SelectedItem.ToString();
+                string city = combobox_city.SelectedItem.ToString();
+                string district = combobox_district.SelectedItem.ToString();
+                string commune = combobox_ward.SelectedItem.ToString();
+                string street = textbox_street.Text;
 
                 if (student.insertStudent(name, dob, gender, nation, city, district, commune, street))
                 {
@@ -432,6 +283,66 @@ namespace WinFormsApp1
             {
                 MessageBox.Show("Nhập đủ các thông tin học sinh.", "Thêm học sinh", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void guna2DataGridView_manaStd_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            comboBox_nation.Text = string.Empty;
+            combobox_city.Text = string.Empty;
+            combobox_district.Text = string.Empty;
+            combobox_ward.Text = string.Empty;
+            textbox_street.Text = string.Empty;
+            textBox_manaStdID.Text = string.Empty;
+
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = guna2DataGridView_manaStd.Rows[e.RowIndex]; // lấy dữ liệu trong 1 hàng của 1 bảng để tương tác
+
+                // Set text boxes
+                textBox_Name.Text = row.Cells["Name"].Value.ToString(); // chọn cột Name trong hàng đã đc chọn và chuyển về dạng string
+
+                // hàm if ktra có thể chuyển ngày sinh ko, nếu có thì 
+                if (DateOnly.TryParse(row.Cells["DateOfBirth"].Value.ToString(), out DateOnly dob)) // chuyển đổi giá trị trong cột ngày sinh thành 
+                {                                                                                   // dạng string, sau đó chuyển sang dạng DateOnly
+                    textBox_DoB.Text = dob.ToString("dd/MM/yyyy");                                  // sau đó lưu trong biến dob nếu thành công
+                    // nếu chuyển được thì đưa vào textbox với dạng string chuyển từ kiểu DateOnly
+                } 
+                
+                // fill radio button giới tính
+                string gender = row.Cells["Gender"].Value.ToString(); // chuyển giá trị trong cột Gender thành string và gán gtri vào biến gender
+                radioButton_manaStdMale.Checked = gender == "Nam"; // syntax cho ktra liệu giá trị gender là Nam thì sẽ được checked và ngược lại
+                radioButton_manaStdFemale.Checked = gender == "Nữ";
+
+                textBox_manaStdID.Text = row.Cells["StudentID"].Value.ToString(); // textbox StudentID được nhận dữ liệu ID 
+
+                // Extract address
+                string address = row.Cells["Address"].Value.ToString(); // vẫn lấy giá trị của ô address trong datagridview, chuyển về string và lưu vào biến address
+                string[] addressComponents = address.Split(',').Select(c => c.Trim()).ToArray();
+                // phân chia chuỗi address thành các phẩn ngăn cách bởi dấu phảy. 
+                // Clear combo boxes
+                comboBox_nation.SelectedIndex = -1;
+                combobox_city.SelectedIndex = -1;
+                combobox_district.SelectedIndex = -1;
+                combobox_ward.SelectedIndex = -1;
+                textbox_street.Text = string.Empty;
+
+                // Address contains street
+                textbox_street.Text = addressComponents[0];
+                comboBox_nation.Text = addressComponents[4];
+                combobox_city.Text = addressComponents[3];
+                combobox_district.Text = addressComponents[2];
+                combobox_ward.Text = addressComponents[1];
+            }
+        }
+
+        private void guna2DataGridView_manaStd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ManageStudentForm_Click(object sender, EventArgs e)
+        {
+            this.ActiveControl = null;
         }
     }
 }

@@ -31,20 +31,21 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             panel1 = new Panel();
             button_manaSearchCourse = new Button();
             textBox_manaSearchCourse = new TextBox();
             label_ManageCourse = new Label();
-            textBox_manaCredits = new TextBox();
-            label_manaCredits = new Label();
-            textBox_manaCourseName = new TextBox();
-            label_manaCourseName = new Label();
-            textBox_ManaCourseID = new TextBox();
             label_manaCourseID = new Label();
             button_clearCourse = new Button();
             button_updateCourse = new Button();
             button_deleteCourse = new Button();
             guna2DataGridView_manaCourse = new Guna.UI2.WinForms.Guna2DataGridView();
+            guna2ComboBox_Classes = new Guna.UI2.WinForms.Guna2ComboBox();
+            button1 = new Button();
+            textBox_studentID = new TextBox();
+            label1 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView_manaCourse).BeginInit();
             SuspendLayout();
@@ -73,7 +74,6 @@
             button_manaSearchCourse.TabIndex = 2;
             button_manaSearchCourse.Text = "Search";
             button_manaSearchCourse.UseVisualStyleBackColor = true;
-            button_manaSearchCourse.Click += button_manaSearchCourse_Click;
             // 
             // textBox_manaSearchCourse
             // 
@@ -90,72 +90,21 @@
             label_ManageCourse.ForeColor = Color.White;
             label_ManageCourse.Location = new Point(20, 8);
             label_ManageCourse.Name = "label_ManageCourse";
-            label_ManageCourse.Size = new Size(251, 37);
+            label_ManageCourse.Size = new Size(243, 37);
             label_ManageCourse.TabIndex = 0;
-            label_ManageCourse.Text = "Manage Course";
-            // 
-            // textBox_manaCredits
-            // 
-            textBox_manaCredits.Anchor = AnchorStyles.Bottom;
-            textBox_manaCredits.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox_manaCredits.Location = new Point(263, 515);
-            textBox_manaCredits.Name = "textBox_manaCredits";
-            textBox_manaCredits.Size = new Size(125, 32);
-            textBox_manaCredits.TabIndex = 14;
-            // 
-            // label_manaCredits
-            // 
-            label_manaCredits.Anchor = AnchorStyles.Bottom;
-            label_manaCredits.AutoSize = true;
-            label_manaCredits.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label_manaCredits.ForeColor = SystemColors.Highlight;
-            label_manaCredits.Location = new Point(146, 518);
-            label_manaCredits.Name = "label_manaCredits";
-            label_manaCredits.Size = new Size(96, 23);
-            label_manaCredits.TabIndex = 13;
-            label_manaCredits.Text = "Credits : ";
-            // 
-            // textBox_manaCourseName
-            // 
-            textBox_manaCourseName.Anchor = AnchorStyles.Bottom;
-            textBox_manaCourseName.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox_manaCourseName.Location = new Point(263, 455);
-            textBox_manaCourseName.Name = "textBox_manaCourseName";
-            textBox_manaCourseName.Size = new Size(281, 32);
-            textBox_manaCourseName.TabIndex = 12;
-            // 
-            // label_manaCourseName
-            // 
-            label_manaCourseName.Anchor = AnchorStyles.Bottom;
-            label_manaCourseName.AutoSize = true;
-            label_manaCourseName.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label_manaCourseName.ForeColor = SystemColors.Highlight;
-            label_manaCourseName.Location = new Point(79, 458);
-            label_manaCourseName.Name = "label_manaCourseName";
-            label_manaCourseName.Size = new Size(163, 23);
-            label_manaCourseName.TabIndex = 11;
-            label_manaCourseName.Text = "Course Name : ";
-            // 
-            // textBox_ManaCourseID
-            // 
-            textBox_ManaCourseID.Anchor = AnchorStyles.Bottom;
-            textBox_ManaCourseID.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox_ManaCourseID.Location = new Point(263, 390);
-            textBox_ManaCourseID.Name = "textBox_ManaCourseID";
-            textBox_ManaCourseID.Size = new Size(125, 32);
-            textBox_ManaCourseID.TabIndex = 10;
+            label_ManageCourse.Text = "Quản lý lớp học";
             // 
             // label_manaCourseID
             // 
             label_manaCourseID.Anchor = AnchorStyles.Bottom;
             label_manaCourseID.AutoSize = true;
-            label_manaCourseID.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label_manaCourseID.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_manaCourseID.ForeColor = SystemColors.Highlight;
             label_manaCourseID.Location = new Point(119, 393);
             label_manaCourseID.Name = "label_manaCourseID";
-            label_manaCourseID.Size = new Size(123, 23);
+            label_manaCourseID.Size = new Size(120, 23);
             label_manaCourseID.TabIndex = 9;
-            label_manaCourseID.Text = "Course ID : ";
+            label_manaCourseID.Text = "ID học sinh : ";
             // 
             // button_clearCourse
             // 
@@ -163,13 +112,12 @@
             button_clearCourse.BackColor = Color.MidnightBlue;
             button_clearCourse.Font = new Font("Century Gothic", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button_clearCourse.ForeColor = Color.White;
-            button_clearCourse.Location = new Point(537, 539);
+            button_clearCourse.Location = new Point(672, 539);
             button_clearCourse.Name = "button_clearCourse";
             button_clearCourse.Size = new Size(120, 40);
             button_clearCourse.TabIndex = 15;
-            button_clearCourse.Text = "Clear";
+            button_clearCourse.Text = "Dọn";
             button_clearCourse.UseVisualStyleBackColor = false;
-            button_clearCourse.Click += button_clearCourse_Click;
             // 
             // button_updateCourse
             // 
@@ -177,13 +125,12 @@
             button_updateCourse.BackColor = Color.MidnightBlue;
             button_updateCourse.Font = new Font("Century Gothic", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button_updateCourse.ForeColor = Color.White;
-            button_updateCourse.Location = new Point(670, 539);
+            button_updateCourse.Location = new Point(800, 493);
             button_updateCourse.Name = "button_updateCourse";
             button_updateCourse.Size = new Size(120, 40);
             button_updateCourse.TabIndex = 16;
-            button_updateCourse.Text = "Update";
+            button_updateCourse.Text = "Cập nhật";
             button_updateCourse.UseVisualStyleBackColor = false;
-            button_updateCourse.Click += button_updateCourse_Click;
             // 
             // button_deleteCourse
             // 
@@ -195,9 +142,8 @@
             button_deleteCourse.Name = "button_deleteCourse";
             button_deleteCourse.Size = new Size(120, 40);
             button_deleteCourse.TabIndex = 17;
-            button_deleteCourse.Text = "Delete";
+            button_deleteCourse.Text = "Xóa";
             button_deleteCourse.UseVisualStyleBackColor = false;
-            button_deleteCourse.Click += button_deleteCourse_Click;
             // 
             // guna2DataGridView_manaCourse
             // 
@@ -258,25 +204,75 @@
             guna2DataGridView_manaCourse.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             guna2DataGridView_manaCourse.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
             // 
+            // guna2ComboBox_Classes
+            // 
+            guna2ComboBox_Classes.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            guna2ComboBox_Classes.BackColor = Color.Transparent;
+            guna2ComboBox_Classes.CustomizableEdges = customizableEdges1;
+            guna2ComboBox_Classes.DrawMode = DrawMode.OwnerDrawFixed;
+            guna2ComboBox_Classes.DropDownStyle = ComboBoxStyle.DropDownList;
+            guna2ComboBox_Classes.FocusedColor = Color.FromArgb(94, 148, 255);
+            guna2ComboBox_Classes.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            guna2ComboBox_Classes.Font = new Font("Segoe UI", 10F);
+            guna2ComboBox_Classes.ForeColor = Color.FromArgb(68, 88, 112);
+            guna2ComboBox_Classes.ItemHeight = 30;
+            guna2ComboBox_Classes.Location = new Point(575, 386);
+            guna2ComboBox_Classes.Name = "guna2ComboBox_Classes";
+            guna2ComboBox_Classes.ShadowDecoration.CustomizableEdges = customizableEdges2;
+            guna2ComboBox_Classes.Size = new Size(175, 36);
+            guna2ComboBox_Classes.TabIndex = 37;
+            // 
+            // button1
+            // 
+            button1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button1.BackColor = Color.MidnightBlue;
+            button1.Font = new Font("Century Gothic", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button1.ForeColor = Color.White;
+            button1.Location = new Point(800, 447);
+            button1.Name = "button1";
+            button1.Size = new Size(120, 40);
+            button1.TabIndex = 38;
+            button1.Text = "Thêm";
+            button1.UseVisualStyleBackColor = false;
+            // 
+            // textBox_studentID
+            // 
+            textBox_studentID.Anchor = AnchorStyles.Bottom;
+            textBox_studentID.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox_studentID.Location = new Point(245, 388);
+            textBox_studentID.Name = "textBox_studentID";
+            textBox_studentID.Size = new Size(125, 32);
+            textBox_studentID.TabIndex = 39;
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.Bottom;
+            label1.AutoSize = true;
+            label1.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = SystemColors.Highlight;
+            label1.Location = new Point(437, 393);
+            label1.Name = "label1";
+            label1.Size = new Size(132, 23);
+            label1.TabIndex = 40;
+            label1.Text = "Danh sách lớp ";
+            // 
             // ManageCourseForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(932, 603);
+            Controls.Add(label1);
+            Controls.Add(textBox_studentID);
+            Controls.Add(button1);
+            Controls.Add(guna2ComboBox_Classes);
             Controls.Add(guna2DataGridView_manaCourse);
             Controls.Add(button_deleteCourse);
             Controls.Add(button_updateCourse);
             Controls.Add(button_clearCourse);
-            Controls.Add(textBox_manaCredits);
-            Controls.Add(label_manaCredits);
-            Controls.Add(textBox_manaCourseName);
-            Controls.Add(label_manaCourseName);
-            Controls.Add(textBox_ManaCourseID);
             Controls.Add(label_manaCourseID);
             Controls.Add(panel1);
             Name = "ManageCourseForm";
             Text = "ManageCourseForm";
-            Load += ManageCourseForm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView_manaCourse).EndInit();
@@ -290,15 +286,14 @@
         private Button button_manaSearchCourse;
         private TextBox textBox_manaSearchCourse;
         private Label label_ManageCourse;
-        private TextBox textBox_manaCredits;
-        private Label label_manaCredits;
-        private TextBox textBox_manaCourseName;
-        private Label label_manaCourseName;
-        private TextBox textBox_ManaCourseID;
         private Label label_manaCourseID;
         private Button button_clearCourse;
         private Button button_updateCourse;
         private Button button_deleteCourse;
         private Guna.UI2.WinForms.Guna2DataGridView guna2DataGridView_manaCourse;
+        private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox_Classes;
+        private Button button1;
+        private TextBox textBox_studentID;
+        private Label label1;
     }
 }

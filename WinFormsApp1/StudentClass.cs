@@ -26,11 +26,11 @@ namespace WinFormsApp1
             try
             {
                 // Regular expression to match Vietnamese characters and basic punctuation
-                string vietnameseCharPattern = @"^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáạảâấầậẩãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂƯÔÀẲỰÙỚỜỞỠỢẹẻẽềềểệỉĩịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ\s,.'-]+$";
+                string vietnameseCharPattern = @"^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáạảâấầậẩăằắẳẵặãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂƯÔÀẲỰÙỚỜỞỠỢẹẻẽềếễểệỉĩịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ\s,.'-]+$";
 
                 if (!System.Text.RegularExpressions.Regex.IsMatch(name, vietnameseCharPattern))
                 {
-                    MessageBox.Show("Tên chỉ được chứa ký tự chữ và dấu câu thông thường của tiếng Việt.", "Sai định dạng", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Tên chỉ được chứa ký tự chữ và dấu câu thông thường của tiếng Việt.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return false;
                 }
 
@@ -38,14 +38,14 @@ namespace WinFormsApp1
                 {
                     dBConnect.OpenConnection(connection);
 
-                    DateTime dateOfBirth;
+                    DateOnly dateOfBirth;
                     // Replace separators and validate the format
                     string cleanedDob = dob.Replace("/", "").Replace("\\", "").Replace("-", "");
 
                     // Check if the cleaned date string has exactly 8 characters
                     if (cleanedDob.Length != 8 || !int.TryParse(cleanedDob, out int _))
                     {
-                        MessageBox.Show("Nhập nhiều hơn 8 ký tự. Hãy bảo đảm nhập đúng định dạng ddMMyyyy hoặc dd/mm/yyyy.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Dữ liệu ngày sinh không hợp lệ. Hãy bảo đảm nhập đúng định dạng ddMMyyyy hoặc dd/mm/yyyy.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
                     }
 
@@ -53,25 +53,24 @@ namespace WinFormsApp1
                     string month = cleanedDob.Substring(2, 2);
                     string year = cleanedDob.Substring(4, 4);
 
-                    // Validate day, month, and year
+                    // Validate day, month, and year DateOnly
                     if (year.Length != 4 ||
                         !int.TryParse(day, out int d) || !int.TryParse(month, out int m) ||
                         !int.TryParse(year, out int y))
                     {
-                        MessageBox.Show("Sai định dạng. Nhập đúng ngày tháng năm hợp lệ.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Sai định dạng. Nhập đúng ngày tháng năm hợp lệ.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
                     }
 
                     // Ensure day, month and year are valid
                     if (d < 1 || d > 31 || m < 1 || m > 12 || y < 1900 || y > DateTime.Now.Year)
                     {
-                        MessageBox.Show("Invalid date values. Ensure the day is between 1 and 31, month is between 1 and 12, and the year is a valid four-digit number.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Dữ liệu ngày tháng năm sinh không hợp lệ.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
                     }
-
                     try
                     {
-                        dateOfBirth = new DateTime(y, m, d); // This will throw if the date is invalid
+                        dateOfBirth = new DateOnly(y, m, d); // This will throw if the date is invalid
                     }
                     catch
                     {
@@ -144,44 +143,86 @@ namespace WinFormsApp1
             }
         }
 
-        public bool updateStudent(int studentID, string name, string dob, string gender,
-    string nation, string city, string district, string commune, string street)
+        public bool updateStudent(int studentID, string name, string dob, string gender, string address)
         {
             try
             {
-                using (var connection = new SqlConnection("YourConnectionString"))
+                using (var connection = dBConnect.GetConnection())
                 {
-                    connection.Open();
-                    using (var command = new SqlCommand("UpdateStudent", connection))
+                    dBConnect.OpenConnection(connection);
+                    // Regular expression to match Vietnamese characters and basic punctuation
+                    string vietnameseCharPattern = @"^[a-zA-ZÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáạảâấầậẩăằắẳẵặãèéêìíòóôõùúũăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂƯÔÀẲỰÙỚỜỞỠỢẹẻẽềếễểệỉĩịọỏốồổỗộớờởỡợụủứừửữựỳỵỷỹ\s,.'-]+$";
+
+                    if (!System.Text.RegularExpressions.Regex.IsMatch(name, vietnameseCharPattern))
                     {
-                        command.CommandType = CommandType.StoredProcedure;
-                        command.Parameters.AddWithValue("@StudentID", studentID);
-                        command.Parameters.AddWithValue("@Name", name);
-                        command.Parameters.AddWithValue("@DateOfBirth", dob); // Ensure proper date format
-                        command.Parameters.AddWithValue("@Gender", gender);
-
-                        // Handle address fields, allowing for empty values
-                        command.Parameters.AddWithValue("@Nation", (object)nation ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@City", (object)city ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@District", (object)district ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@Commune", (object)commune ?? DBNull.Value);
-                        command.Parameters.AddWithValue("@Street", (object)street ?? DBNull.Value);
-
-                        int rowsAffected = command.ExecuteNonQuery();
-                        return rowsAffected > 0;
+                        MessageBox.Show("Tên chỉ được chứa ký tự chữ và dấu câu thông thường của tiếng Việt.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
                     }
+
+                    DateOnly dateOfBirth;
+                    // Replace separators and validate the format
+                    string cleanedDob = dob.Replace("/", "").Replace("\\", "").Replace("-", "");
+
+                    // Check if the cleaned date string has exactly 8 characters
+                    if (cleanedDob.Length != 8 || !int.TryParse(cleanedDob, out int _))
+                    {
+                        MessageBox.Show("Dữ liệu ngày sinh không hợp lệ. Hãy bảo đảm nhập đúng định dạng ddMMyyyy hoặc dd/mm/yyyy.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+
+                    string day = cleanedDob.Substring(0, 2);
+                    string month = cleanedDob.Substring(2, 2);
+                    string year = cleanedDob.Substring(4, 4);
+
+                    // Validate day, month, and year
+                    if (year.Length != 4 ||
+                        !int.TryParse(day, out int d) || !int.TryParse(month, out int m) ||
+                        !int.TryParse(year, out int y))
+                    {
+                        MessageBox.Show("Sai định dạng. Nhập đúng ngày tháng năm hợp lệ.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+
+                    // Ensure day, month and year are valid
+                    if (d < 1 || d > 31 || m < 1 || m > 12 || y < 1900 || y > DateTime.Now.Year)
+                    {
+                        MessageBox.Show("Dữ liệu ngày sinh không hợp lệ.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+
+                    try
+                    {
+                        dateOfBirth = new DateOnly(y, m, d); // This will throw if the date is invalid
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Invalid date. Ensure the date is correct and exists.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+
+                    var command = new SqlCommand("UpdateStudent", connection)
+                    {
+                        CommandType = CommandType.StoredProcedure
+                    };
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.AddWithValue("@StudentID", studentID);
+                    command.Parameters.AddWithValue("@Name", name);
+                    command.Parameters.AddWithValue("@DateOfBirth", dateOfBirth); // Ensure proper date format
+                    command.Parameters.AddWithValue("@Gender", gender);
+                    command.Parameters.AddWithValue("@Address", address);
+                       
+                    int rowsAffected = command.ExecuteNonQuery();
+                    return rowsAffected > 0;           
                 }
             }
             catch (Exception ex)
             {
                 // Log the exception or handle it as needed
-                MessageBox.Show($"An error occurred while updating student information: {ex.Message}",
-                                "Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Lỗi khi đang cập nhật: {ex.Message}",
+                                "Lỗi cập nhật", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
-
-
 
         public bool deleteStudent(int studentID)
         {
@@ -226,7 +267,7 @@ namespace WinFormsApp1
             {
                 dBConnect.OpenConnection(connection);
 
-                var command = new SqlCommand("SELECT COUNT(*) FROM Students WHERE Gender = 'Male'", connection);
+                var command = new SqlCommand("SELECT COUNT(*) FROM Students WHERE Gender = 'Nam'", connection);
                 return (int)command.ExecuteScalar();
             }
         }
@@ -237,7 +278,7 @@ namespace WinFormsApp1
             {
                 dBConnect.OpenConnection(connection);
 
-                var command = new SqlCommand("SELECT COUNT(*) FROM Students WHERE Gender = 'Female'", connection);
+                var command = new SqlCommand("SELECT COUNT(*) FROM Students WHERE Gender = 'Nữ'", connection);
                 return (int)command.ExecuteScalar();
             }
         }

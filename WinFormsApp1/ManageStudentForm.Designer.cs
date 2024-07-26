@@ -8,12 +8,6 @@ namespace WinFormsApp1
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        private FilterComboBox guna2ComboBox_Nations;
-        private FilterComboBox guna2ComboBox_CitiesOrProvinces;
-        private FilterComboBox guna2ComboBox_Districts;
-        private FilterComboBox guna2ComboBox_WardsOrCommunes;
-        private Guna2TextBox guna2TextBox_Street;
-
         /// <summary>
         /// Clean up any resources being used.
         /// </summary>
@@ -35,33 +29,17 @@ namespace WinFormsApp1
         /// </summary>
         private void InitializeComponent()
         {
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            guna2ComboBox_Nations = new FilterComboBox();
-            guna2ComboBox_CitiesOrProvinces = new FilterComboBox();
-            guna2ComboBox_Districts = new FilterComboBox();
-            guna2ComboBox_WardsOrCommunes = new FilterComboBox();
-            guna2TextBox_Street = new Guna2TextBox();
             button1 = new Button();
             textBox_email = new TextBox();
             label9 = new Label();
             button_clear = new Button();
             button_add = new Button();
             panel2 = new Panel();
-            textBox_manaStdID = new TextBox();
-            label_manaStdID = new Label();
             panel1 = new Panel();
+            textBox_manaStdID = new TextBox();
             button_manaStdSearch = new Button();
             textBox_manaStdSearch = new TextBox();
             label_manaStd = new Label();
@@ -83,110 +61,15 @@ namespace WinFormsApp1
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
+            guna2HtmlLabel1 = new Guna2HtmlLabel();
+            comboBox_nation = new ComboBox();
+            combobox_city = new ComboBox();
+            combobox_district = new ComboBox();
+            combobox_ward = new ComboBox();
+            textbox_street = new TextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView_manaStd).BeginInit();
             SuspendLayout();
-            // 
-            // guna2ComboBox_Nations
-            // 
-            guna2ComboBox_Nations.AllowDrop = true;
-            guna2ComboBox_Nations.Anchor = AnchorStyles.Bottom;
-            guna2ComboBox_Nations.BackColor = Color.Transparent;
-            guna2ComboBox_Nations.CustomizableEdges = customizableEdges1;
-            guna2ComboBox_Nations.DrawMode = DrawMode.OwnerDrawFixed;
-            guna2ComboBox_Nations.DropDownStyle = ComboBoxStyle.DropDownList;
-            guna2ComboBox_Nations.FocusedColor = Color.FromArgb(94, 148, 255);
-            guna2ComboBox_Nations.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2ComboBox_Nations.Font = new Font("Segoe UI", 10F);
-            guna2ComboBox_Nations.ForeColor = Color.Gray;
-            guna2ComboBox_Nations.ItemHeight = 30;
-            guna2ComboBox_Nations.Location = new Point(165, 525);
-            guna2ComboBox_Nations.Name = "guna2ComboBox_Nations";
-            guna2ComboBox_Nations.PlaceholderText = "Quốc gia";
-            guna2ComboBox_Nations.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            guna2ComboBox_Nations.Size = new Size(167, 36);
-            guna2ComboBox_Nations.Sorted = true;
-            guna2ComboBox_Nations.TabIndex = 3;
-            guna2ComboBox_Nations.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
-            // 
-            // guna2ComboBox_CitiesOrProvinces
-            // 
-            guna2ComboBox_CitiesOrProvinces.Anchor = AnchorStyles.Bottom;
-            guna2ComboBox_CitiesOrProvinces.BackColor = Color.Transparent;
-            guna2ComboBox_CitiesOrProvinces.CustomizableEdges = customizableEdges3;
-            guna2ComboBox_CitiesOrProvinces.DrawMode = DrawMode.OwnerDrawFixed;
-            guna2ComboBox_CitiesOrProvinces.DropDownStyle = ComboBoxStyle.DropDownList;
-            guna2ComboBox_CitiesOrProvinces.FocusedColor = Color.FromArgb(94, 148, 255);
-            guna2ComboBox_CitiesOrProvinces.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2ComboBox_CitiesOrProvinces.Font = new Font("Segoe UI", 10F);
-            guna2ComboBox_CitiesOrProvinces.ForeColor = Color.Gray;
-            guna2ComboBox_CitiesOrProvinces.ItemHeight = 30;
-            guna2ComboBox_CitiesOrProvinces.Location = new Point(338, 525);
-            guna2ComboBox_CitiesOrProvinces.Name = "guna2ComboBox_CitiesOrProvinces";
-            guna2ComboBox_CitiesOrProvinces.PlaceholderText = null;
-            guna2ComboBox_CitiesOrProvinces.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            guna2ComboBox_CitiesOrProvinces.Size = new Size(167, 36);
-            guna2ComboBox_CitiesOrProvinces.TabIndex = 4;
-            // 
-            // guna2ComboBox_Districts
-            // 
-            guna2ComboBox_Districts.Anchor = AnchorStyles.Bottom;
-            guna2ComboBox_Districts.BackColor = Color.Transparent;
-            guna2ComboBox_Districts.CustomizableEdges = customizableEdges5;
-            guna2ComboBox_Districts.DrawMode = DrawMode.OwnerDrawFixed;
-            guna2ComboBox_Districts.DropDownStyle = ComboBoxStyle.DropDownList;
-            guna2ComboBox_Districts.FocusedColor = Color.FromArgb(94, 148, 255);
-            guna2ComboBox_Districts.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2ComboBox_Districts.Font = new Font("Segoe UI", 10F);
-            guna2ComboBox_Districts.ForeColor = Color.Gray;
-            guna2ComboBox_Districts.ItemHeight = 30;
-            guna2ComboBox_Districts.Location = new Point(511, 525);
-            guna2ComboBox_Districts.Name = "guna2ComboBox_Districts";
-            guna2ComboBox_Districts.PlaceholderText = null;
-            guna2ComboBox_Districts.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            guna2ComboBox_Districts.Size = new Size(167, 36);
-            guna2ComboBox_Districts.TabIndex = 5;
-            // 
-            // guna2ComboBox_WardsOrCommunes
-            // 
-            guna2ComboBox_WardsOrCommunes.Anchor = AnchorStyles.Bottom;
-            guna2ComboBox_WardsOrCommunes.BackColor = Color.Transparent;
-            guna2ComboBox_WardsOrCommunes.CustomizableEdges = customizableEdges7;
-            guna2ComboBox_WardsOrCommunes.DrawMode = DrawMode.OwnerDrawFixed;
-            guna2ComboBox_WardsOrCommunes.DropDownStyle = ComboBoxStyle.DropDownList;
-            guna2ComboBox_WardsOrCommunes.FocusedColor = Color.FromArgb(94, 148, 255);
-            guna2ComboBox_WardsOrCommunes.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2ComboBox_WardsOrCommunes.Font = new Font("Segoe UI", 10F);
-            guna2ComboBox_WardsOrCommunes.ForeColor = Color.Gray;
-            guna2ComboBox_WardsOrCommunes.ItemHeight = 30;
-            guna2ComboBox_WardsOrCommunes.Location = new Point(684, 525);
-            guna2ComboBox_WardsOrCommunes.Name = "guna2ComboBox_WardsOrCommunes";
-            guna2ComboBox_WardsOrCommunes.PlaceholderText = null;
-            guna2ComboBox_WardsOrCommunes.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            guna2ComboBox_WardsOrCommunes.Size = new Size(167, 36);
-            guna2ComboBox_WardsOrCommunes.TabIndex = 6;
-            // 
-            // guna2TextBox_Street
-            // 
-            guna2TextBox_Street.Anchor = AnchorStyles.Bottom;
-            guna2TextBox_Street.CustomizableEdges = customizableEdges9;
-            guna2TextBox_Street.DefaultText = "";
-            guna2TextBox_Street.DisabledState.BorderColor = Color.FromArgb(208, 208, 208);
-            guna2TextBox_Street.DisabledState.FillColor = Color.FromArgb(226, 226, 226);
-            guna2TextBox_Street.DisabledState.ForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox_Street.DisabledState.PlaceholderForeColor = Color.FromArgb(138, 138, 138);
-            guna2TextBox_Street.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox_Street.Font = new Font("Segoe UI", 9F);
-            guna2TextBox_Street.HoverState.BorderColor = Color.FromArgb(94, 148, 255);
-            guna2TextBox_Street.Location = new Point(857, 525);
-            guna2TextBox_Street.Margin = new Padding(3, 4, 3, 4);
-            guna2TextBox_Street.Name = "guna2TextBox_Street";
-            guna2TextBox_Street.PasswordChar = '\0';
-            guna2TextBox_Street.PlaceholderText = "Số nhà";
-            guna2TextBox_Street.SelectedText = "";
-            guna2TextBox_Street.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            guna2TextBox_Street.Size = new Size(108, 36);
-            guna2TextBox_Street.TabIndex = 7;
             // 
             // button1
             // 
@@ -256,31 +139,10 @@ namespace WinFormsApp1
             panel2.Size = new Size(1242, 10);
             panel2.TabIndex = 74;
             // 
-            // textBox_manaStdID
-            // 
-            textBox_manaStdID.Anchor = AnchorStyles.Bottom;
-            textBox_manaStdID.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox_manaStdID.Location = new Point(792, 389);
-            textBox_manaStdID.Name = "textBox_manaStdID";
-            textBox_manaStdID.Size = new Size(130, 25);
-            textBox_manaStdID.TabIndex = 70;
-            // 
-            // label_manaStdID
-            // 
-            label_manaStdID.Anchor = AnchorStyles.Bottom;
-            label_manaStdID.AutoSize = true;
-            label_manaStdID.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label_manaStdID.ForeColor = SystemColors.Highlight;
-            label_manaStdID.Location = new Point(738, 391);
-            label_manaStdID.Name = "label_manaStdID";
-            label_manaStdID.Size = new Size(48, 23);
-            label_manaStdID.TabIndex = 69;
-            label_manaStdID.Text = "ID : ";
-            label_manaStdID.TextAlign = ContentAlignment.TopRight;
-            // 
             // panel1
             // 
             panel1.BackColor = Color.MidnightBlue;
+            panel1.Controls.Add(textBox_manaStdID);
             panel1.Controls.Add(button_manaStdSearch);
             panel1.Controls.Add(textBox_manaStdSearch);
             panel1.Controls.Add(label_manaStd);
@@ -290,6 +152,14 @@ namespace WinFormsApp1
             panel1.Name = "panel1";
             panel1.Size = new Size(1259, 72);
             panel1.TabIndex = 68;
+            // 
+            // textBox_manaStdID
+            // 
+            textBox_manaStdID.Location = new Point(1134, 15);
+            textBox_manaStdID.Name = "textBox_manaStdID";
+            textBox_manaStdID.Size = new Size(125, 27);
+            textBox_manaStdID.TabIndex = 92;
+            textBox_manaStdID.Visible = false;
             // 
             // button_manaStdSearch
             // 
@@ -349,7 +219,7 @@ namespace WinFormsApp1
             radioButton_manaStdFemale.AutoSize = true;
             radioButton_manaStdFemale.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             radioButton_manaStdFemale.ForeColor = SystemColors.Highlight;
-            radioButton_manaStdFemale.Location = new Point(866, 437);
+            radioButton_manaStdFemale.Location = new Point(866, 392);
             radioButton_manaStdFemale.Name = "radioButton_manaStdFemale";
             radioButton_manaStdFemale.Size = new Size(56, 26);
             radioButton_manaStdFemale.TabIndex = 9;
@@ -363,7 +233,7 @@ namespace WinFormsApp1
             radioButton_manaStdMale.Checked = true;
             radioButton_manaStdMale.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             radioButton_manaStdMale.ForeColor = SystemColors.Highlight;
-            radioButton_manaStdMale.Location = new Point(792, 437);
+            radioButton_manaStdMale.Location = new Point(792, 392);
             radioButton_manaStdMale.Name = "radioButton_manaStdMale";
             radioButton_manaStdMale.Size = new Size(68, 26);
             radioButton_manaStdMale.TabIndex = 8;
@@ -377,7 +247,7 @@ namespace WinFormsApp1
             label_manaStdGender.AutoSize = true;
             label_manaStdGender.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_manaStdGender.ForeColor = SystemColors.Highlight;
-            label_manaStdGender.Location = new Point(684, 438);
+            label_manaStdGender.Location = new Point(684, 394);
             label_manaStdGender.Name = "label_manaStdGender";
             label_manaStdGender.Size = new Size(102, 23);
             label_manaStdGender.TabIndex = 57;
@@ -451,6 +321,8 @@ namespace WinFormsApp1
             guna2DataGridView_manaStd.ThemeStyle.RowsStyle.Height = 80;
             guna2DataGridView_manaStd.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             guna2DataGridView_manaStd.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            guna2DataGridView_manaStd.CellContentClick += guna2DataGridView_manaStd_CellContentClick;
+            guna2DataGridView_manaStd.Click += guna2DataGridView_manaStd_Click;
             // 
             // textBox_Name
             // 
@@ -458,6 +330,7 @@ namespace WinFormsApp1
             textBox_Name.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox_Name.Location = new Point(165, 393);
             textBox_Name.Name = "textBox_Name";
+            textBox_Name.PlaceholderText = "Nguyễn Văn A";
             textBox_Name.Size = new Size(429, 25);
             textBox_Name.TabIndex = 1;
             // 
@@ -479,6 +352,7 @@ namespace WinFormsApp1
             textBox_DoB.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox_DoB.Location = new Point(165, 440);
             textBox_DoB.Name = "textBox_DoB";
+            textBox_DoB.PlaceholderText = "dd/mm/yyyy";
             textBox_DoB.Size = new Size(429, 25);
             textBox_DoB.TabIndex = 2;
             // 
@@ -584,28 +458,84 @@ namespace WinFormsApp1
             label4.TabIndex = 86;
             label4.Text = "Phường/Xã";
             // 
+            // guna2HtmlLabel1
+            // 
+            guna2HtmlLabel1.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            guna2HtmlLabel1.BackColor = Color.Transparent;
+            guna2HtmlLabel1.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
+            guna2HtmlLabel1.ForeColor = Color.Red;
+            guna2HtmlLabel1.Location = new Point(846, 567);
+            guna2HtmlLabel1.Name = "guna2HtmlLabel1";
+            guna2HtmlLabel1.Size = new Size(273, 22);
+            guna2HtmlLabel1.TabIndex = 87;
+            guna2HtmlLabel1.Text = "* Nhấn vào học sinh để cập nhật hoặc xóa\r\n\r\n";
+            // 
+            // comboBox_nation
+            // 
+            comboBox_nation.Anchor = AnchorStyles.Bottom;
+            comboBox_nation.FormattingEnabled = true;
+            comboBox_nation.Location = new Point(165, 533);
+            comboBox_nation.Name = "comboBox_nation";
+            comboBox_nation.Size = new Size(151, 28);
+            comboBox_nation.TabIndex = 88;
+            // 
+            // combobox_city
+            // 
+            combobox_city.Anchor = AnchorStyles.Bottom;
+            combobox_city.FormattingEnabled = true;
+            combobox_city.Location = new Point(338, 533);
+            combobox_city.Name = "combobox_city";
+            combobox_city.Size = new Size(151, 28);
+            combobox_city.TabIndex = 89;
+            // 
+            // combobox_district
+            // 
+            combobox_district.Anchor = AnchorStyles.Bottom;
+            combobox_district.FormattingEnabled = true;
+            combobox_district.Location = new Point(511, 533);
+            combobox_district.Name = "combobox_district";
+            combobox_district.Size = new Size(151, 28);
+            combobox_district.TabIndex = 90;
+            // 
+            // combobox_ward
+            // 
+            combobox_ward.Anchor = AnchorStyles.Bottom;
+            combobox_ward.FormattingEnabled = true;
+            combobox_ward.Location = new Point(682, 533);
+            combobox_ward.Name = "combobox_ward";
+            combobox_ward.Size = new Size(151, 28);
+            combobox_ward.TabIndex = 91;
+            // 
+            // textbox_street
+            // 
+            textbox_street.Anchor = AnchorStyles.Bottom;
+            textbox_street.Location = new Point(866, 534);
+            textbox_street.Name = "textbox_street";
+            textbox_street.PlaceholderText = "Đường phố";
+            textbox_street.Size = new Size(151, 27);
+            textbox_street.TabIndex = 92;
+            // 
             // ManageStudentForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1259, 603);
+            Controls.Add(textbox_street);
+            Controls.Add(combobox_ward);
+            Controls.Add(combobox_district);
+            Controls.Add(combobox_city);
+            Controls.Add(comboBox_nation);
+            Controls.Add(guna2HtmlLabel1);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(guna2TextBox_Street);
-            Controls.Add(guna2ComboBox_WardsOrCommunes);
-            Controls.Add(guna2ComboBox_Districts);
-            Controls.Add(guna2ComboBox_CitiesOrProvinces);
-            Controls.Add(guna2ComboBox_Nations);
             Controls.Add(button_delete);
             Controls.Add(button_addStd);
             Controls.Add(button_update);
             Controls.Add(textBox_DoB);
             Controls.Add(button_manaStdClear);
             Controls.Add(panel2);
-            Controls.Add(textBox_manaStdID);
-            Controls.Add(label_manaStdID);
             Controls.Add(panel1);
             Controls.Add(button_upload);
             Controls.Add(label_manaStdAddress);
@@ -625,6 +555,7 @@ namespace WinFormsApp1
             Name = "ManageStudentForm";
             Text = "ManageStudentForm";
             Load += ManageStudentForm_Load;
+            Click += ManageStudentForm_Click;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView_manaStd).EndInit();
@@ -639,8 +570,6 @@ namespace WinFormsApp1
         private Button button_clear;
         private Button button_add;
         private Panel panel2;
-        private TextBox textBox_manaStdID;
-        private Label label_manaStdID;
         private Panel panel1;
         private Button button_manaStdSearch;
         private TextBox textBox_manaStdSearch;
@@ -665,5 +594,12 @@ namespace WinFormsApp1
         private Label label2;
         private Label label3;
         private Label label4;
+        private Guna2HtmlLabel guna2HtmlLabel1;
+        private ComboBox comboBox_nation;
+        private ComboBox combobox_city;
+        private ComboBox combobox_district;
+        private ComboBox combobox_ward;
+        private TextBox textBox_manaStdID;
+        private TextBox textbox_street;
     }
 }

@@ -31,20 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             panel_slide = new Panel();
             button_Enrollment = new Button();
-            button_semester = new Button();
-            button_exit1 = new Button();
             button_dashboard = new Button();
-            panel_scoreSubmenu = new Panel();
-            button_ClassList = new Button();
-            button1 = new Button();
-            button_scorePrint = new Button();
-            button_manageScore = new Button();
-            button_newScore = new Button();
             button_score = new Button();
-            panel_courseSubmenu = new Panel();
-            button_CoursesPerCycle = new Button();
-            button_manageCourse = new Button();
-            button_newCourse = new Button();
             button_course = new Button();
             button_std = new Button();
             panel_logo = new Panel();
@@ -70,8 +58,6 @@
             panel1 = new Panel();
             label10 = new Label();
             panel_slide.SuspendLayout();
-            panel_scoreSubmenu.SuspendLayout();
-            panel_courseSubmenu.SuspendLayout();
             panel_logo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel_main.SuspendLayout();
@@ -87,12 +73,8 @@
             panel_slide.AutoScroll = true;
             panel_slide.BackColor = Color.MidnightBlue;
             panel_slide.Controls.Add(button_Enrollment);
-            panel_slide.Controls.Add(button_semester);
-            panel_slide.Controls.Add(button_exit1);
             panel_slide.Controls.Add(button_dashboard);
-            panel_slide.Controls.Add(panel_scoreSubmenu);
             panel_slide.Controls.Add(button_score);
-            panel_slide.Controls.Add(panel_courseSubmenu);
             panel_slide.Controls.Add(button_course);
             panel_slide.Controls.Add(button_std);
             panel_slide.Controls.Add(panel_logo);
@@ -108,52 +90,17 @@
             button_Enrollment.Dock = DockStyle.Top;
             button_Enrollment.FlatAppearance.BorderSize = 0;
             button_Enrollment.FlatStyle = FlatStyle.Flat;
-            button_Enrollment.Font = new Font("Century Gothic", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button_Enrollment.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button_Enrollment.ForeColor = Color.White;
-            button_Enrollment.Location = new Point(0, 770);
+            button_Enrollment.Location = new Point(0, 371);
             button_Enrollment.Name = "button_Enrollment";
             button_Enrollment.Padding = new Padding(10, 0, 0, 0);
-            button_Enrollment.Size = new Size(170, 48);
+            button_Enrollment.Size = new Size(191, 48);
             button_Enrollment.TabIndex = 12;
-            button_Enrollment.Text = "Enrollment";
+            button_Enrollment.Text = "Đăng ký môn";
             button_Enrollment.TextAlign = ContentAlignment.MiddleLeft;
             button_Enrollment.UseVisualStyleBackColor = false;
             button_Enrollment.Click += button_Enrollment_Click;
-            // 
-            // button_semester
-            // 
-            button_semester.BackColor = Color.RoyalBlue;
-            button_semester.Dock = DockStyle.Top;
-            button_semester.FlatAppearance.BorderSize = 0;
-            button_semester.FlatStyle = FlatStyle.Flat;
-            button_semester.Font = new Font("Century Gothic", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button_semester.ForeColor = Color.White;
-            button_semester.Location = new Point(0, 722);
-            button_semester.Name = "button_semester";
-            button_semester.Padding = new Padding(10, 0, 0, 0);
-            button_semester.Size = new Size(170, 48);
-            button_semester.TabIndex = 8;
-            button_semester.Text = "Semester";
-            button_semester.TextAlign = ContentAlignment.MiddleLeft;
-            button_semester.UseVisualStyleBackColor = false;
-            button_semester.Click += button_semester_Click;
-            // 
-            // button_exit1
-            // 
-            button_exit1.BackColor = Color.RoyalBlue;
-            button_exit1.Dock = DockStyle.Top;
-            button_exit1.FlatAppearance.BorderSize = 0;
-            button_exit1.FlatStyle = FlatStyle.Flat;
-            button_exit1.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button_exit1.ForeColor = Color.White;
-            button_exit1.Location = new Point(0, 674);
-            button_exit1.Name = "button_exit1";
-            button_exit1.Padding = new Padding(10, 0, 0, 0);
-            button_exit1.Size = new Size(170, 48);
-            button_exit1.TabIndex = 7;
-            button_exit1.Text = "Exit";
-            button_exit1.TextAlign = ContentAlignment.MiddleLeft;
-            button_exit1.UseVisualStyleBackColor = false;
             // 
             // button_dashboard
             // 
@@ -161,114 +108,17 @@
             button_dashboard.Dock = DockStyle.Top;
             button_dashboard.FlatAppearance.BorderSize = 0;
             button_dashboard.FlatStyle = FlatStyle.Flat;
-            button_dashboard.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button_dashboard.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button_dashboard.ForeColor = Color.White;
-            button_dashboard.Location = new Point(0, 626);
+            button_dashboard.Location = new Point(0, 323);
             button_dashboard.Name = "button_dashboard";
             button_dashboard.Padding = new Padding(10, 0, 0, 0);
-            button_dashboard.Size = new Size(170, 48);
+            button_dashboard.Size = new Size(191, 48);
             button_dashboard.TabIndex = 6;
-            button_dashboard.Text = "Dashboard";
+            button_dashboard.Text = "Trang chủ";
             button_dashboard.TextAlign = ContentAlignment.MiddleLeft;
             button_dashboard.UseVisualStyleBackColor = false;
             button_dashboard.Click += button_dashboard_Click;
-            // 
-            // panel_scoreSubmenu
-            // 
-            panel_scoreSubmenu.Controls.Add(button_ClassList);
-            panel_scoreSubmenu.Controls.Add(button1);
-            panel_scoreSubmenu.Controls.Add(button_scorePrint);
-            panel_scoreSubmenu.Controls.Add(button_manageScore);
-            panel_scoreSubmenu.Controls.Add(button_newScore);
-            panel_scoreSubmenu.Dock = DockStyle.Top;
-            panel_scoreSubmenu.Location = new Point(0, 475);
-            panel_scoreSubmenu.Name = "panel_scoreSubmenu";
-            panel_scoreSubmenu.Size = new Size(170, 151);
-            panel_scoreSubmenu.TabIndex = 5;
-            // 
-            // button_ClassList
-            // 
-            button_ClassList.Dock = DockStyle.Top;
-            button_ClassList.FlatAppearance.BorderSize = 0;
-            button_ClassList.FlatStyle = FlatStyle.Flat;
-            button_ClassList.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button_ClassList.ForeColor = Color.White;
-            button_ClassList.Location = new Point(0, 202);
-            button_ClassList.Name = "button_ClassList";
-            button_ClassList.Padding = new Padding(35, 0, 0, 0);
-            button_ClassList.Size = new Size(170, 49);
-            button_ClassList.TabIndex = 10;
-            button_ClassList.Text = "241";
-            button_ClassList.TextAlign = ContentAlignment.MiddleLeft;
-            button_ClassList.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            button1.BackColor = Color.RoyalBlue;
-            button1.Dock = DockStyle.Top;
-            button1.FlatAppearance.BorderSize = 0;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button1.ForeColor = Color.White;
-            button1.Location = new Point(0, 154);
-            button1.Name = "button1";
-            button1.Padding = new Padding(10, 0, 0, 0);
-            button1.Size = new Size(170, 48);
-            button1.TabIndex = 7;
-            button1.Text = "Exit";
-            button1.TextAlign = ContentAlignment.MiddleLeft;
-            button1.UseVisualStyleBackColor = false;
-            // 
-            // button_scorePrint
-            // 
-            button_scorePrint.Dock = DockStyle.Top;
-            button_scorePrint.FlatAppearance.BorderSize = 0;
-            button_scorePrint.FlatStyle = FlatStyle.Flat;
-            button_scorePrint.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button_scorePrint.ForeColor = Color.White;
-            button_scorePrint.Location = new Point(0, 100);
-            button_scorePrint.Name = "button_scorePrint";
-            button_scorePrint.Padding = new Padding(35, 0, 0, 0);
-            button_scorePrint.Size = new Size(170, 54);
-            button_scorePrint.TabIndex = 3;
-            button_scorePrint.Text = "Print";
-            button_scorePrint.TextAlign = ContentAlignment.MiddleLeft;
-            button_scorePrint.UseVisualStyleBackColor = true;
-            button_scorePrint.Click += button_scorePrint_Click;
-            // 
-            // button_manageScore
-            // 
-            button_manageScore.Dock = DockStyle.Top;
-            button_manageScore.FlatAppearance.BorderSize = 0;
-            button_manageScore.FlatStyle = FlatStyle.Flat;
-            button_manageScore.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button_manageScore.ForeColor = Color.White;
-            button_manageScore.Location = new Point(0, 50);
-            button_manageScore.Name = "button_manageScore";
-            button_manageScore.Padding = new Padding(35, 0, 0, 0);
-            button_manageScore.Size = new Size(170, 50);
-            button_manageScore.TabIndex = 1;
-            button_manageScore.Text = "Manage Score";
-            button_manageScore.TextAlign = ContentAlignment.MiddleLeft;
-            button_manageScore.UseVisualStyleBackColor = true;
-            button_manageScore.Click += button_manageScore_Click;
-            // 
-            // button_newScore
-            // 
-            button_newScore.Dock = DockStyle.Top;
-            button_newScore.FlatAppearance.BorderSize = 0;
-            button_newScore.FlatStyle = FlatStyle.Flat;
-            button_newScore.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button_newScore.ForeColor = Color.White;
-            button_newScore.Location = new Point(0, 0);
-            button_newScore.Name = "button_newScore";
-            button_newScore.Padding = new Padding(35, 0, 0, 0);
-            button_newScore.Size = new Size(170, 50);
-            button_newScore.TabIndex = 0;
-            button_newScore.Text = "New Score";
-            button_newScore.TextAlign = ContentAlignment.MiddleLeft;
-            button_newScore.UseVisualStyleBackColor = true;
-            button_newScore.Click += button_newScore_Click;
             // 
             // button_score
             // 
@@ -276,79 +126,17 @@
             button_score.Dock = DockStyle.Top;
             button_score.FlatAppearance.BorderSize = 0;
             button_score.FlatStyle = FlatStyle.Flat;
-            button_score.Font = new Font("Century Gothic", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button_score.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button_score.ForeColor = Color.White;
-            button_score.Location = new Point(0, 427);
+            button_score.Location = new Point(0, 275);
             button_score.Name = "button_score";
             button_score.Padding = new Padding(10, 0, 0, 0);
-            button_score.Size = new Size(170, 48);
+            button_score.Size = new Size(191, 48);
             button_score.TabIndex = 4;
-            button_score.Text = "Score";
+            button_score.Text = "Điểm";
             button_score.TextAlign = ContentAlignment.MiddleLeft;
             button_score.UseVisualStyleBackColor = false;
             button_score.Click += button_score_Click;
-            // 
-            // panel_courseSubmenu
-            // 
-            panel_courseSubmenu.Controls.Add(button_CoursesPerCycle);
-            panel_courseSubmenu.Controls.Add(button_manageCourse);
-            panel_courseSubmenu.Controls.Add(button_newCourse);
-            panel_courseSubmenu.Dock = DockStyle.Top;
-            panel_courseSubmenu.Location = new Point(0, 275);
-            panel_courseSubmenu.Name = "panel_courseSubmenu";
-            panel_courseSubmenu.Size = new Size(170, 152);
-            panel_courseSubmenu.TabIndex = 3;
-            // 
-            // button_CoursesPerCycle
-            // 
-            button_CoursesPerCycle.Dock = DockStyle.Top;
-            button_CoursesPerCycle.FlatAppearance.BorderSize = 0;
-            button_CoursesPerCycle.FlatStyle = FlatStyle.Flat;
-            button_CoursesPerCycle.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button_CoursesPerCycle.ForeColor = Color.White;
-            button_CoursesPerCycle.Location = new Point(0, 100);
-            button_CoursesPerCycle.Name = "button_CoursesPerCycle";
-            button_CoursesPerCycle.Padding = new Padding(35, 0, 0, 0);
-            button_CoursesPerCycle.Size = new Size(170, 50);
-            button_CoursesPerCycle.TabIndex = 3;
-            button_CoursesPerCycle.Text = "Courses per Cycle";
-            button_CoursesPerCycle.TextAlign = ContentAlignment.MiddleLeft;
-            button_CoursesPerCycle.UseVisualStyleBackColor = true;
-            button_CoursesPerCycle.Click += button_CoursesPerCycle_Click;
-            // 
-            // button_manageCourse
-            // 
-            button_manageCourse.Dock = DockStyle.Top;
-            button_manageCourse.FlatAppearance.BorderSize = 0;
-            button_manageCourse.FlatStyle = FlatStyle.Flat;
-            button_manageCourse.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button_manageCourse.ForeColor = Color.White;
-            button_manageCourse.Location = new Point(0, 50);
-            button_manageCourse.Name = "button_manageCourse";
-            button_manageCourse.Padding = new Padding(35, 0, 0, 0);
-            button_manageCourse.Size = new Size(170, 50);
-            button_manageCourse.TabIndex = 1;
-            button_manageCourse.Text = "Manage Course";
-            button_manageCourse.TextAlign = ContentAlignment.MiddleLeft;
-            button_manageCourse.UseVisualStyleBackColor = true;
-            button_manageCourse.Click += button_manageCourse_Click;
-            // 
-            // button_newCourse
-            // 
-            button_newCourse.Dock = DockStyle.Top;
-            button_newCourse.FlatAppearance.BorderSize = 0;
-            button_newCourse.FlatStyle = FlatStyle.Flat;
-            button_newCourse.Font = new Font("Century Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button_newCourse.ForeColor = Color.White;
-            button_newCourse.Location = new Point(0, 0);
-            button_newCourse.Name = "button_newCourse";
-            button_newCourse.Padding = new Padding(35, 0, 0, 0);
-            button_newCourse.Size = new Size(170, 50);
-            button_newCourse.TabIndex = 0;
-            button_newCourse.Text = "New Course";
-            button_newCourse.TextAlign = ContentAlignment.MiddleLeft;
-            button_newCourse.UseVisualStyleBackColor = true;
-            button_newCourse.Click += button_newCourse_Click;
             // 
             // button_course
             // 
@@ -356,14 +144,14 @@
             button_course.Dock = DockStyle.Top;
             button_course.FlatAppearance.BorderSize = 0;
             button_course.FlatStyle = FlatStyle.Flat;
-            button_course.Font = new Font("Century Gothic", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button_course.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button_course.ForeColor = Color.White;
             button_course.Location = new Point(0, 227);
             button_course.Name = "button_course";
             button_course.Padding = new Padding(10, 0, 0, 0);
-            button_course.Size = new Size(170, 48);
+            button_course.Size = new Size(191, 48);
             button_course.TabIndex = 2;
-            button_course.Text = "Course";
+            button_course.Text = "Khóa học";
             button_course.TextAlign = ContentAlignment.MiddleLeft;
             button_course.UseVisualStyleBackColor = false;
             button_course.Click += button_course_Click;
@@ -374,14 +162,14 @@
             button_std.Dock = DockStyle.Top;
             button_std.FlatAppearance.BorderSize = 0;
             button_std.FlatStyle = FlatStyle.Flat;
-            button_std.Font = new Font("Century Gothic", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button_std.Font = new Font("Times New Roman", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button_std.ForeColor = Color.White;
             button_std.Location = new Point(0, 179);
             button_std.Name = "button_std";
             button_std.Padding = new Padding(10, 0, 0, 0);
-            button_std.Size = new Size(170, 48);
+            button_std.Size = new Size(191, 48);
             button_std.TabIndex = 1;
-            button_std.Text = "Student";
+            button_std.Text = "Học sinh";
             button_std.TextAlign = ContentAlignment.MiddleLeft;
             button_std.UseVisualStyleBackColor = false;
             button_std.Click += button_std_Click;
@@ -395,7 +183,7 @@
             panel_logo.Dock = DockStyle.Top;
             panel_logo.Location = new Point(0, 0);
             panel_logo.Name = "panel_logo";
-            panel_logo.Size = new Size(170, 179);
+            panel_logo.Size = new Size(191, 179);
             panel_logo.TabIndex = 1;
             // 
             // pictureBox2
@@ -515,9 +303,9 @@
             label_totalMaleStd.ForeColor = Color.White;
             label_totalMaleStd.Location = new Point(30, 60);
             label_totalMaleStd.Name = "label_totalMaleStd";
-            label_totalMaleStd.Size = new Size(49, 20);
+            label_totalMaleStd.Size = new Size(48, 20);
             label_totalMaleStd.TabIndex = 3;
-            label_totalMaleStd.Text = "Male :";
+            label_totalMaleStd.Text = "Nam :";
             // 
             // label_totalFemaleStd
             // 
@@ -525,9 +313,9 @@
             label_totalFemaleStd.ForeColor = Color.White;
             label_totalFemaleStd.Location = new Point(118, 60);
             label_totalFemaleStd.Name = "label_totalFemaleStd";
-            label_totalFemaleStd.Size = new Size(68, 20);
+            label_totalFemaleStd.Size = new Size(40, 20);
             label_totalFemaleStd.TabIndex = 2;
-            label_totalFemaleStd.Text = "Female : ";
+            label_totalFemaleStd.Text = "Nữ : ";
             // 
             // label_totalStd
             // 
@@ -535,9 +323,10 @@
             label_totalStd.ForeColor = Color.White;
             label_totalStd.Location = new Point(30, 21);
             label_totalStd.Name = "label_totalStd";
-            label_totalStd.Size = new Size(114, 20);
+            label_totalStd.Size = new Size(112, 20);
             label_totalStd.TabIndex = 1;
-            label_totalStd.Text = "Total Students : ";
+            label_totalStd.Text = "Tổng học sinh : ";
+            label_totalStd.Click += label_totalStd_Click;
             // 
             // panel2
             // 
@@ -638,8 +427,6 @@
             Text = "MainForm";
             Load += Form1_Load;
             panel_slide.ResumeLayout(false);
-            panel_scoreSubmenu.ResumeLayout(false);
-            panel_courseSubmenu.ResumeLayout(false);
             panel_logo.ResumeLayout(false);
             panel_logo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
@@ -660,14 +447,7 @@
         private Panel panel_slide;
         private Panel panel_logo;
         private Button button_std;
-        private Panel panel_scoreSubmenu;
-        private Button button_scorePrint;
-        private Button button_manageScore;
-        private Button button_newScore;
         private Button button_score;
-        private Panel panel_courseSubmenu;
-        private Button button_manageCourse;
-        private Button button_newCourse;
         private Button button_course;
         private Button button_dashboard;
         private Label label2;
@@ -691,11 +471,6 @@
         private PictureBox pictureBox2;
         private PictureBox pictureBox1;
         private Label label10;
-        private Button button_exit1;
-        private Button button1;
-        private Button button_semester;
-        private Button button_ClassList;
-        private Button button_CoursesPerCycle;
         private Button button_Enrollment;
     }
 }

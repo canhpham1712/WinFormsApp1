@@ -18,6 +18,18 @@ namespace WinFormsApp1
             this.dBconnect = new DBConnect();
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
         public bool insertCourse(string courseID, string courseName, string teacherID, string semester)
         {
             try

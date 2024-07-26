@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,19 +13,124 @@ namespace WinFormsApp1
 {
     public partial class ManageCourseForm : Form
     {
-        public readonly string connectionString = "Data Source=LAPTOP-CEIK1QBD\\MSSQLSERVER01;Initial Catalog=StdManagementSystem;Integrated Security=True;Encrypt=True;Trust Server Certificate=True";
+        public readonly string connectionString = "Data Source=LAPTOP-CEIK1QBD\\MSSQLSERVER01;Initial Catalog=StudentManagement;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
         CourseClass course = new CourseClass();
+
         public ManageCourseForm()
         {
             InitializeComponent();
-            button_updateCourse.Click += button_updateCourse_Click;
-            button_deleteCourse.Click += button_deleteCourse_Click;
+            LoadClasses();
+
+            //button_updateCourse.Click += button_updateCourse_Click;
+            //button_deleteCourse.Click += button_deleteCourse_Click;
+        }
+
+        private void LoadClasses()
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var command = new SqlCommand("GetAllClasses", connection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                var adapter = new SqlDataAdapter(command);
+                var dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                guna2ComboBox_Classes.DisplayMember = "ClassName";
+                guna2ComboBox_Classes.ValueMember = "ClassID";
+                guna2ComboBox_Classes.DataSource = dataTable;
+            }
+        }
+
+        private void comboBoxClasses_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (guna2ComboBox_Classes.SelectedValue != null)
+            {
+                int classID = (int)guna2ComboBox_Classes.SelectedValue;
+                LoadStudentInClass(classID);
+            }
+        }
+
+        private void LoadStudentInClass(int classID)
+        {
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var command = new SqlCommand("GetStudentsInClass", connection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                command.Parameters.AddWithValue("ClassID", classID);
+                var adapter = new SqlDataAdapter(command);
+                var dataTable = new DataTable();
+                adapter.Fill(dataTable);
+
+                guna2DataGridView_manaCourse.DataSource = dataTable;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int classID = (int)guna2ComboBox_Classes.SelectedValue;
+            int studentID = int.Parse(textBox_studentID.Text);
+
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var command = new SqlCommand("AddStudentToClass", connection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                command.Parameters.AddWithValue("ClassID", classID);
+                command.Parameters.AddWithValue("StudentID", studentID);
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+
+            LoadStudentInClass(classID);
+        }
+
+        private void button_deleteCourse_Click(object sender, EventArgs e)
+        {
+            if (guna2DataGridView_manaCourse.SelectedRows.Count > 0)
+            {
+                var result = MessageBox.Show("Xóa học sinh đã chọn?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result == DialogResult.Yes)
+                {
+                    int classID = (int)guna2ComboBox_Classes.SelectedValue;
+                    int studentID = (int)guna2DataGridView_manaCourse.SelectedRows[0].Cells["StudentID"].Value;
+
+                    using (var connection = new SqlConnection(connectionString))
+                    {
+                        var command = new SqlCommand("RemoveStudentFromClass", connection)
+                        {
+                            CommandType = CommandType.StoredProcedure
+                        };
+                        command.Parameters.AddWithValue("ClassID", classID);
+                        command.Parameters.AddWithValue("StudentID", studentID);
+                        connection.Open(); command.ExecuteNonQuery();
+                        connection.Close();
+                    }
+                    LoadStudentInClass(classID);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Chọn học sinh để xóa.", "Xóa học sinh", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         private void ManageCourseForm_Load(object sender, EventArgs e)
         {
-            showTable();
+            
         }
+
+
+
+
+
+
+        /*
 
         private void button_clearCourse_Click(object sender, EventArgs e)
         {
@@ -111,6 +217,6 @@ namespace WinFormsApp1
                 return false;
             }
             return true;
-        }
+        }*/
     }
 }
