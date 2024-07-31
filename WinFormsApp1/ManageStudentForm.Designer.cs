@@ -32,6 +32,8 @@ namespace WinFormsApp1
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             button1 = new Button();
             textBox_email = new TextBox();
             label9 = new Label();
@@ -39,12 +41,14 @@ namespace WinFormsApp1
             button_add = new Button();
             panel2 = new Panel();
             panel1 = new Panel();
-            textBox_manaStdID = new TextBox();
-            button_manaStdSearch = new Button();
-            textBox_manaStdSearch = new TextBox();
+            lb_class_name = new Label();
             label_manaStd = new Label();
+            label8 = new Label();
+            cmb_class_list = new ComboBox();
+            button_manaStdSearch = new Button();
+            txtb_search_by_name = new TextBox();
+            textBox_manaStdID = new TextBox();
             button_upload = new Button();
-            label_manaStdAddress = new Label();
             radioButton_manaStdFemale = new RadioButton();
             radioButton_manaStdMale = new RadioButton();
             label_manaStdGender = new Label();
@@ -67,8 +71,20 @@ namespace WinFormsApp1
             combobox_district = new ComboBox();
             combobox_ward = new ComboBox();
             textbox_street = new TextBox();
+            label5 = new Label();
+            label6 = new Label();
+            label7 = new Label();
+            dtgrid_class = new DataGridView();
+            txtb_class_id_sys = new TextBox();
+            lb_class_id_sys = new Label();
+            bt_add_to_class = new Button();
+            btn_delete_from_class = new Button();
+            lb_street = new Label();
+            button2 = new Button();
+            cbb_search_by_level = new ComboBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView_manaStd).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dtgrid_class).BeginInit();
             SuspendLayout();
             // 
             // button1
@@ -77,7 +93,7 @@ namespace WinFormsApp1
             button1.BackColor = Color.Red;
             button1.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(1021, 639);
+            button1.Location = new Point(1209, 789);
             button1.Name = "button1";
             button1.Size = new Size(125, 38);
             button1.TabIndex = 49;
@@ -87,7 +103,7 @@ namespace WinFormsApp1
             // textBox_email
             // 
             textBox_email.Anchor = AnchorStyles.Bottom;
-            textBox_email.Location = new Point(165, 621);
+            textBox_email.Location = new Point(259, 771);
             textBox_email.Name = "textBox_email";
             textBox_email.Size = new Size(427, 27);
             textBox_email.TabIndex = 48;
@@ -98,7 +114,7 @@ namespace WinFormsApp1
             label9.AutoSize = true;
             label9.Font = new Font("Century Gothic", 12F, FontStyle.Bold);
             label9.ForeColor = SystemColors.Highlight;
-            label9.Location = new Point(79, 627);
+            label9.Location = new Point(173, 777);
             label9.Name = "label9";
             label9.Size = new Size(80, 23);
             label9.TabIndex = 47;
@@ -110,7 +126,7 @@ namespace WinFormsApp1
             button_clear.BackColor = Color.Orange;
             button_clear.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button_clear.ForeColor = Color.White;
-            button_clear.Location = new Point(737, 639);
+            button_clear.Location = new Point(925, 789);
             button_clear.Name = "button_clear";
             button_clear.Size = new Size(125, 38);
             button_clear.TabIndex = 43;
@@ -123,7 +139,7 @@ namespace WinFormsApp1
             button_add.BackColor = Color.Green;
             button_add.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button_add.ForeColor = Color.White;
-            button_add.Location = new Point(578, 639);
+            button_add.Location = new Point(766, 789);
             button_add.Name = "button_add";
             button_add.Size = new Size(125, 38);
             button_add.TabIndex = 42;
@@ -134,65 +150,102 @@ namespace WinFormsApp1
             // 
             panel2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             panel2.BackColor = Color.MidnightBlue;
-            panel2.Location = new Point(8, 370);
+            panel2.Location = new Point(8, 520);
             panel2.Name = "panel2";
-            panel2.Size = new Size(1242, 10);
+            panel2.Size = new Size(1430, 10);
             panel2.TabIndex = 74;
             // 
             // panel1
             // 
             panel1.BackColor = Color.MidnightBlue;
-            panel1.Controls.Add(textBox_manaStdID);
-            panel1.Controls.Add(button_manaStdSearch);
-            panel1.Controls.Add(textBox_manaStdSearch);
+            panel1.Controls.Add(lb_class_name);
             panel1.Controls.Add(label_manaStd);
+            panel1.Controls.Add(label8);
+            panel1.Controls.Add(cmb_class_list);
             panel1.Dock = DockStyle.Top;
             panel1.ForeColor = Color.White;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1259, 72);
+            panel1.Size = new Size(1447, 72);
             panel1.TabIndex = 68;
             // 
-            // textBox_manaStdID
+            // lb_class_name
             // 
-            textBox_manaStdID.Location = new Point(1134, 15);
-            textBox_manaStdID.Name = "textBox_manaStdID";
-            textBox_manaStdID.Size = new Size(125, 27);
-            textBox_manaStdID.TabIndex = 92;
-            textBox_manaStdID.Visible = false;
-            // 
-            // button_manaStdSearch
-            // 
-            button_manaStdSearch.Anchor = AnchorStyles.Top;
-            button_manaStdSearch.BackColor = Color.MidnightBlue;
-            button_manaStdSearch.FlatStyle = FlatStyle.Flat;
-            button_manaStdSearch.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button_manaStdSearch.ForeColor = Color.WhiteSmoke;
-            button_manaStdSearch.Location = new Point(850, 13);
-            button_manaStdSearch.Name = "button_manaStdSearch";
-            button_manaStdSearch.Size = new Size(125, 38);
-            button_manaStdSearch.TabIndex = 25;
-            button_manaStdSearch.Text = "Tìm kiếm";
-            button_manaStdSearch.UseVisualStyleBackColor = false;
-            // 
-            // textBox_manaStdSearch
-            // 
-            textBox_manaStdSearch.Anchor = AnchorStyles.Top;
-            textBox_manaStdSearch.Font = new Font("Calisto MT", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox_manaStdSearch.Location = new Point(357, 19);
-            textBox_manaStdSearch.Name = "textBox_manaStdSearch";
-            textBox_manaStdSearch.Size = new Size(435, 25);
-            textBox_manaStdSearch.TabIndex = 4;
+            lb_class_name.Anchor = AnchorStyles.Right;
+            lb_class_name.AutoSize = true;
+            lb_class_name.Font = new Font("Times New Roman", 19.8000011F, FontStyle.Bold);
+            lb_class_name.Location = new Point(811, 15);
+            lb_class_name.Name = "lb_class_name";
+            lb_class_name.Size = new Size(426, 38);
+            lb_class_name.TabIndex = 1;
+            lb_class_name.Text = "Danh sách học sinh theo lớp";
             // 
             // label_manaStd
             // 
             label_manaStd.AutoSize = true;
             label_manaStd.Font = new Font("Times New Roman", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label_manaStd.Location = new Point(28, 15);
+            label_manaStd.Location = new Point(8, 15);
             label_manaStd.Name = "label_manaStd";
-            label_manaStd.Size = new Size(262, 38);
+            label_manaStd.Size = new Size(417, 38);
             label_manaStd.TabIndex = 0;
-            label_manaStd.Text = "Quản lý học sinh";
+            label_manaStd.Text = "Danh sách toàn bộ học sinh";
+            // 
+            // label8
+            // 
+            label8.Anchor = AnchorStyles.Right;
+            label8.AutoSize = true;
+            label8.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label8.ForeColor = SystemColors.Highlight;
+            label8.Location = new Point(1243, 25);
+            label8.Name = "label8";
+            label8.Size = new Size(102, 23);
+            label8.TabIndex = 95;
+            label8.Text = "Chọn lớp : ";
+            // 
+            // cmb_class_list
+            // 
+            cmb_class_list.Anchor = AnchorStyles.Right;
+            cmb_class_list.FormattingEnabled = true;
+            cmb_class_list.Location = new Point(1351, 22);
+            cmb_class_list.Name = "cmb_class_list";
+            cmb_class_list.Size = new Size(80, 28);
+            cmb_class_list.TabIndex = 89;
+            cmb_class_list.SelectedIndexChanged += cmb_class_list_SelectedIndexChanged;
+            // 
+            // button_manaStdSearch
+            // 
+            button_manaStdSearch.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button_manaStdSearch.BackColor = Color.MidnightBlue;
+            button_manaStdSearch.FlatStyle = FlatStyle.Flat;
+            button_manaStdSearch.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            button_manaStdSearch.ForeColor = Color.WhiteSmoke;
+            button_manaStdSearch.Location = new Point(680, 639);
+            button_manaStdSearch.Name = "button_manaStdSearch";
+            button_manaStdSearch.Size = new Size(131, 38);
+            button_manaStdSearch.TabIndex = 25;
+            button_manaStdSearch.Text = "Tìm kiếm";
+            button_manaStdSearch.UseVisualStyleBackColor = false;
+            button_manaStdSearch.Click += btnSearch_Click;
+            button_manaStdSearch.KeyDown += button_manaStdSearch_KeyDown;
+            // 
+            // txtb_search_by_name
+            // 
+            txtb_search_by_name.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            txtb_search_by_name.Font = new Font("Calisto MT", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtb_search_by_name.Location = new Point(680, 545);
+            txtb_search_by_name.Name = "txtb_search_by_name";
+            txtb_search_by_name.PlaceholderText = "Tìm theo tên";
+            txtb_search_by_name.Size = new Size(131, 25);
+            txtb_search_by_name.TabIndex = 20;
+            txtb_search_by_name.KeyDown += button_manaStdSearch_KeyDown;
+            // 
+            // textBox_manaStdID
+            // 
+            textBox_manaStdID.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            textBox_manaStdID.Location = new Point(1197, 606);
+            textBox_manaStdID.Name = "textBox_manaStdID";
+            textBox_manaStdID.Size = new Size(80, 27);
+            textBox_manaStdID.TabIndex = 92;
             // 
             // button_upload
             // 
@@ -201,25 +254,13 @@ namespace WinFormsApp1
             button_upload.Size = new Size(75, 23);
             button_upload.TabIndex = 76;
             // 
-            // label_manaStdAddress
-            // 
-            label_manaStdAddress.Anchor = AnchorStyles.Bottom;
-            label_manaStdAddress.AutoSize = true;
-            label_manaStdAddress.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label_manaStdAddress.ForeColor = SystemColors.Highlight;
-            label_manaStdAddress.Location = new Point(74, 492);
-            label_manaStdAddress.Name = "label_manaStdAddress";
-            label_manaStdAddress.Size = new Size(85, 23);
-            label_manaStdAddress.TabIndex = 60;
-            label_manaStdAddress.Text = "Địa chỉ : ";
-            // 
             // radioButton_manaStdFemale
             // 
-            radioButton_manaStdFemale.Anchor = AnchorStyles.Bottom;
+            radioButton_manaStdFemale.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             radioButton_manaStdFemale.AutoSize = true;
             radioButton_manaStdFemale.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             radioButton_manaStdFemale.ForeColor = SystemColors.Highlight;
-            radioButton_manaStdFemale.Location = new Point(866, 392);
+            radioButton_manaStdFemale.Location = new Point(338, 609);
             radioButton_manaStdFemale.Name = "radioButton_manaStdFemale";
             radioButton_manaStdFemale.Size = new Size(56, 26);
             radioButton_manaStdFemale.TabIndex = 9;
@@ -228,12 +269,12 @@ namespace WinFormsApp1
             // 
             // radioButton_manaStdMale
             // 
-            radioButton_manaStdMale.Anchor = AnchorStyles.Bottom;
+            radioButton_manaStdMale.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             radioButton_manaStdMale.AutoSize = true;
             radioButton_manaStdMale.Checked = true;
             radioButton_manaStdMale.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             radioButton_manaStdMale.ForeColor = SystemColors.Highlight;
-            radioButton_manaStdMale.Location = new Point(792, 392);
+            radioButton_manaStdMale.Location = new Point(338, 575);
             radioButton_manaStdMale.Name = "radioButton_manaStdMale";
             radioButton_manaStdMale.Size = new Size(68, 26);
             radioButton_manaStdMale.TabIndex = 8;
@@ -243,11 +284,11 @@ namespace WinFormsApp1
             // 
             // label_manaStdGender
             // 
-            label_manaStdGender.Anchor = AnchorStyles.Bottom;
+            label_manaStdGender.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label_manaStdGender.AutoSize = true;
             label_manaStdGender.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_manaStdGender.ForeColor = SystemColors.Highlight;
-            label_manaStdGender.Location = new Point(684, 394);
+            label_manaStdGender.Location = new Point(338, 544);
             label_manaStdGender.Name = "label_manaStdGender";
             label_manaStdGender.Size = new Size(102, 23);
             label_manaStdGender.TabIndex = 57;
@@ -255,11 +296,11 @@ namespace WinFormsApp1
             // 
             // label_manaStdBirthDate
             // 
-            label_manaStdBirthDate.Anchor = AnchorStyles.Bottom;
+            label_manaStdBirthDate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label_manaStdBirthDate.AutoSize = true;
             label_manaStdBirthDate.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_manaStdBirthDate.ForeColor = SystemColors.Highlight;
-            label_manaStdBirthDate.Location = new Point(50, 441);
+            label_manaStdBirthDate.Location = new Point(60, 577);
             label_manaStdBirthDate.Name = "label_manaStdBirthDate";
             label_manaStdBirthDate.Size = new Size(109, 23);
             label_manaStdBirthDate.TabIndex = 55;
@@ -268,6 +309,7 @@ namespace WinFormsApp1
             // guna2DataGridView_manaStd
             // 
             guna2DataGridView_manaStd.AllowUserToAddRows = false;
+            guna2DataGridView_manaStd.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = Color.White;
             guna2DataGridView_manaStd.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             guna2DataGridView_manaStd.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
@@ -281,7 +323,6 @@ namespace WinFormsApp1
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
             guna2DataGridView_manaStd.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             guna2DataGridView_manaStd.ColumnHeadersHeight = 24;
-            guna2DataGridView_manaStd.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.White;
             dataGridViewCellStyle3.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -295,9 +336,13 @@ namespace WinFormsApp1
             guna2DataGridView_manaStd.Name = "guna2DataGridView_manaStd";
             guna2DataGridView_manaStd.RowHeadersVisible = false;
             guna2DataGridView_manaStd.RowHeadersWidth = 51;
+            dataGridViewCellStyle4.Font = new Font("Times New Roman", 7.20000029F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            guna2DataGridView_manaStd.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            guna2DataGridView_manaStd.RowTemplate.DefaultCellStyle.Font = new Font("Times New Roman", 13.2000008F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2DataGridView_manaStd.RowTemplate.Height = 80;
+            guna2DataGridView_manaStd.RowTemplate.ReadOnly = true;
             guna2DataGridView_manaStd.SelectionMode = DataGridViewSelectionMode.CellSelect;
-            guna2DataGridView_manaStd.Size = new Size(1242, 286);
+            guna2DataGridView_manaStd.Size = new Size(797, 436);
             guna2DataGridView_manaStd.TabIndex = 52;
             guna2DataGridView_manaStd.TabStop = false;
             guna2DataGridView_manaStd.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
@@ -311,7 +356,7 @@ namespace WinFormsApp1
             guna2DataGridView_manaStd.ThemeStyle.HeaderStyle.BorderStyle = DataGridViewHeaderBorderStyle.None;
             guna2DataGridView_manaStd.ThemeStyle.HeaderStyle.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2DataGridView_manaStd.ThemeStyle.HeaderStyle.ForeColor = Color.White;
-            guna2DataGridView_manaStd.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
+            guna2DataGridView_manaStd.ThemeStyle.HeaderStyle.HeaightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             guna2DataGridView_manaStd.ThemeStyle.HeaderStyle.Height = 24;
             guna2DataGridView_manaStd.ThemeStyle.ReadOnly = false;
             guna2DataGridView_manaStd.ThemeStyle.RowsStyle.BackColor = Color.White;
@@ -321,26 +366,25 @@ namespace WinFormsApp1
             guna2DataGridView_manaStd.ThemeStyle.RowsStyle.Height = 80;
             guna2DataGridView_manaStd.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             guna2DataGridView_manaStd.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            guna2DataGridView_manaStd.CellContentClick += guna2DataGridView_manaStd_CellContentClick;
-            guna2DataGridView_manaStd.Click += guna2DataGridView_manaStd_Click;
+            guna2DataGridView_manaStd.CellClick += guna2DataGridView_manaStd_CellClick;
             // 
             // textBox_Name
             // 
-            textBox_Name.Anchor = AnchorStyles.Bottom;
+            textBox_Name.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             textBox_Name.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox_Name.Location = new Point(165, 393);
+            textBox_Name.Location = new Point(175, 543);
             textBox_Name.Name = "textBox_Name";
             textBox_Name.PlaceholderText = "Nguyễn Văn A";
-            textBox_Name.Size = new Size(429, 25);
+            textBox_Name.Size = new Size(140, 25);
             textBox_Name.TabIndex = 1;
             // 
             // label_Name
             // 
-            label_Name.Anchor = AnchorStyles.Bottom;
+            label_Name.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label_Name.AutoSize = true;
             label_Name.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_Name.ForeColor = SystemColors.Highlight;
-            label_Name.Location = new Point(51, 394);
+            label_Name.Location = new Point(61, 544);
             label_Name.Name = "label_Name";
             label_Name.Size = new Size(108, 23);
             label_Name.TabIndex = 50;
@@ -348,39 +392,41 @@ namespace WinFormsApp1
             // 
             // textBox_DoB
             // 
-            textBox_DoB.Anchor = AnchorStyles.Bottom;
+            textBox_DoB.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             textBox_DoB.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox_DoB.Location = new Point(165, 440);
+            textBox_DoB.Location = new Point(175, 576);
             textBox_DoB.Name = "textBox_DoB";
             textBox_DoB.PlaceholderText = "dd/mm/yyyy";
-            textBox_DoB.Size = new Size(429, 25);
+            textBox_DoB.Size = new Size(140, 25);
             textBox_DoB.TabIndex = 2;
             // 
             // button_update
             // 
-            button_update.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button_update.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             button_update.BackColor = Color.MidnightBlue;
             button_update.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button_update.ForeColor = Color.White;
-            button_update.Location = new Point(1125, 505);
+            button_update.Location = new Point(477, 659);
             button_update.Name = "button_update";
             button_update.Size = new Size(125, 38);
-            button_update.TabIndex = 11;
+            button_update.TabIndex = 9;
             button_update.Text = "Cập nhật";
             button_update.UseVisualStyleBackColor = false;
+            button_update.Click += button_update_Click_1;
             // 
             // button_delete
             // 
-            button_delete.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button_delete.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             button_delete.BackColor = Color.MidnightBlue;
             button_delete.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button_delete.ForeColor = Color.White;
-            button_delete.Location = new Point(1125, 553);
+            button_delete.Location = new Point(477, 703);
             button_delete.Name = "button_delete";
             button_delete.Size = new Size(125, 38);
-            button_delete.TabIndex = 12;
+            button_delete.TabIndex = 10;
             button_delete.Text = "Xóa";
             button_delete.UseVisualStyleBackColor = false;
+            button_delete.Click += button_delete_Click_1;
             // 
             // button_manaStdClear
             // 
@@ -388,7 +434,7 @@ namespace WinFormsApp1
             button_manaStdClear.BackColor = Color.MidnightBlue;
             button_manaStdClear.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button_manaStdClear.ForeColor = Color.White;
-            button_manaStdClear.Location = new Point(12, 553);
+            button_manaStdClear.Location = new Point(477, 536);
             button_manaStdClear.Name = "button_manaStdClear";
             button_manaStdClear.Size = new Size(125, 38);
             button_manaStdClear.TabIndex = 67;
@@ -398,25 +444,25 @@ namespace WinFormsApp1
             // 
             // button_addStd
             // 
-            button_addStd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button_addStd.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             button_addStd.BackColor = Color.MidnightBlue;
             button_addStd.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button_addStd.ForeColor = Color.White;
-            button_addStd.Location = new Point(1125, 459);
+            button_addStd.Location = new Point(477, 615);
             button_addStd.Name = "button_addStd";
             button_addStd.Size = new Size(125, 38);
-            button_addStd.TabIndex = 10;
+            button_addStd.TabIndex = 8;
             button_addStd.Text = "Thêm";
             button_addStd.UseVisualStyleBackColor = false;
-            button_addStd.Click += button_addStd_Click;
+            button_addStd.Click += Button_addStd_Click;
             // 
             // label1
             // 
-            label1.Anchor = AnchorStyles.Bottom;
+            label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label1.AutoSize = true;
             label1.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label1.ForeColor = SystemColors.Highlight;
-            label1.Location = new Point(165, 505);
+            label1.Location = new Point(60, 614);
             label1.Name = "label1";
             label1.Size = new Size(71, 17);
             label1.TabIndex = 83;
@@ -424,11 +470,11 @@ namespace WinFormsApp1
             // 
             // label2
             // 
-            label2.Anchor = AnchorStyles.Bottom;
+            label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label2.AutoSize = true;
             label2.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.Highlight;
-            label2.Location = new Point(338, 505);
+            label2.Location = new Point(199, 614);
             label2.Name = "label2";
             label2.Size = new Size(111, 17);
             label2.TabIndex = 84;
@@ -436,11 +482,11 @@ namespace WinFormsApp1
             // 
             // label3
             // 
-            label3.Anchor = AnchorStyles.Bottom;
+            label3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label3.AutoSize = true;
             label3.Font = new Font("Times New Roman", 9F, FontStyle.Bold);
             label3.ForeColor = SystemColors.Highlight;
-            label3.Location = new Point(511, 505);
+            label3.Location = new Point(60, 673);
             label3.Name = "label3";
             label3.Size = new Size(90, 17);
             label3.TabIndex = 85;
@@ -448,11 +494,11 @@ namespace WinFormsApp1
             // 
             // label4
             // 
-            label4.Anchor = AnchorStyles.Bottom;
+            label4.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label4.AutoSize = true;
             label4.Font = new Font("Times New Roman", 9F, FontStyle.Bold);
             label4.ForeColor = SystemColors.Highlight;
-            label4.Location = new Point(682, 505);
+            label4.Location = new Point(199, 673);
             label4.Name = "label4";
             label4.Size = new Size(79, 17);
             label4.TabIndex = 86;
@@ -464,62 +510,214 @@ namespace WinFormsApp1
             guna2HtmlLabel1.BackColor = Color.Transparent;
             guna2HtmlLabel1.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
             guna2HtmlLabel1.ForeColor = Color.Red;
-            guna2HtmlLabel1.Location = new Point(846, 567);
+            guna2HtmlLabel1.Location = new Point(506, 641);
             guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            guna2HtmlLabel1.Size = new Size(273, 22);
+            guna2HtmlLabel1.Size = new Size(3, 2);
             guna2HtmlLabel1.TabIndex = 87;
-            guna2HtmlLabel1.Text = "* Nhấn vào học sinh để cập nhật hoặc xóa\r\n\r\n";
+            guna2HtmlLabel1.Text = null;
             // 
             // comboBox_nation
             // 
-            comboBox_nation.Anchor = AnchorStyles.Bottom;
+            comboBox_nation.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             comboBox_nation.FormattingEnabled = true;
-            comboBox_nation.Location = new Point(165, 533);
+            comboBox_nation.Location = new Point(60, 639);
             comboBox_nation.Name = "comboBox_nation";
-            comboBox_nation.Size = new Size(151, 28);
-            comboBox_nation.TabIndex = 88;
+            comboBox_nation.Size = new Size(115, 28);
+            comboBox_nation.TabIndex = 3;
             // 
             // combobox_city
             // 
-            combobox_city.Anchor = AnchorStyles.Bottom;
+            combobox_city.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             combobox_city.FormattingEnabled = true;
-            combobox_city.Location = new Point(338, 533);
+            combobox_city.Location = new Point(199, 639);
             combobox_city.Name = "combobox_city";
-            combobox_city.Size = new Size(151, 28);
-            combobox_city.TabIndex = 89;
+            combobox_city.Size = new Size(115, 28);
+            combobox_city.TabIndex = 4;
             // 
             // combobox_district
             // 
-            combobox_district.Anchor = AnchorStyles.Bottom;
+            combobox_district.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             combobox_district.FormattingEnabled = true;
-            combobox_district.Location = new Point(511, 533);
+            combobox_district.Location = new Point(60, 700);
             combobox_district.Name = "combobox_district";
-            combobox_district.Size = new Size(151, 28);
-            combobox_district.TabIndex = 90;
+            combobox_district.Size = new Size(115, 28);
+            combobox_district.TabIndex = 5;
             // 
             // combobox_ward
             // 
-            combobox_ward.Anchor = AnchorStyles.Bottom;
+            combobox_ward.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             combobox_ward.FormattingEnabled = true;
-            combobox_ward.Location = new Point(682, 533);
+            combobox_ward.Location = new Point(199, 701);
             combobox_ward.Name = "combobox_ward";
-            combobox_ward.Size = new Size(151, 28);
-            combobox_ward.TabIndex = 91;
+            combobox_ward.Size = new Size(115, 28);
+            combobox_ward.TabIndex = 6;
             // 
             // textbox_street
             // 
-            textbox_street.Anchor = AnchorStyles.Bottom;
-            textbox_street.Location = new Point(866, 534);
+            textbox_street.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            textbox_street.Location = new Point(338, 703);
             textbox_street.Name = "textbox_street";
-            textbox_street.PlaceholderText = "Đường phố";
-            textbox_street.Size = new Size(151, 27);
-            textbox_street.TabIndex = 92;
+            textbox_street.Size = new Size(115, 27);
+            textbox_street.TabIndex = 7;
+            // 
+            // label5
+            // 
+            label5.Anchor = AnchorStyles.Bottom;
+            label5.AutoSize = true;
+            label5.Font = new Font("Times New Roman", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.Red;
+            label5.Location = new Point(642, 703);
+            label5.Name = "label5";
+            label5.Size = new Size(276, 18);
+            label5.TabIndex = 88;
+            label5.Text = "* Nhấn vào học sinh để cập nhật hoặc xóa";
+            label5.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label6
+            // 
+            label6.Anchor = AnchorStyles.Bottom;
+            label6.AutoSize = true;
+            label6.Font = new Font("Times New Roman", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            label6.ForeColor = Color.Red;
+            label6.Location = new Point(642, 723);
+            label6.Name = "label6";
+            label6.Size = new Size(430, 18);
+            label6.TabIndex = 93;
+            label6.Text = "* Chọn học sinh từ danh sách toàn bộ học sinh để thêm vào lớp học";
+            // 
+            // label7
+            // 
+            label7.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            label7.AutoSize = true;
+            label7.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.ForeColor = SystemColors.Highlight;
+            label7.Location = new Point(999, 608);
+            label7.Name = "label7";
+            label7.Size = new Size(192, 23);
+            label7.TabIndex = 94;
+            label7.Text = "ID hệ thống học sinh :";
+            // 
+            // dtgrid_class
+            // 
+            dtgrid_class.AllowUserToAddRows = false;
+            dtgrid_class.AllowUserToDeleteRows = false;
+            dtgrid_class.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            dtgrid_class.BackgroundColor = Color.White;
+            dtgrid_class.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dtgrid_class.Location = new Point(811, 78);
+            dtgrid_class.Name = "dtgrid_class";
+            dtgrid_class.RowHeadersWidth = 51;
+            dataGridViewCellStyle5.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle5.ForeColor = Color.Black;
+            dtgrid_class.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dtgrid_class.Size = new Size(624, 436);
+            dtgrid_class.TabIndex = 96;
+            dtgrid_class.CellClick += dtgrid_class_CellClick;
+            // 
+            // txtb_class_id_sys
+            // 
+            txtb_class_id_sys.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            txtb_class_id_sys.Location = new Point(1197, 640);
+            txtb_class_id_sys.Name = "txtb_class_id_sys";
+            txtb_class_id_sys.Size = new Size(80, 27);
+            txtb_class_id_sys.TabIndex = 97;
+            // 
+            // lb_class_id_sys
+            // 
+            lb_class_id_sys.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            lb_class_id_sys.AutoSize = true;
+            lb_class_id_sys.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lb_class_id_sys.ForeColor = SystemColors.Highlight;
+            lb_class_id_sys.Location = new Point(1040, 640);
+            lb_class_id_sys.Name = "lb_class_id_sys";
+            lb_class_id_sys.Size = new Size(151, 23);
+            lb_class_id_sys.TabIndex = 98;
+            lb_class_id_sys.Text = "ID hệ thống lớp :";
+            // 
+            // bt_add_to_class
+            // 
+            bt_add_to_class.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            bt_add_to_class.BackColor = Color.MidnightBlue;
+            bt_add_to_class.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
+            bt_add_to_class.ForeColor = Color.White;
+            bt_add_to_class.Location = new Point(1297, 588);
+            bt_add_to_class.Name = "bt_add_to_class";
+            bt_add_to_class.Size = new Size(138, 45);
+            bt_add_to_class.TabIndex = 99;
+            bt_add_to_class.Text = "Thêm vào lớp";
+            bt_add_to_class.UseVisualStyleBackColor = false;
+            bt_add_to_class.MouseClick += bt_add_to_class_Click;
+            // 
+            // btn_delete_from_class
+            // 
+            btn_delete_from_class.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            btn_delete_from_class.BackColor = Color.MidnightBlue;
+            btn_delete_from_class.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
+            btn_delete_from_class.ForeColor = Color.White;
+            btn_delete_from_class.Location = new Point(1297, 641);
+            btn_delete_from_class.Name = "btn_delete_from_class";
+            btn_delete_from_class.Size = new Size(138, 45);
+            btn_delete_from_class.TabIndex = 100;
+            btn_delete_from_class.Text = "Xóa khỏi lớp";
+            btn_delete_from_class.UseVisualStyleBackColor = false;
+            btn_delete_from_class.MouseClick += btn_delete_from_class_Click;
+            // 
+            // lb_street
+            // 
+            lb_street.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            lb_street.AutoSize = true;
+            lb_street.Font = new Font("Times New Roman", 9F, FontStyle.Bold);
+            lb_street.ForeColor = SystemColors.Highlight;
+            lb_street.Location = new Point(338, 673);
+            lb_street.Name = "lb_street";
+            lb_street.Size = new Size(80, 17);
+            lb_street.TabIndex = 101;
+            lb_street.Text = "Đường phố";
+            // 
+            // button2
+            // 
+            button2.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button2.BackColor = Color.MidnightBlue;
+            button2.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
+            button2.ForeColor = Color.White;
+            button2.Location = new Point(1097, 703);
+            button2.Name = "button2";
+            button2.Size = new Size(180, 43);
+            button2.TabIndex = 102;
+            button2.Text = "Môn học và điểm";
+            button2.UseVisualStyleBackColor = false;
+            button2.Click += button2_Click;
+            // 
+            // cbb_search_by_level
+            // 
+            cbb_search_by_level.AutoCompleteCustomSource.AddRange(new string[] { "excellent", "good", "average", "week" });
+            cbb_search_by_level.FormattingEnabled = true;
+            cbb_search_by_level.Items.AddRange(new object[] { "excellent", "good", "average", "weak" });
+            cbb_search_by_level.Location = new Point(680, 588);
+            cbb_search_by_level.Name = "cbb_search_by_level";
+            cbb_search_by_level.Size = new Size(131, 28);
+            cbb_search_by_level.TabIndex = 103;
+            cbb_search_by_level.SelectedIndexChanged += cbb_search_by_level_SelectedIndexChanged;
             // 
             // ManageStudentForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1259, 603);
+            ClientSize = new Size(1447, 753);
+            Controls.Add(cbb_search_by_level);
+            Controls.Add(button2);
+            Controls.Add(lb_street);
+            Controls.Add(btn_delete_from_class);
+            Controls.Add(bt_add_to_class);
+            Controls.Add(lb_class_id_sys);
+            Controls.Add(txtb_class_id_sys);
+            Controls.Add(txtb_search_by_name);
+            Controls.Add(button_manaStdSearch);
+            Controls.Add(dtgrid_class);
+            Controls.Add(label7);
+            Controls.Add(label6);
+            Controls.Add(textBox_manaStdID);
+            Controls.Add(label5);
             Controls.Add(textbox_street);
             Controls.Add(combobox_ward);
             Controls.Add(combobox_district);
@@ -538,7 +736,6 @@ namespace WinFormsApp1
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(button_upload);
-            Controls.Add(label_manaStdAddress);
             Controls.Add(radioButton_manaStdFemale);
             Controls.Add(radioButton_manaStdMale);
             Controls.Add(label_manaStdGender);
@@ -551,7 +748,6 @@ namespace WinFormsApp1
             Controls.Add(label9);
             Controls.Add(button_clear);
             Controls.Add(button_add);
-            MinimumSize = new Size(1200, 650);
             Name = "ManageStudentForm";
             Text = "ManageStudentForm";
             Load += ManageStudentForm_Load;
@@ -559,6 +755,7 @@ namespace WinFormsApp1
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView_manaStd).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dtgrid_class).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -572,16 +769,13 @@ namespace WinFormsApp1
         private Panel panel2;
         private Panel panel1;
         private Button button_manaStdSearch;
-        private TextBox textBox_manaStdSearch;
+        private TextBox txtb_search_by_name;
         private Label label_manaStd;
         private Button button_upload;
-        private Label label_manaStdAddress;
         private RadioButton radioButton_manaStdFemale;
         private RadioButton radioButton_manaStdMale;
         private Label label_manaStdGender;
         private Label label_manaStdBirthDate;
-        private TextBox textBox_manaStdLname;
-        private Label label_manaStdLname;
         private Guna.UI2.WinForms.Guna2DataGridView guna2DataGridView_manaStd;
         private TextBox textBox_Name;
         private Label label_Name;
@@ -601,5 +795,19 @@ namespace WinFormsApp1
         private ComboBox combobox_ward;
         private TextBox textBox_manaStdID;
         private TextBox textbox_street;
+        private Label label5;
+        private ComboBox cmb_class_list;
+        private Label label6;
+        private Label label7;
+        private Label label8;
+        private DataGridView dtgrid_class;
+        private TextBox txtb_class_id_sys;
+        private Label lb_class_id_sys;
+        private Label lb_class_name;
+        private Button bt_add_to_class;
+        private Button btn_delete_from_class;
+        private Label lb_street;
+        private Button button2;
+        private ComboBox cbb_search_by_level;
     }
 }

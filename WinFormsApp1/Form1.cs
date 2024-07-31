@@ -42,17 +42,17 @@ namespace WinFormsApp1
 
         private void button_course_Click(object sender, EventArgs e)
         {
-            openChildForm(new ManageCourseForm());
+            //openChildForm(new ManageCourseForm());
         }
 
         private void button_score_Click(object sender, EventArgs e)
         {
-            // openChildForm(new ManageScoreForm());
+             openChildForm(new CourseAndScore());
         }
 
         private void button_Enrollment_Click(object sender, EventArgs e)
         {
-            openChildForm(new EnrollmentForm());
+            //openChildForm(new EnrollmentForm());
         }
 
         // get chiild from main form

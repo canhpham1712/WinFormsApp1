@@ -21,7 +21,7 @@ namespace WinFormsApp1
             this.dBConnect = new DBConnect();
         }
 
-        public bool insertStudent(string name, string dob, string gender, string nation, string city, string district, string commune, string street)
+        public bool InsertStudent(string name, string dob, string gender, string nation, string city, string district, string commune, string street)
         {
             try
             {
@@ -45,7 +45,7 @@ namespace WinFormsApp1
                     // Check if the cleaned date string has exactly 8 characters
                     if (cleanedDob.Length != 8 || !int.TryParse(cleanedDob, out int _))
                     {
-                        MessageBox.Show("Dữ liệu ngày sinh không hợp lệ. Hãy bảo đảm nhập đúng định dạng ddMMyyyy hoặc dd/mm/yyyy.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Dữ liệu ngày sinh không hợp lệ. Bảo đảm nhập đúng định dạng ddMMyyyy hoặc dd/mm/yyyy.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
                     }
 
@@ -74,7 +74,7 @@ namespace WinFormsApp1
                     }
                     catch
                     {
-                        MessageBox.Show("Invalid date. Ensure the date is correct and exists.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Dữ liệu ngày tháng năm sinh không hợp lệ.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return false;
                     }
                     // Build address string
@@ -101,13 +101,25 @@ namespace WinFormsApp1
                     return rowsAffected > 0; // Return true if at least one row was inserted
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
             {
-                MessageBox.Show($"Error adding student: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                if (ex.Number == 2627)
+                {
+                    MessageBox.Show("Học sinh đã có trong danh sách.", "Lỗi trùng lặp", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else 
+                {
+                    MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi cơ sở dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return false;
+            }
+            catch (Exception ex)
+            { 
+                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi cơ sở dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
-
+       
         public DataTable getStudentList()
         {
             using (var connection = dBConnect.GetConnection())
@@ -120,7 +132,7 @@ namespace WinFormsApp1
             }
         }
 
-        public DataTable searchStudent(string searchTerm)
+        public DataTable SearchStudent(string searchTerm)
         {
             using (var connection = dBConnect.GetConnection())
             {
@@ -143,7 +155,7 @@ namespace WinFormsApp1
             }
         }
 
-        public bool updateStudent(int studentID, string name, string dob, string gender, string address)
+        public bool UpdateStudent(int studentID, string name, string dob, string gender, string address)
         {
             try
             {
@@ -224,7 +236,7 @@ namespace WinFormsApp1
             }
         }
 
-        public bool deleteStudent(int studentID)
+        public bool DeleteStudent(int studentID)
         {
             try
             {
@@ -244,7 +256,7 @@ namespace WinFormsApp1
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error deleting student: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Lỗi xóa học sinh: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
