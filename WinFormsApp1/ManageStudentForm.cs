@@ -22,64 +22,42 @@ namespace WinFormsApp1
         StudentClass student = new StudentClass(); // object for take method from Student Class
         private Form activeForm = null;
         private readonly string connectionString = "Data Source=LAPTOP-CEIK1QBD\\MSSQLSERVER01;Initial Catalog=StudentManagement;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
+
+        // Initialize ComboBoxes with values
+
+
         public ManageStudentForm()
         {
             InitializeComponent();
-            InitializeAddressControls();
-            LoadClasses();
-            //LoadTop10Students();
-            // thêm data vào combo box danh sách lớp
-            //cmb_class_list = new ComboBox();
-            //this.Controls.Add(cmb_class_list);
+            InitializeAddressControls();                    // chạy các dữ liệu demo cho cbb địa chỉ
+            LoadClasses();                                  // fill dữ liệu cho cbb classes list
+            InitializeDateComboBoxes();
         }
 
-        private void LoadClasses()
+        // valid data for combo boxes
+        private void InitializeDateComboBoxes()
         {
-            using (var connection = new SqlConnection(connectionString))
+            // Days
+            for (int i = 1; i <= 31; i++)
             {
-                var command = new SqlCommand("GetAllClasses", connection)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
-                var adapter = new SqlDataAdapter(command);
-                var dataTable = new DataTable();
-                adapter.Fill(dataTable);
+                cbb_day.Items.Add(i.ToString("D2")); // Add leading zero
+            }
 
-                cmb_class_list.DisplayMember = "ClassName";
-                cmb_class_list.ValueMember = "ClassID";
-                cmb_class_list.DataSource = dataTable;
+            // Months
+            for (int i = 1; i <= 12; i++)
+            {
+                cbb_month.Items.Add(i.ToString("D2")); // Add leading zero
+            }
+
+            // Years
+            int currentYear = DateTime.Now.Year;
+            for (int i = 1900; i <= currentYear; i++)
+            {
+                cbb_year.Items.Add(i.ToString());
             }
         }
 
-        // load dữ liệu cột tên lớp vào combo box
-        private void cmb_class_list_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmb_class_list.SelectedValue != null)
-            {
-                txtb_class_id_sys.Text = cmb_class_list.SelectedValue.ToString(); // cập nhật textbox với ClassID đã chọn
-                int classID = (int)cmb_class_list.SelectedValue; // lấy class id đã được chọn và load học sinh trong class id
-                LoadStudentsInClass(classID);
-            }
-        }
-
-        private void LoadStudentsInClass(int classID)
-        {
-            using (var connection = new SqlConnection(connectionString)) // tạo 1 kết nối sql mới
-            {
-                // tạo 1 lệnh sql để thực thi procedure
-                var cmd = new SqlCommand("GetStudentsInClass", connection)
-                {
-                    CommandType = CommandType.StoredProcedure // cụ thể hóa kiểu lệnh là stored procedure
-                };
-                cmd.Parameters.AddWithValue("@ClassID", classID);
-                var adapter = new SqlDataAdapter(cmd); // tạo 1 adapter để thực thi lệnh và fill DataTable
-                var data_table = new DataTable(); // tạo 1 data_table để giữ kết quả
-                adapter.Fill(data_table); // fill data table bằng kết quả của lệnh
-
-                dtgrid_class.DataSource = data_table;
-            }
-        }
-
+        // chạy các dữ liệu demo cho cbb địa chỉ
         private void InitializeAddressControls()
         {
             // dữ liệu giả định demo
@@ -181,16 +159,56 @@ namespace WinFormsApp1
             };
         }
 
-        private void InitializeCustomComboBox()
+        // fill dữ liệu cho cbb classes list
+        private void LoadClasses()
         {
-            var autoCompleteSource = new AutoCompleteStringCollection();
-            autoCompleteSource.AddRange(new string[] { "Vietnam", "USA", "Canada" });
+            using (var connection = new SqlConnection(connectionString))
+            {
+                var command = new SqlCommand("GetAllClasses", connection)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
+                var adapter = new SqlDataAdapter(command);
+                var dataTable = new DataTable();
+                adapter.Fill(dataTable);
 
-            comboBox_nation.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-            comboBox_nation.AutoCompleteSource = AutoCompleteSource.CustomSource;
-            comboBox_nation.AutoCompleteCustomSource = autoCompleteSource;
+                cmb_class_list.DisplayMember = "ClassName";
+                cmb_class_list.ValueMember = "ClassID";
+                cmb_class_list.DataSource = dataTable;
+            }
         }
 
+        // event handler for cbb class list when index changed 
+        private void cmb_class_list_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmb_class_list.SelectedValue != null)
+            {
+                txtb_class_id_sys.Text = cmb_class_list.SelectedValue.ToString(); // cập nhật textbox với ClassID đã chọn
+                int classID = (int)cmb_class_list.SelectedValue; // lấy class id đã được chọn và load học sinh trong class id
+                LoadStudentsInClass(classID);
+            }
+        }
+
+        // load data of a class using procedure in database
+        private void LoadStudentsInClass(int classID)
+        {
+            using (var connection = new SqlConnection(connectionString)) // tạo 1 kết nối sql mới
+            {
+                // tạo 1 lệnh sql để thực thi procedure
+                var cmd = new SqlCommand("GetStudentsInClass", connection)
+                {
+                    CommandType = CommandType.StoredProcedure // cụ thể hóa kiểu lệnh là stored procedure
+                };
+                cmd.Parameters.AddWithValue("@ClassID", classID);
+                var adapter = new SqlDataAdapter(cmd); // tạo 1 adapter để thực thi lệnh và fill DataTable
+                var data_table = new DataTable(); // tạo 1 data_table để giữ kết quả
+                adapter.Fill(data_table); // fill data table bằng kết quả của lệnh
+
+                dtgrid_class.DataSource = data_table;
+            }
+        }
+
+        // show table of student and control features of columns in data grid viiew 
         private void showTable()
         {
             guna2DataGridView_manaStd.DataSource = student.getStudentList();
@@ -219,14 +237,15 @@ namespace WinFormsApp1
 
         bool verify()
         {
-
             return !string.IsNullOrWhiteSpace(textBox_Name.Text) &&
-                    !string.IsNullOrWhiteSpace(textBox_DoB.Text) &&
-                    comboBox_nation.SelectedItem != null &&
-                    combobox_city.SelectedItem != null &&
-                    combobox_district.SelectedItem != null &&
-                    combobox_ward.SelectedItem != null &&
-                    !string.IsNullOrWhiteSpace(textbox_street.Text);
+            !string.IsNullOrWhiteSpace(textbox_street.Text) &&
+            comboBox_nation.SelectedIndex != -1 &&
+            combobox_city.SelectedIndex != -1 &&
+            combobox_district.SelectedIndex != -1 &&
+            combobox_ward.SelectedIndex != -1 &&
+            cbb_day.SelectedIndex != -1 &&
+            cbb_month.SelectedIndex != -1 &&
+            cbb_year.SelectedIndex != -1;
         }
 
         private void ManageStudentForm_Click(object sender, EventArgs e)
@@ -234,12 +253,23 @@ namespace WinFormsApp1
             this.ActiveControl = null;
         }
 
+        // function to re-date to current date
+        private void SetDateToToday()
+        {
+            DateTime today = DateTime.Today;
+            cbb_day.Text = today.Day.ToString();
+            cbb_month.Text = today.Month.ToString();
+            cbb_year.Text = today.Year.ToString();
+        }
+
+        // clear tb and cbb to empty
         private void button_manaStdClear_Click(object sender, EventArgs e)
         {
             textBox_manaStdID.Clear();
             textBox_Name.Clear();
-            textBox_DoB.Clear();
+
             textbox_street.Clear();
+            txtb_class_id_sys.Clear();
 
             // Change the radio button to male status
             radioButton_manaStdFemale.Checked = false;
@@ -253,6 +283,8 @@ namespace WinFormsApp1
             combobox_district.Items.Clear();
             combobox_ward.Text = string.Empty;
             combobox_ward.Items.Clear();
+
+            SetDateToToday();
         }
 
         private void ManageStudentForm_Load(object sender, EventArgs e)
@@ -260,21 +292,27 @@ namespace WinFormsApp1
             showTable();
         }
 
+        #region add_delete_update_functions
+
+
+        // event handler add student to database
         private void Button_addStd_Click(object sender, EventArgs e)
         {
+
+            int day = int.Parse(cbb_day.Text); // day = 1
+            int month = int.Parse(cbb_month.Text); // month = 1
+            int year = int.Parse(cbb_year.Text); // year = 2000
             if (verify())
             {
                 string name = textBox_Name.Text;
-                string dob = textBox_DoB.Text;
                 string gender = radioButton_manaStdMale.Checked ? "Nam" : "Nữ";
-
                 string nation = comboBox_nation.Text.ToString();
                 string city = combobox_city.Text.ToString();
                 string district = combobox_district.Text.ToString();
                 string commune = combobox_ward.Text.ToString();
                 string street = textbox_street.Text;
 
-                if (student.InsertStudent(name, dob, gender, nation, city, district, commune, street))
+                if (student.InsertStudent(name, day, month, year, gender, nation, city, district, commune, street))
                 {
                     MessageBox.Show("Đã thêm học sinh.", "Thêm học sinh", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     showTable();
@@ -286,100 +324,7 @@ namespace WinFormsApp1
             }
         }
 
-        private void guna2DataGridView_manaStd_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            comboBox_nation.Text = string.Empty;
-            combobox_city.Text = string.Empty;
-            combobox_district.Text = string.Empty;
-            combobox_ward.Text = string.Empty;
-            textbox_street.Text = string.Empty;
-            textBox_manaStdID.Text = string.Empty;
-
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = guna2DataGridView_manaStd.Rows[e.RowIndex]; // lấy dữ liệu trong 1 hàng của 1 bảng để tương tác
-
-                // Set text boxes
-                textBox_Name.Text = row.Cells["Name"].Value.ToString(); // chọn cột Name trong hàng đã đc chọn và chuyển về dạng string
-
-                // hàm if ktra có thể chuyển ngày sinh ko, nếu có thì 
-                if (DateTime.TryParse(row.Cells["DateOfBirth"].Value.ToString(), out DateTime dob)) // chuyển đổi giá trị trong cột ngày sinh thành 
-                {                                                                                   // dạng string, sau đó chuyển sang dạng DateOnly
-                    DateOnly date = DateOnly.FromDateTime(dob);
-                    textBox_DoB.Text = date.ToString("dd/MM/yyyy");                                  // sau đó lưu trong biến dob nếu thành công
-                    // nếu chuyển được thì đưa vào textbox với dạng string chuyển từ kiểu DateOnly
-                }
-
-                // fill radio button giới tính
-                string gender = row.Cells["Gender"].Value.ToString(); // chuyển giá trị trong cột Gender thành string và gán gtri vào biến gender
-                radioButton_manaStdMale.Checked = gender == "Nam"; // syntax cho ktra liệu giá trị gender là Nam thì sẽ được checked và ngược lại
-                radioButton_manaStdFemale.Checked = gender == "Nữ";
-
-                textBox_manaStdID.Text = row.Cells["StudentID"].Value.ToString(); // textbox StudentID được nhận dữ liệu ID 
-
-                // Extract address
-                string address = row.Cells["Address"].Value.ToString(); // vẫn lấy giá trị của ô address trong datagridview, chuyển về string và lưu vào biến address
-                string[] addressComponents = address.Split(',').Select(c => c.Trim()).ToArray();
-                // phân chia chuỗi address thành các phẩn ngăn cách bởi dấu phảy. 
-                // Clear combo boxes
-                comboBox_nation.SelectedIndex = -1; // đặt các combo box về trạng thái chưa chọn
-                combobox_city.SelectedIndex = -1;
-                combobox_district.SelectedIndex = -1;
-                combobox_ward.SelectedIndex = -1;
-                textbox_street.Text = string.Empty;
-
-                // Address contains street
-                textbox_street.Text = addressComponents[0];
-                comboBox_nation.Text = addressComponents[4];
-                combobox_city.Text = addressComponents[3];
-                combobox_district.Text = addressComponents[2];
-                combobox_ward.Text = addressComponents[1];
-            }
-        }
-
-        private void button_update_Click_1(object sender, EventArgs e)
-        {
-            if (verify())
-            {
-                try
-                {
-                    int studentID = int.Parse(textBox_manaStdID.Text);
-                    string name = textBox_Name.Text;
-                    string dob = textBox_DoB.Text;
-                    string gender = radioButton_manaStdMale.Checked ? "Nam" : "Nữ";
-
-                    // Handle address components, allowing for optional fields
-                    string nation = comboBox_nation.Text.ToString();
-                    string city = combobox_city.Text.ToString();
-                    string district = combobox_district.Text.ToString();
-                    string commune = combobox_ward.Text.ToString();
-                    string street = textbox_street.Text;
-                    string address = $"{street}, {commune}, {district}, {city}, {nation}";
-
-                    // Ensure the address is handled even if some fields are empty
-                    if (student.UpdateStudent(studentID, name, dob, gender, address))
-                    {
-                        showTable();
-                        int class_id = int.Parse(txtb_class_id_sys.Text);
-                        LoadStudentsInClass(class_id);
-                        MessageBox.Show("Cập nhật thành công.", "Cập nhật học sinh", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Cập nhật không thành công.", "Cập nhật học sinh", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Lỗi: {ex.Message}", "Cập nhật học sinh", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                MessageBox.Show("Điền đủ thông tin hoặc nhấn vào học sinh để cập nhật.", "Cập nhật học sinh", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
+        // event handler to delete a student from database
         private void button_delete_Click_1(object sender, EventArgs e)
         {
             if (int.TryParse(textBox_manaStdID.Text, out int studentID))
@@ -410,7 +355,6 @@ namespace WinFormsApp1
             }
             textBox_manaStdID.Clear();
             textBox_Name.Clear();
-            textBox_DoB.Clear();
             textbox_street.Clear();
 
             // Change the radio button to male status
@@ -423,6 +367,60 @@ namespace WinFormsApp1
             combobox_ward.Text = string.Empty;
         }
 
+        // event handler to update a student information in database based on StudentID
+        private void button_update_Click_1(object sender, EventArgs e)
+        {
+
+            if (verify())
+            {
+                try
+                {
+                    int studentID = int.Parse(textBox_manaStdID.Text);
+                    string name = textBox_Name.Text;
+                    string gender = radioButton_manaStdMale.Checked ? "Nam" : "Nữ";
+
+                    int day = int.Parse(cbb_day.Text);
+                    int month = int.Parse(cbb_month.Text);
+                    int year = int.Parse(cbb_year.Text);
+
+                    // Handle address components, allowing for optional fields
+                    string nation = comboBox_nation.Text.ToString();
+                    string city = combobox_city.Text.ToString();
+                    string district = combobox_district.Text.ToString();
+                    string commune = combobox_ward.Text.ToString();
+                    string street = textbox_street.Text;
+                    string address = $"{street}, {commune}, {district}, {city}, {nation}";
+
+                    // Ensure the address is handled even if some fields are empty
+                    if (student.UpdateStudent(studentID, name, day, month, year, gender, address))
+                    {
+                        showTable();
+                        int class_id = int.Parse(txtb_class_id_sys.Text);
+                        LoadStudentsInClass(class_id);
+                        MessageBox.Show("Cập nhật thành công.", "Cập nhật học sinh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Cập nhật không thành công.", "Cập nhật học sinh", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Lỗi: {ex.Message}", "Cập nhật học sinh", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Điền đủ thông tin hoặc nhấn vào học sinh để cập nhật.", "Cập nhật học sinh", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        #endregion add_delete_update_functions
+
+
+        #region add_delete_student_to_from_a_particular_class
+
+        // event handler to add a student from database to a particular class based on StudentID(tb) and ClassID(cbb) (using procedure)
         private void bt_add_to_class_Click(object sender, MouseEventArgs e)
         {
             try
@@ -456,6 +454,7 @@ namespace WinFormsApp1
             }
         }
 
+        // event handler to delete a student from a class (not from database) based on StudentID and ClassID (cbb)
         private void btn_delete_from_class_Click(object sender, MouseEventArgs e)
         {
             var result = MessageBox.Show($"Xóa học sinh khỏi lớp học?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -482,12 +481,72 @@ namespace WinFormsApp1
             }
         }
 
+        #endregion add_delete_student_to_from_a_particular_class
+
+        // event handler to fill data into tb and cbb serverd for add_delete_update functions
+        // based on StudentID filled into textbox_ID
+        private void guna2DataGridView_manaStd_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            comboBox_nation.Text = string.Empty;
+            combobox_city.Text = string.Empty;
+            combobox_district.Text = string.Empty;
+            combobox_ward.Text = string.Empty;
+            textbox_street.Text = string.Empty;
+            textBox_manaStdID.Text = string.Empty;
+
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = guna2DataGridView_manaStd.Rows[e.RowIndex];                               // lấy dữ liệu trong 1 hàng của 1 bảng để tương tác
+
+                // Set text boxes
+                textBox_Name.Text = row.Cells["Name"].Value.ToString();                                         // chọn cột Name trong hàng đã đc chọn và chuyển về dạng string
+
+                if (DateTime.TryParse(row.Cells["DateOfBirth"].Value.ToString(), out DateTime dob))
+                {
+                    cbb_day.SelectedIndex = -1;
+                    cbb_month.SelectedIndex = -1;
+                    cbb_year.SelectedIndex = -1;
+
+                    cbb_day.Text = dob.Day.ToString(); // Extract day
+                    cbb_month.Text = dob.Month.ToString(); // Extract month
+                    cbb_year.Text = dob.Year.ToString(); // Extract year
+                }
+
+                // fill radio button giới tính
+                string gender = row.Cells["Gender"].Value.ToString();                                           // chuyển giá trị trong cột Gender thành string và gán gtri vào biến gender
+                radioButton_manaStdMale.Checked = gender == "Nam";                                              // syntax cho ktra liệu giá trị gender là Nam thì sẽ được checked và ngược lại
+                radioButton_manaStdFemale.Checked = gender == "Nữ";
+
+                textBox_manaStdID.Text = row.Cells["StudentID"].Value.ToString();                               // textbox StudentID được nhận dữ liệu ID 
+
+                // Extract address
+                string address = row.Cells["Address"].Value.ToString();                                         // vẫn lấy giá trị của ô address trong datagridview, chuyển về string và lưu vào biến address
+                string[] addressComponents = address.Split(',').Select(c => c.Trim()).ToArray();
+                // phân chia chuỗi address thành các phẩn ngăn cách bởi dấu phảy. 
+                // Clear combo boxes
+                comboBox_nation.SelectedIndex = -1;                                                             // đặt các combo box về trạng thái chưa chọn
+                combobox_city.SelectedIndex = -1;
+                combobox_district.SelectedIndex = -1;
+                combobox_ward.SelectedIndex = -1;
+                textbox_street.Text = string.Empty;
+
+                // Address contains street
+                textbox_street.Text = addressComponents[0];
+                comboBox_nation.Text = addressComponents[4];
+                combobox_city.Text = addressComponents[3];
+                combobox_district.Text = addressComponents[2];
+                combobox_ward.Text = addressComponents[1];
+            }
+        }
+
+        // event handler to open course and score form
         private void button2_Click(object sender, EventArgs e)
         {
             CourseAndScore CourseAndScore = new CourseAndScore();
             CourseAndScore.Show();
         }
 
+        // event handler when click on cell of dgv class to servered for add, delete update student to from class
         private void dtgrid_class_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             combobox_city.Text = string.Empty;
@@ -505,8 +564,13 @@ namespace WinFormsApp1
 
                 if (DateTime.TryParse(row.Cells["DateOfBirth"].Value.ToString(), out DateTime dob))
                 {
-                    DateOnly date = DateOnly.FromDateTime(dob);
-                    textBox_DoB.Text = date.ToString("dd/MM/yyyy");
+                    cbb_day.SelectedIndex = -1;
+                    cbb_month.SelectedIndex = -1;
+                    cbb_year.SelectedIndex = -1;
+
+                    cbb_day.Text = dob.Day.ToString(); // Extract day
+                    cbb_month.Text = dob.Month.ToString(); // Extract month
+                    cbb_year.Text = dob.Year.ToString(); // Extract year
                 }
 
                 string gender = row.Cells["Gender"].Value.ToString();
@@ -534,52 +598,39 @@ namespace WinFormsApp1
             }
         }
 
-        private void button_manaStdSearch_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                SearchStudents();
-            }
-        }
+        #region Search_funtion
 
-        private void SearchByLevel(object sender, EventArgs e)
-        {
-            SearchStudents();
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            SearchStudents();
-        }
-
-        private void SearchStudents()
-        {
+        private void SearchStudents()                                                           // hàm thực hiện tìm kiếm theo tên hoặc theo level được chọn
+        {                                                                                       // sử dụng các procedure để tìm kiếm
             string studentName = txtb_search_by_name.Text.Trim();
             string studyLevel = cbb_search_by_level.SelectedItem?.ToString();
 
             if (!string.IsNullOrEmpty(studentName))
             {
-                SearchStudentByName(studentName);
+                ExecuteSearch("SearchStudentByName", "@studentName", studentName);
             }
             else if (!string.IsNullOrEmpty(studyLevel))
             {
-                SearchStudentByLevel();
+                ExecuteSearch("SearchStudentByLevel", "@studyLevel", studyLevel);
             }
             else
             {
-                LoadTop10Students();
+                ExecuteSearch("DisplayTop10Students");
             }
         }
 
-        private void SearchStudentByName(string studentName)
+        private void ExecuteSearch(string storedProcedure, string parameterName = null, string parameterValue = null)
         {
-            using (var connection = new SqlConnection(connectionString))
+            using (var connection = new SqlConnection(connectionString))                        // thực thi các procedure trong csdl bằng ado.net: sqlconnection,...
             {
-                var command = new SqlCommand("SearchStudentByName", connection)
+                var command = new SqlCommand(storedProcedure, connection)
                 {
                     CommandType = CommandType.StoredProcedure
                 };
-                command.Parameters.AddWithValue("@studentName", studentName);
+                if (parameterName != null && parameterValue != null)
+                {
+                    command.Parameters.AddWithValue(parameterName, parameterValue);
+                }
                 var adapter = new SqlDataAdapter(command);
                 var dataTable = new DataTable();
                 adapter.Fill(dataTable);
@@ -587,62 +638,19 @@ namespace WinFormsApp1
             }
         }
 
-        private void SearchStudentByLevel()
+        private void txtb_search_by_name_TextChanged(object sender, EventArgs e)                // tìm theo text changed trong textbox
         {
-            using (var connection = new SqlConnection(connectionString))
-            {
-                var command = new SqlCommand("SearchStudentByLevel", connection)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
-                string studyLevel = cbb_search_by_level.Text.ToString();
-                command.Parameters.AddWithValue("@studyLevel", studyLevel);
-                var adapter = new SqlDataAdapter(command);
-                var dataTable = new DataTable();
-                adapter.Fill(dataTable);
-                guna2DataGridView_manaStd.DataSource = dataTable;
-            }
+            SearchStudents();
         }
 
-        private void LoadTop10Students()
-        {
-            using (var connection = new SqlConnection(connectionString))
-            {
-                var command = new SqlCommand("DisplayTop10Students", connection)
-                {
-                    CommandType = CommandType.StoredProcedure
-                };
-                var adapter = new SqlDataAdapter(command);
-                var dataTable = new DataTable();
-                adapter.Fill(dataTable);
-                guna2DataGridView_manaStd.DataSource = dataTable;
-            }
-        }
-
-        private void cbb_search_by_level_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbb_search_by_level_SelectedIndexChanged(object sender, EventArgs e)       // tìm theo level được chọn trong cbb: weak, good,...
         {
             if (cbb_search_by_level.SelectedItem != null)
             {
-                string studyLevel = cbb_search_by_level.SelectedItem.ToString();
-                LoadStudentsByLevel(studyLevel);
+                SearchStudents();
             }
         }
-        private void LoadStudentsByLevel(string studyLevel)
-        {
-            using (var connection = new SqlConnection(connectionString)) // tạo 1 kết nối sql mới
-            {
-                // tạo 1 lệnh sql để thực thi procedure
-                var cmd = new SqlCommand("SearchStudentByLevel", connection)
-                {
-                    CommandType = CommandType.StoredProcedure // cụ thể hóa kiểu lệnh là stored procedure
-                };
-                cmd.Parameters.AddWithValue("@studyLevel", studyLevel);
-                var adapter = new SqlDataAdapter(cmd); // tạo 1 adapter để thực thi lệnh và fill DataTable
-                var data_table = new DataTable(); // tạo 1 data_table để giữ kết quả
-                adapter.Fill(data_table); // fill data table bằng kết quả của lệnh
 
-                guna2DataGridView_manaStd.DataSource = data_table;
-            }
-        }
+        #endregion Search_function
     }
 }

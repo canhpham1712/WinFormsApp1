@@ -18,9 +18,9 @@ namespace WinFormsApp1
         private void studentCount()
         {
             // display the total, male and female
-            label_totalStd.Text = "Total Students : " + student.GetTotalStudents();
-            label_totalMaleStd.Text = "Male : " + student.GetMaleStudents();
-            label_totalFemaleStd.Text = "Female : " + student.GetFemaleStudents();
+            label_totalStd.Text = "Sĩ số : " + student.GetTotalStudents();
+            label_totalMaleStd.Text = "Nam : " + student.GetMaleStudents();
+            label_totalFemaleStd.Text = "Nữ : " + student.GetFemaleStudents();
         }
 
         private void showSubmenu(Panel submenu)
@@ -80,11 +80,6 @@ namespace WinFormsApp1
 
             panel_main.Controls.Add(panel_cover);
             studentCount();
-        }
-
-        private void label_totalStd_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

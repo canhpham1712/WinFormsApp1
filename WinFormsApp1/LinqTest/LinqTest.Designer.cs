@@ -112,7 +112,7 @@
             bt_add.Name = "bt_add";
             bt_add.Size = new Size(94, 29);
             bt_add.TabIndex = 6;
-            bt_add.Text = "button1";
+            bt_add.Text = "add";
             bt_add.UseVisualStyleBackColor = true;
             bt_add.Click += bt_add_Click;
             // 

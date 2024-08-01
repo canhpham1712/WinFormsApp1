@@ -45,18 +45,14 @@ namespace WinFormsApp1
             label_manaStd = new Label();
             label8 = new Label();
             cmb_class_list = new ComboBox();
-            button_manaStdSearch = new Button();
             txtb_search_by_name = new TextBox();
             textBox_manaStdID = new TextBox();
             button_upload = new Button();
             radioButton_manaStdFemale = new RadioButton();
             radioButton_manaStdMale = new RadioButton();
             label_manaStdGender = new Label();
-            label_manaStdBirthDate = new Label();
             guna2DataGridView_manaStd = new Guna2DataGridView();
             textBox_Name = new TextBox();
-            label_Name = new Label();
-            textBox_DoB = new TextBox();
             button_update = new Button();
             button_delete = new Button();
             button_manaStdClear = new Button();
@@ -82,6 +78,12 @@ namespace WinFormsApp1
             lb_street = new Label();
             button2 = new Button();
             cbb_search_by_level = new ComboBox();
+            label10 = new Label();
+            label11 = new Label();
+            cbb_day = new ComboBox();
+            cbb_month = new ComboBox();
+            cbb_year = new ComboBox();
+            label12 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView_manaStd).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dtgrid_class).BeginInit();
@@ -186,9 +188,9 @@ namespace WinFormsApp1
             label_manaStd.Font = new Font("Times New Roman", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label_manaStd.Location = new Point(8, 15);
             label_manaStd.Name = "label_manaStd";
-            label_manaStd.Size = new Size(417, 38);
+            label_manaStd.Size = new Size(299, 38);
             label_manaStd.TabIndex = 0;
-            label_manaStd.Text = "Danh sách toàn bộ học sinh";
+            label_manaStd.Text = "Danh sách học sinh";
             // 
             // label8
             // 
@@ -212,32 +214,15 @@ namespace WinFormsApp1
             cmb_class_list.TabIndex = 89;
             cmb_class_list.SelectedIndexChanged += cmb_class_list_SelectedIndexChanged;
             // 
-            // button_manaStdSearch
-            // 
-            button_manaStdSearch.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            button_manaStdSearch.BackColor = Color.MidnightBlue;
-            button_manaStdSearch.FlatStyle = FlatStyle.Flat;
-            button_manaStdSearch.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            button_manaStdSearch.ForeColor = Color.WhiteSmoke;
-            button_manaStdSearch.Location = new Point(680, 639);
-            button_manaStdSearch.Name = "button_manaStdSearch";
-            button_manaStdSearch.Size = new Size(131, 38);
-            button_manaStdSearch.TabIndex = 25;
-            button_manaStdSearch.Text = "Tìm kiếm";
-            button_manaStdSearch.UseVisualStyleBackColor = false;
-            button_manaStdSearch.Click += btnSearch_Click;
-            button_manaStdSearch.KeyDown += button_manaStdSearch_KeyDown;
-            // 
             // txtb_search_by_name
             // 
-            txtb_search_by_name.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            txtb_search_by_name.Anchor = AnchorStyles.Bottom;
             txtb_search_by_name.Font = new Font("Calisto MT", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtb_search_by_name.Location = new Point(680, 545);
+            txtb_search_by_name.Location = new Point(683, 571);
             txtb_search_by_name.Name = "txtb_search_by_name";
-            txtb_search_by_name.PlaceholderText = "Tìm theo tên";
-            txtb_search_by_name.Size = new Size(131, 25);
+            txtb_search_by_name.Size = new Size(122, 25);
             txtb_search_by_name.TabIndex = 20;
-            txtb_search_by_name.KeyDown += button_manaStdSearch_KeyDown;
+            txtb_search_by_name.TextChanged += txtb_search_by_name_TextChanged;
             // 
             // textBox_manaStdID
             // 
@@ -258,11 +243,11 @@ namespace WinFormsApp1
             // 
             radioButton_manaStdFemale.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             radioButton_manaStdFemale.AutoSize = true;
-            radioButton_manaStdFemale.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            radioButton_manaStdFemale.ForeColor = SystemColors.Highlight;
-            radioButton_manaStdFemale.Location = new Point(338, 609);
+            radioButton_manaStdFemale.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
+            radioButton_manaStdFemale.ForeColor = Color.Black;
+            radioButton_manaStdFemale.Location = new Point(325, 608);
             radioButton_manaStdFemale.Name = "radioButton_manaStdFemale";
-            radioButton_manaStdFemale.Size = new Size(56, 26);
+            radioButton_manaStdFemale.Size = new Size(57, 27);
             radioButton_manaStdFemale.TabIndex = 9;
             radioButton_manaStdFemale.Text = "Nữ";
             radioButton_manaStdFemale.UseVisualStyleBackColor = true;
@@ -272,11 +257,11 @@ namespace WinFormsApp1
             radioButton_manaStdMale.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             radioButton_manaStdMale.AutoSize = true;
             radioButton_manaStdMale.Checked = true;
-            radioButton_manaStdMale.Font = new Font("Times New Roman", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            radioButton_manaStdMale.ForeColor = SystemColors.Highlight;
-            radioButton_manaStdMale.Location = new Point(338, 575);
+            radioButton_manaStdMale.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
+            radioButton_manaStdMale.ForeColor = Color.Black;
+            radioButton_manaStdMale.Location = new Point(325, 575);
             radioButton_manaStdMale.Name = "radioButton_manaStdMale";
-            radioButton_manaStdMale.Size = new Size(68, 26);
+            radioButton_manaStdMale.Size = new Size(70, 27);
             radioButton_manaStdMale.TabIndex = 8;
             radioButton_manaStdMale.TabStop = true;
             radioButton_manaStdMale.Text = "Nam";
@@ -286,25 +271,13 @@ namespace WinFormsApp1
             // 
             label_manaStdGender.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label_manaStdGender.AutoSize = true;
-            label_manaStdGender.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label_manaStdGender.ForeColor = SystemColors.Highlight;
-            label_manaStdGender.Location = new Point(338, 544);
+            label_manaStdGender.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
+            label_manaStdGender.ForeColor = Color.Black;
+            label_manaStdGender.Location = new Point(325, 544);
             label_manaStdGender.Name = "label_manaStdGender";
             label_manaStdGender.Size = new Size(102, 23);
             label_manaStdGender.TabIndex = 57;
             label_manaStdGender.Text = "Giới tính : ";
-            // 
-            // label_manaStdBirthDate
-            // 
-            label_manaStdBirthDate.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            label_manaStdBirthDate.AutoSize = true;
-            label_manaStdBirthDate.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label_manaStdBirthDate.ForeColor = SystemColors.Highlight;
-            label_manaStdBirthDate.Location = new Point(60, 577);
-            label_manaStdBirthDate.Name = "label_manaStdBirthDate";
-            label_manaStdBirthDate.Size = new Size(109, 23);
-            label_manaStdBirthDate.TabIndex = 55;
-            label_manaStdBirthDate.Text = "Ngày sinh : ";
             // 
             // guna2DataGridView_manaStd
             // 
@@ -372,33 +345,11 @@ namespace WinFormsApp1
             // 
             textBox_Name.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             textBox_Name.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox_Name.Location = new Point(175, 543);
+            textBox_Name.Location = new Point(35, 542);
             textBox_Name.Name = "textBox_Name";
-            textBox_Name.PlaceholderText = "Nguyễn Văn A";
-            textBox_Name.Size = new Size(140, 25);
+            textBox_Name.PlaceholderText = "Họ và tên";
+            textBox_Name.Size = new Size(254, 25);
             textBox_Name.TabIndex = 1;
-            // 
-            // label_Name
-            // 
-            label_Name.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            label_Name.AutoSize = true;
-            label_Name.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label_Name.ForeColor = SystemColors.Highlight;
-            label_Name.Location = new Point(61, 544);
-            label_Name.Name = "label_Name";
-            label_Name.Size = new Size(108, 23);
-            label_Name.TabIndex = 50;
-            label_Name.Text = "Họ và tên : ";
-            // 
-            // textBox_DoB
-            // 
-            textBox_DoB.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            textBox_DoB.Font = new Font("Times New Roman", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox_DoB.Location = new Point(175, 576);
-            textBox_DoB.Name = "textBox_DoB";
-            textBox_DoB.PlaceholderText = "dd/mm/yyyy";
-            textBox_DoB.Size = new Size(140, 25);
-            textBox_DoB.TabIndex = 2;
             // 
             // button_update
             // 
@@ -461,8 +412,8 @@ namespace WinFormsApp1
             label1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label1.AutoSize = true;
             label1.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = SystemColors.Highlight;
-            label1.Location = new Point(60, 614);
+            label1.ForeColor = Color.Black;
+            label1.Location = new Point(35, 633);
             label1.Name = "label1";
             label1.Size = new Size(71, 17);
             label1.TabIndex = 83;
@@ -473,8 +424,8 @@ namespace WinFormsApp1
             label2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label2.AutoSize = true;
             label2.Font = new Font("Times New Roman", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = SystemColors.Highlight;
-            label2.Location = new Point(199, 614);
+            label2.ForeColor = Color.Black;
+            label2.Location = new Point(174, 633);
             label2.Name = "label2";
             label2.Size = new Size(111, 17);
             label2.TabIndex = 84;
@@ -485,8 +436,8 @@ namespace WinFormsApp1
             label3.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label3.AutoSize = true;
             label3.Font = new Font("Times New Roman", 9F, FontStyle.Bold);
-            label3.ForeColor = SystemColors.Highlight;
-            label3.Location = new Point(60, 673);
+            label3.ForeColor = Color.Black;
+            label3.Location = new Point(35, 690);
             label3.Name = "label3";
             label3.Size = new Size(90, 17);
             label3.TabIndex = 85;
@@ -497,8 +448,8 @@ namespace WinFormsApp1
             label4.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label4.AutoSize = true;
             label4.Font = new Font("Times New Roman", 9F, FontStyle.Bold);
-            label4.ForeColor = SystemColors.Highlight;
-            label4.Location = new Point(199, 673);
+            label4.ForeColor = Color.Black;
+            label4.Location = new Point(174, 690);
             label4.Name = "label4";
             label4.Size = new Size(79, 17);
             label4.TabIndex = 86;
@@ -519,8 +470,9 @@ namespace WinFormsApp1
             // comboBox_nation
             // 
             comboBox_nation.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            comboBox_nation.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox_nation.FormattingEnabled = true;
-            comboBox_nation.Location = new Point(60, 639);
+            comboBox_nation.Location = new Point(35, 653);
             comboBox_nation.Name = "comboBox_nation";
             comboBox_nation.Size = new Size(115, 28);
             comboBox_nation.TabIndex = 3;
@@ -528,8 +480,9 @@ namespace WinFormsApp1
             // combobox_city
             // 
             combobox_city.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            combobox_city.DropDownStyle = ComboBoxStyle.DropDownList;
             combobox_city.FormattingEnabled = true;
-            combobox_city.Location = new Point(199, 639);
+            combobox_city.Location = new Point(174, 653);
             combobox_city.Name = "combobox_city";
             combobox_city.Size = new Size(115, 28);
             combobox_city.TabIndex = 4;
@@ -537,8 +490,9 @@ namespace WinFormsApp1
             // combobox_district
             // 
             combobox_district.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            combobox_district.DropDownStyle = ComboBoxStyle.DropDownList;
             combobox_district.FormattingEnabled = true;
-            combobox_district.Location = new Point(60, 700);
+            combobox_district.Location = new Point(35, 710);
             combobox_district.Name = "combobox_district";
             combobox_district.Size = new Size(115, 28);
             combobox_district.TabIndex = 5;
@@ -546,8 +500,9 @@ namespace WinFormsApp1
             // combobox_ward
             // 
             combobox_ward.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            combobox_ward.DropDownStyle = ComboBoxStyle.DropDownList;
             combobox_ward.FormattingEnabled = true;
-            combobox_ward.Location = new Point(199, 701);
+            combobox_ward.Location = new Point(174, 710);
             combobox_ward.Name = "combobox_ward";
             combobox_ward.Size = new Size(115, 28);
             combobox_ward.TabIndex = 6;
@@ -555,18 +510,18 @@ namespace WinFormsApp1
             // textbox_street
             // 
             textbox_street.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            textbox_street.Location = new Point(338, 703);
+            textbox_street.Location = new Point(325, 711);
             textbox_street.Name = "textbox_street";
             textbox_street.Size = new Size(115, 27);
             textbox_street.TabIndex = 7;
             // 
             // label5
             // 
-            label5.Anchor = AnchorStyles.Bottom;
+            label5.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label5.AutoSize = true;
             label5.Font = new Font("Times New Roman", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label5.ForeColor = Color.Red;
-            label5.Location = new Point(642, 703);
+            label5.Location = new Point(620, 702);
             label5.Name = "label5";
             label5.Size = new Size(276, 18);
             label5.TabIndex = 88;
@@ -575,11 +530,11 @@ namespace WinFormsApp1
             // 
             // label6
             // 
-            label6.Anchor = AnchorStyles.Bottom;
+            label6.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             label6.AutoSize = true;
             label6.Font = new Font("Times New Roman", 9F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             label6.ForeColor = Color.Red;
-            label6.Location = new Point(642, 723);
+            label6.Location = new Point(620, 720);
             label6.Name = "label6";
             label6.Size = new Size(430, 18);
             label6.TabIndex = 93;
@@ -589,8 +544,8 @@ namespace WinFormsApp1
             // 
             label7.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             label7.AutoSize = true;
-            label7.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.ForeColor = SystemColors.Highlight;
+            label7.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
+            label7.ForeColor = Color.Black;
             label7.Location = new Point(999, 608);
             label7.Name = "label7";
             label7.Size = new Size(192, 23);
@@ -626,8 +581,8 @@ namespace WinFormsApp1
             // 
             lb_class_id_sys.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             lb_class_id_sys.AutoSize = true;
-            lb_class_id_sys.Font = new Font("Times New Roman", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lb_class_id_sys.ForeColor = SystemColors.Highlight;
+            lb_class_id_sys.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
+            lb_class_id_sys.ForeColor = Color.Black;
             lb_class_id_sys.Location = new Point(1040, 640);
             lb_class_id_sys.Name = "lb_class_id_sys";
             lb_class_id_sys.Size = new Size(151, 23);
@@ -667,8 +622,8 @@ namespace WinFormsApp1
             lb_street.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             lb_street.AutoSize = true;
             lb_street.Font = new Font("Times New Roman", 9F, FontStyle.Bold);
-            lb_street.ForeColor = SystemColors.Highlight;
-            lb_street.Location = new Point(338, 673);
+            lb_street.ForeColor = Color.Black;
+            lb_street.Location = new Point(325, 690);
             lb_street.Name = "lb_street";
             lb_street.Size = new Size(80, 17);
             lb_street.TabIndex = 101;
@@ -680,7 +635,7 @@ namespace WinFormsApp1
             button2.BackColor = Color.MidnightBlue;
             button2.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
             button2.ForeColor = Color.White;
-            button2.Location = new Point(1097, 703);
+            button2.Location = new Point(1255, 698);
             button2.Name = "button2";
             button2.Size = new Size(180, 43);
             button2.TabIndex = 102;
@@ -690,20 +645,93 @@ namespace WinFormsApp1
             // 
             // cbb_search_by_level
             // 
+            cbb_search_by_level.Anchor = AnchorStyles.Bottom;
             cbb_search_by_level.AutoCompleteCustomSource.AddRange(new string[] { "excellent", "good", "average", "week" });
             cbb_search_by_level.FormattingEnabled = true;
             cbb_search_by_level.Items.AddRange(new object[] { "excellent", "good", "average", "weak" });
-            cbb_search_by_level.Location = new Point(680, 588);
+            cbb_search_by_level.Location = new Point(683, 641);
             cbb_search_by_level.Name = "cbb_search_by_level";
-            cbb_search_by_level.Size = new Size(131, 28);
+            cbb_search_by_level.Size = new Size(158, 28);
             cbb_search_by_level.TabIndex = 103;
             cbb_search_by_level.SelectedIndexChanged += cbb_search_by_level_SelectedIndexChanged;
+            // 
+            // label10
+            // 
+            label10.Anchor = AnchorStyles.Bottom;
+            label10.AutoSize = true;
+            label10.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
+            label10.ForeColor = Color.Black;
+            label10.Location = new Point(683, 548);
+            label10.Name = "label10";
+            label10.Size = new Size(124, 23);
+            label10.TabIndex = 104;
+            label10.Text = "Tìm theo tên:";
+            // 
+            // label11
+            // 
+            label11.Anchor = AnchorStyles.Bottom;
+            label11.AutoSize = true;
+            label11.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
+            label11.ForeColor = Color.Black;
+            label11.Location = new Point(683, 614);
+            label11.Name = "label11";
+            label11.Size = new Size(158, 23);
+            label11.TabIndex = 105;
+            label11.Text = "Tìm theo học lực:";
+            // 
+            // cbb_day
+            // 
+            cbb_day.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            cbb_day.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbb_day.FormattingEnabled = true;
+            cbb_day.Location = new Point(35, 598);
+            cbb_day.Name = "cbb_day";
+            cbb_day.Size = new Size(58, 28);
+            cbb_day.TabIndex = 106;
+            // 
+            // cbb_month
+            // 
+            cbb_month.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            cbb_month.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbb_month.FormattingEnabled = true;
+            cbb_month.Location = new Point(118, 598);
+            cbb_month.Name = "cbb_month";
+            cbb_month.Size = new Size(58, 28);
+            cbb_month.TabIndex = 107;
+            // 
+            // cbb_year
+            // 
+            cbb_year.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            cbb_year.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbb_year.FormattingEnabled = true;
+            cbb_year.Location = new Point(199, 598);
+            cbb_year.Name = "cbb_year";
+            cbb_year.Size = new Size(90, 28);
+            cbb_year.TabIndex = 108;
+            // 
+            // label12
+            // 
+            label12.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            label12.AutoSize = true;
+            label12.Font = new Font("Times New Roman", 9F, FontStyle.Bold);
+            label12.ForeColor = Color.Black;
+            label12.Location = new Point(35, 576);
+            label12.Name = "label12";
+            label12.Size = new Size(72, 17);
+            label12.TabIndex = 109;
+            label12.Text = "Ngày sinh";
             // 
             // ManageStudentForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1447, 753);
+            Controls.Add(label12);
+            Controls.Add(cbb_year);
+            Controls.Add(cbb_month);
+            Controls.Add(cbb_day);
+            Controls.Add(label11);
+            Controls.Add(label10);
             Controls.Add(cbb_search_by_level);
             Controls.Add(button2);
             Controls.Add(lb_street);
@@ -712,7 +740,6 @@ namespace WinFormsApp1
             Controls.Add(lb_class_id_sys);
             Controls.Add(txtb_class_id_sys);
             Controls.Add(txtb_search_by_name);
-            Controls.Add(button_manaStdSearch);
             Controls.Add(dtgrid_class);
             Controls.Add(label7);
             Controls.Add(label6);
@@ -731,7 +758,6 @@ namespace WinFormsApp1
             Controls.Add(button_delete);
             Controls.Add(button_addStd);
             Controls.Add(button_update);
-            Controls.Add(textBox_DoB);
             Controls.Add(button_manaStdClear);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -739,10 +765,8 @@ namespace WinFormsApp1
             Controls.Add(radioButton_manaStdFemale);
             Controls.Add(radioButton_manaStdMale);
             Controls.Add(label_manaStdGender);
-            Controls.Add(label_manaStdBirthDate);
             Controls.Add(guna2DataGridView_manaStd);
             Controls.Add(textBox_Name);
-            Controls.Add(label_Name);
             Controls.Add(button1);
             Controls.Add(textBox_email);
             Controls.Add(label9);
@@ -768,18 +792,14 @@ namespace WinFormsApp1
         private Button button_add;
         private Panel panel2;
         private Panel panel1;
-        private Button button_manaStdSearch;
         private TextBox txtb_search_by_name;
         private Label label_manaStd;
         private Button button_upload;
         private RadioButton radioButton_manaStdFemale;
         private RadioButton radioButton_manaStdMale;
         private Label label_manaStdGender;
-        private Label label_manaStdBirthDate;
         private Guna.UI2.WinForms.Guna2DataGridView guna2DataGridView_manaStd;
         private TextBox textBox_Name;
-        private Label label_Name;
-        private TextBox textBox_DoB;
         private Button button_update;
         private Button button_delete;
         private Button button_manaStdClear;
@@ -809,5 +829,11 @@ namespace WinFormsApp1
         private Label lb_street;
         private Button button2;
         private ComboBox cbb_search_by_level;
+        private Label label10;
+        private Label label11;
+        private ComboBox cbb_day;
+        private ComboBox cbb_month;
+        private ComboBox cbb_year;
+        private Label label12;
     }
 }

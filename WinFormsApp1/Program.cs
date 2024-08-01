@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 
-/*namespace WinFormsApp1
+namespace WinFormsApp1
 {
     internal static class Program
     {
@@ -18,9 +18,9 @@ using Microsoft.Extensions.DependencyInjection;
             Application.Run(new Form1());
         }
     }
-}*/
+}
 
-namespace WinFormsApp1
+/*namespace WinFormsApp1
 {
     static class Program
     {

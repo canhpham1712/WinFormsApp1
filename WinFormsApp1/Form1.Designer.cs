@@ -209,7 +209,6 @@
             label_totalStd.Size = new Size(112, 20);
             label_totalStd.TabIndex = 1;
             label_totalStd.Text = "Tổng học sinh : ";
-            label_totalStd.Click += label_totalStd_Click;
             // 
             // panel_main
             // 
