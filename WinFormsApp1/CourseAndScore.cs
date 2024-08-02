@@ -1,5 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,7 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Dapper;
+using System.IO;
+using Guna.UI2.WinForms.Internal;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using System.Xml.Serialization;
+using System.Globalization;
+using System.Data.OleDb;
+using Microsoft.Data.SqlClient;
+
 
 namespace WinFormsApp1
 {
@@ -16,7 +22,7 @@ namespace WinFormsApp1
     {
 
         private readonly string connectionString = "Data Source=LAPTOP-CEIK1QBD\\MSSQLSERVER01;Initial Catalog=StudentManagement;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
-
+        private Form activeForm = null;
         public CourseAndScore()
         {
             InitializeComponent();
@@ -221,6 +227,11 @@ namespace WinFormsApp1
                 txtb_selected_id.Text = row.Cells["StudentID"].Value.ToString();
 
             }
+        }
+
+        private void CourseAndScore_Click(object sender, EventArgs e)
+        {
+            this.ActiveControl = null;
         }
     }
 }

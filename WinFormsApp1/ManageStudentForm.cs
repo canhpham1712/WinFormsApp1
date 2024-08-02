@@ -32,9 +32,11 @@ namespace WinFormsApp1
             InitializeAddressControls();                    // chạy các dữ liệu demo cho cbb địa chỉ
             LoadClasses();                                  // fill dữ liệu cho cbb classes list
             InitializeDateComboBoxes();
+            SetDateToToday();
+            
         }
 
-        // valid data for combo boxes
+        // valid data for combo boxes of date of birth
         private void InitializeDateComboBoxes()
         {
             // Days
@@ -56,6 +58,7 @@ namespace WinFormsApp1
                 cbb_year.Items.Add(i.ToString());
             }
         }
+
 
         // chạy các dữ liệu demo cho cbb địa chỉ
         private void InitializeAddressControls()
@@ -183,7 +186,7 @@ namespace WinFormsApp1
         {
             if (cmb_class_list.SelectedValue != null)
             {
-                txtb_class_id_sys.Text = cmb_class_list.SelectedValue.ToString(); // cập nhật textbox với ClassID đã chọn
+                tb_class_id.Text = cmb_class_list.SelectedValue.ToString(); // cập nhật textbox với ClassID đã chọn
                 int classID = (int)cmb_class_list.SelectedValue; // lấy class id đã được chọn và load học sinh trong class id
                 LoadStudentsInClass(classID);
             }
@@ -257,8 +260,8 @@ namespace WinFormsApp1
         private void SetDateToToday()
         {
             DateTime today = DateTime.Today;
-            cbb_day.Text = today.Day.ToString();
-            cbb_month.Text = today.Month.ToString();
+            cbb_day.Text = today.Day.ToString("D2");
+            cbb_month.Text = today.Month.ToString("D2");
             cbb_year.Text = today.Year.ToString();
         }
 
@@ -267,22 +270,20 @@ namespace WinFormsApp1
         {
             textBox_manaStdID.Clear();
             textBox_Name.Clear();
-
             textbox_street.Clear();
-            txtb_class_id_sys.Clear();
-
             // Change the radio button to male status
             radioButton_manaStdFemale.Checked = false;
             radioButton_manaStdMale.Checked = true;
-
-            //comboBox_nation.SelectedIndex = -1;
-            comboBox_nation.Text = string.Empty;
-            combobox_city.Text = string.Empty;
+            comboBox_nation.SelectedIndex = -1;
+            combobox_city.SelectedIndex = -1;
             combobox_city.Items.Clear();
-            combobox_district.Text = string.Empty;
+            combobox_district.SelectedIndex = -1;
             combobox_district.Items.Clear();
-            combobox_ward.Text = string.Empty;
+            combobox_ward.SelectedIndex = -1;
             combobox_ward.Items.Clear();
+
+            cbb_search_by_level.SelectedIndex = -1;
+            SearchStudents();
 
             SetDateToToday();
         }
@@ -293,7 +294,6 @@ namespace WinFormsApp1
         }
 
         #region add_delete_update_functions
-
 
         // event handler add student to database
         private void Button_addStd_Click(object sender, EventArgs e)
@@ -340,7 +340,7 @@ namespace WinFormsApp1
                     {
                         MessageBox.Show("Đã xóa học sinh khỏi danh sách.", "Xóa học sinh", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         showTable();
-                        int class_id = int.Parse(txtb_class_id_sys.Text);
+                        int class_id = int.Parse(tb_class_id.Text);
                         LoadStudentsInClass(class_id);
                     }
                     else
@@ -395,7 +395,7 @@ namespace WinFormsApp1
                     if (student.UpdateStudent(studentID, name, day, month, year, gender, address))
                     {
                         showTable();
-                        int class_id = int.Parse(txtb_class_id_sys.Text);
+                        int class_id = int.Parse(tb_class_id.Text);
                         LoadStudentsInClass(class_id);
                         MessageBox.Show("Cập nhật thành công.", "Cập nhật học sinh", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -425,11 +425,34 @@ namespace WinFormsApp1
         {
             try
             {
-                int classID = int.Parse(txtb_class_id_sys.Text); // lấy id của lớp 
+
+                if (string.IsNullOrWhiteSpace(textBox_manaStdID.Text))
+                {
+                    MessageBox.Show("Vui lòng chọn một học sinh để thêm vào lớp học.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int classID = int.Parse(tb_class_id.Text); // lấy id của lớp 
                 int studentID = int.Parse(textBox_manaStdID.Text); // lấy id học sinh 
+
 
                 using (var connection = new SqlConnection(connectionString)) // sử dụng procedure để add hs với id hiện tại vào lớp có id tương ứng
                 {
+                    connection.Open();
+                    // check if a student belongs to other class or not
+                    var checkCmd = new SqlCommand("SELECT ClassID FROM StudentClasses WHERE StudentID = @StudentID", connection);
+                    checkCmd.Parameters.AddWithValue("@StudentID", studentID);
+                    var result = checkCmd.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        MessageBox.Show("Học sinh đã thuộc một lớp khác.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        connection.Close();
+                        return;
+                    }
+
+
+
                     var cmd = new SqlCommand("AddStudentToClass", connection)
                     {
                         CommandType = CommandType.StoredProcedure
@@ -437,7 +460,7 @@ namespace WinFormsApp1
 
                     cmd.Parameters.AddWithValue("@StudentID", studentID);
                     cmd.Parameters.AddWithValue("@ClassID", classID);
-                    connection.Open();
+
                     cmd.ExecuteNonQuery();
                     connection.Close();
                 }
@@ -446,7 +469,14 @@ namespace WinFormsApp1
             }
             catch (SqlException ex)
             {
-                MessageBox.Show("Học sinh đã có trong lớp học.", "Thêm học sinh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (ex.Number == 2627 || ex.Number == 2601)
+                {
+                    MessageBox.Show("Học sinh đã có trong lớp học.", "Thêm học sinh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"Lỗi SQL: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
@@ -457,27 +487,59 @@ namespace WinFormsApp1
         // event handler to delete a student from a class (not from database) based on StudentID and ClassID (cbb)
         private void btn_delete_from_class_Click(object sender, MouseEventArgs e)
         {
-            var result = MessageBox.Show($"Xóa học sinh khỏi lớp học?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (result == DialogResult.Yes)
+            try
             {
-                int class_id = int.Parse(txtb_class_id_sys.Text);
+
+                if (string.IsNullOrWhiteSpace(textBox_manaStdID.Text))
+                {
+                    MessageBox.Show("Vui lòng chọn một học sinh để thêm vào lớp học.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                int class_id = int.Parse(tb_class_id.Text);
                 int student_id = int.Parse(textBox_manaStdID.Text);
 
                 using (var connection = new SqlConnection(connectionString))
                 {
-                    var cmd = new SqlCommand("RemoveStudentFromClass", connection)
-                    {
-                        CommandType = CommandType.StoredProcedure
-                    };
-                    cmd.Parameters.AddWithValue("@ClassID", class_id);
-                    cmd.Parameters.AddWithValue("@StudentID", student_id);
                     connection.Open();
-                    cmd.ExecuteNonQuery();
+
+                    var checkCmd = new SqlCommand("SELECT COUNT(*) FROM StudentClasses WHERE ClassID = @ClassID AND StudentID = @StudentID", connection);
+                    checkCmd.Parameters.AddWithValue("@ClassID", class_id);
+                    checkCmd.Parameters.AddWithValue("@StudentID", student_id);
+                    int count = (int)checkCmd.ExecuteScalar();
+
+                    if (count > 0)
+                    {
+                        var result = MessageBox.Show($"Xóa học sinh khỏi lớp học?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (result == DialogResult.Yes)
+                        {
+                            var cmd = new SqlCommand("RemoveStudentFromClass", connection)
+                            {
+                                CommandType = CommandType.StoredProcedure
+                            };
+                            cmd.Parameters.AddWithValue("@ClassID", class_id);
+                            cmd.Parameters.AddWithValue("@StudentID", student_id);
+
+                            cmd.ExecuteNonQuery();
+                            MessageBox.Show("Đã xóa học sinh khỏi lớp học.", "Xóa học sinh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+                        }
+                    }
+                    else
+                    {
+                        // Student is not enrolled in the class
+                        MessageBox.Show("Học sinh không có trong lớp học.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                     connection.Close();
+
                 }
                 showTable();
                 LoadStudentsInClass(class_id);
-                MessageBox.Show("Đã xóa học sinh khỏi lớp học.", "Xóa học sinh", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -487,14 +549,17 @@ namespace WinFormsApp1
         // based on StudentID filled into textbox_ID
         private void guna2DataGridView_manaStd_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            comboBox_nation.Text = string.Empty;
+            comboBox_nation.Text = string.Empty;                                                                // empty all field before filling
             combobox_city.Text = string.Empty;
             combobox_district.Text = string.Empty;
             combobox_ward.Text = string.Empty;
             textbox_street.Text = string.Empty;
             textBox_manaStdID.Text = string.Empty;
+            cbb_day.Text = string.Empty;
+            cbb_month.Text = string.Empty;
+            cbb_year.Text = string.Empty;
 
-            if (e.RowIndex >= 0)
+            if (e.RowIndex >= 0)        //  take row index for the event happening (e => event)
             {
                 DataGridViewRow row = guna2DataGridView_manaStd.Rows[e.RowIndex];                               // lấy dữ liệu trong 1 hàng của 1 bảng để tương tác
 
@@ -503,14 +568,11 @@ namespace WinFormsApp1
 
                 if (DateTime.TryParse(row.Cells["DateOfBirth"].Value.ToString(), out DateTime dob))
                 {
-                    cbb_day.SelectedIndex = -1;
-                    cbb_month.SelectedIndex = -1;
-                    cbb_year.SelectedIndex = -1;
-
-                    cbb_day.Text = dob.Day.ToString(); // Extract day
-                    cbb_month.Text = dob.Month.ToString(); // Extract month
+                    cbb_day.Text = dob.Day.ToString("D2"); // Extract day
+                    cbb_month.Text = dob.Month.ToString("D2"); // Extract month
                     cbb_year.Text = dob.Year.ToString(); // Extract year
                 }
+
 
                 // fill radio button giới tính
                 string gender = row.Cells["Gender"].Value.ToString();                                           // chuyển giá trị trong cột Gender thành string và gán gtri vào biến gender
@@ -564,13 +626,10 @@ namespace WinFormsApp1
 
                 if (DateTime.TryParse(row.Cells["DateOfBirth"].Value.ToString(), out DateTime dob))
                 {
-                    cbb_day.SelectedIndex = -1;
-                    cbb_month.SelectedIndex = -1;
-                    cbb_year.SelectedIndex = -1;
-
-                    cbb_day.Text = dob.Day.ToString(); // Extract day
-                    cbb_month.Text = dob.Month.ToString(); // Extract month
+                    cbb_day.Text = dob.Day.ToString("D2"); // Extract day
+                    cbb_month.Text = dob.Month.ToString("D2"); // Extract month
                     cbb_year.Text = dob.Year.ToString(); // Extract year
+                    
                 }
 
                 string gender = row.Cells["Gender"].Value.ToString();
@@ -599,7 +658,7 @@ namespace WinFormsApp1
         }
 
         #region Search_funtion
-
+        
         private void SearchStudents()                                                           // hàm thực hiện tìm kiếm theo tên hoặc theo level được chọn
         {                                                                                       // sử dụng các procedure để tìm kiếm
             string studentName = txtb_search_by_name.Text.Trim();
@@ -652,5 +711,6 @@ namespace WinFormsApp1
         }
 
         #endregion Search_function
+
     }
 }

@@ -29,11 +29,11 @@ namespace WinFormsApp1
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
             button1 = new Button();
             textBox_email = new TextBox();
             label9 = new Label();
@@ -71,7 +71,7 @@ namespace WinFormsApp1
             label6 = new Label();
             label7 = new Label();
             dtgrid_class = new DataGridView();
-            txtb_class_id_sys = new TextBox();
+            tb_class_id = new TextBox();
             lb_class_id_sys = new Label();
             bt_add_to_class = new Button();
             btn_delete_from_class = new Button();
@@ -81,9 +81,9 @@ namespace WinFormsApp1
             label10 = new Label();
             label11 = new Label();
             cbb_day = new ComboBox();
-            cbb_month = new ComboBox();
             cbb_year = new ComboBox();
             label12 = new Label();
+            cbb_month = new ComboBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)guna2DataGridView_manaStd).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dtgrid_class).BeginInit();
@@ -207,6 +207,7 @@ namespace WinFormsApp1
             // cmb_class_list
             // 
             cmb_class_list.Anchor = AnchorStyles.Right;
+            cmb_class_list.DropDownStyle = ComboBoxStyle.DropDownList;
             cmb_class_list.FormattingEnabled = true;
             cmb_class_list.Location = new Point(1351, 22);
             cmb_class_list.Name = "cmb_class_list";
@@ -283,34 +284,34 @@ namespace WinFormsApp1
             // 
             guna2DataGridView_manaStd.AllowUserToAddRows = false;
             guna2DataGridView_manaStd.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = Color.White;
-            guna2DataGridView_manaStd.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle6.BackColor = Color.White;
+            guna2DataGridView_manaStd.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle6;
             guna2DataGridView_manaStd.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             guna2DataGridView_manaStd.BackgroundColor = Color.Gainsboro;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle2.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            guna2DataGridView_manaStd.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle7.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle7.ForeColor = Color.White;
+            dataGridViewCellStyle7.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.True;
+            guna2DataGridView_manaStd.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             guna2DataGridView_manaStd.ColumnHeadersHeight = 24;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.White;
-            dataGridViewCellStyle3.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            guna2DataGridView_manaStd.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = Color.White;
+            dataGridViewCellStyle8.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle8.ForeColor = SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle8.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
+            guna2DataGridView_manaStd.DefaultCellStyle = dataGridViewCellStyle8;
             guna2DataGridView_manaStd.GridColor = Color.FromArgb(231, 229, 255);
             guna2DataGridView_manaStd.Location = new Point(8, 78);
             guna2DataGridView_manaStd.Name = "guna2DataGridView_manaStd";
             guna2DataGridView_manaStd.RowHeadersVisible = false;
             guna2DataGridView_manaStd.RowHeadersWidth = 51;
-            dataGridViewCellStyle4.Font = new Font("Times New Roman", 7.20000029F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            guna2DataGridView_manaStd.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle9.Font = new Font("Times New Roman", 7.20000029F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            guna2DataGridView_manaStd.RowsDefaultCellStyle = dataGridViewCellStyle9;
             guna2DataGridView_manaStd.RowTemplate.DefaultCellStyle.Font = new Font("Times New Roman", 13.2000008F, FontStyle.Regular, GraphicsUnit.Point, 0);
             guna2DataGridView_manaStd.RowTemplate.Height = 80;
             guna2DataGridView_manaStd.RowTemplate.ReadOnly = true;
@@ -562,20 +563,20 @@ namespace WinFormsApp1
             dtgrid_class.Location = new Point(811, 78);
             dtgrid_class.Name = "dtgrid_class";
             dtgrid_class.RowHeadersWidth = 51;
-            dataGridViewCellStyle5.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle5.ForeColor = Color.Black;
-            dtgrid_class.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle10.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle10.ForeColor = Color.Black;
+            dtgrid_class.RowsDefaultCellStyle = dataGridViewCellStyle10;
             dtgrid_class.Size = new Size(624, 436);
             dtgrid_class.TabIndex = 96;
             dtgrid_class.CellClick += dtgrid_class_CellClick;
             // 
-            // txtb_class_id_sys
+            // tb_class_id
             // 
-            txtb_class_id_sys.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            txtb_class_id_sys.Location = new Point(1197, 640);
-            txtb_class_id_sys.Name = "txtb_class_id_sys";
-            txtb_class_id_sys.Size = new Size(80, 27);
-            txtb_class_id_sys.TabIndex = 97;
+            tb_class_id.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            tb_class_id.Location = new Point(1197, 640);
+            tb_class_id.Name = "tb_class_id";
+            tb_class_id.Size = new Size(80, 27);
+            tb_class_id.TabIndex = 97;
             // 
             // lb_class_id_sys
             // 
@@ -647,6 +648,7 @@ namespace WinFormsApp1
             // 
             cbb_search_by_level.Anchor = AnchorStyles.Bottom;
             cbb_search_by_level.AutoCompleteCustomSource.AddRange(new string[] { "excellent", "good", "average", "week" });
+            cbb_search_by_level.DropDownStyle = ComboBoxStyle.DropDownList;
             cbb_search_by_level.FormattingEnabled = true;
             cbb_search_by_level.Items.AddRange(new object[] { "excellent", "good", "average", "weak" });
             cbb_search_by_level.Location = new Point(683, 641);
@@ -689,16 +691,6 @@ namespace WinFormsApp1
             cbb_day.Size = new Size(58, 28);
             cbb_day.TabIndex = 106;
             // 
-            // cbb_month
-            // 
-            cbb_month.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
-            cbb_month.DropDownStyle = ComboBoxStyle.DropDownList;
-            cbb_month.FormattingEnabled = true;
-            cbb_month.Location = new Point(118, 598);
-            cbb_month.Name = "cbb_month";
-            cbb_month.Size = new Size(58, 28);
-            cbb_month.TabIndex = 107;
-            // 
             // cbb_year
             // 
             cbb_year.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
@@ -721,14 +713,24 @@ namespace WinFormsApp1
             label12.TabIndex = 109;
             label12.Text = "Ngày sinh";
             // 
+            // cbb_month
+            // 
+            cbb_month.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            cbb_month.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbb_month.FormattingEnabled = true;
+            cbb_month.Location = new Point(113, 598);
+            cbb_month.Name = "cbb_month";
+            cbb_month.Size = new Size(58, 28);
+            cbb_month.TabIndex = 110;
+            // 
             // ManageStudentForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1447, 753);
+            Controls.Add(cbb_month);
             Controls.Add(label12);
             Controls.Add(cbb_year);
-            Controls.Add(cbb_month);
             Controls.Add(cbb_day);
             Controls.Add(label11);
             Controls.Add(label10);
@@ -738,7 +740,7 @@ namespace WinFormsApp1
             Controls.Add(btn_delete_from_class);
             Controls.Add(bt_add_to_class);
             Controls.Add(lb_class_id_sys);
-            Controls.Add(txtb_class_id_sys);
+            Controls.Add(tb_class_id);
             Controls.Add(txtb_search_by_name);
             Controls.Add(dtgrid_class);
             Controls.Add(label7);
@@ -821,7 +823,7 @@ namespace WinFormsApp1
         private Label label7;
         private Label label8;
         private DataGridView dtgrid_class;
-        private TextBox txtb_class_id_sys;
+        private TextBox tb_class_id;
         private Label lb_class_id_sys;
         private Label lb_class_name;
         private Button bt_add_to_class;
@@ -832,8 +834,8 @@ namespace WinFormsApp1
         private Label label10;
         private Label label11;
         private ComboBox cbb_day;
-        private ComboBox cbb_month;
         private ComboBox cbb_year;
         private Label label12;
+        private ComboBox cbb_month;
     }
 }

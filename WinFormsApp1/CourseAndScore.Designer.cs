@@ -51,11 +51,13 @@
             // 
             dgv_student_list.AllowUserToAddRows = false;
             dgv_student_list.AllowUserToDeleteRows = false;
+            dgv_student_list.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgv_student_list.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_student_list.Location = new Point(12, 78);
+            dgv_student_list.Location = new Point(12, 66);
             dgv_student_list.Name = "dgv_student_list";
+            dgv_student_list.ReadOnly = true;
             dgv_student_list.RowHeadersWidth = 51;
-            dgv_student_list.Size = new Size(700, 338);
+            dgv_student_list.Size = new Size(775, 350);
             dgv_student_list.TabIndex = 0;
             dgv_student_list.CellClick += dgv_student_list_CellClick;
             // 
@@ -63,12 +65,13 @@
             // 
             dgv_score.AllowUserToAddRows = false;
             dgv_score.AllowUserToDeleteRows = false;
+            dgv_score.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgv_score.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_score.EditMode = DataGridViewEditMode.EditOnEnter;
-            dgv_score.Location = new Point(718, 78);
+            dgv_score.Location = new Point(793, 66);
             dgv_score.Name = "dgv_score";
             dgv_score.RowHeadersWidth = 51;
-            dgv_score.Size = new Size(491, 338);
+            dgv_score.Size = new Size(416, 350);
             dgv_score.TabIndex = 1;
             dgv_score.CellClick += dgv_score_CellClick;
             dgv_score.CellEndEdit += dgv_score_CellEndEdit;
@@ -81,13 +84,15 @@
             panel1.Controls.Add(label1);
             panel1.Controls.Add(cbb_course_name_list);
             panel1.Controls.Add(lb_course_list);
-            panel1.Location = new Point(3, 12);
+            panel1.Dock = DockStyle.Top;
+            panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1206, 60);
+            panel1.Size = new Size(1221, 60);
             panel1.TabIndex = 2;
             // 
             // txtb_course_id
             // 
+            txtb_course_id.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             txtb_course_id.Location = new Point(1070, 18);
             txtb_course_id.Name = "txtb_course_id";
             txtb_course_id.Size = new Size(63, 27);
@@ -95,6 +100,7 @@
             // 
             // label2
             // 
+            label2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label2.AutoSize = true;
             label2.Location = new Point(971, 21);
             label2.Name = "label2";
@@ -114,8 +120,9 @@
             // cbb_course_name_list
             // 
             cbb_course_name_list.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            cbb_course_name_list.DropDownStyle = ComboBoxStyle.DropDownList;
             cbb_course_name_list.FormattingEnabled = true;
-            cbb_course_name_list.Location = new Point(845, 17);
+            cbb_course_name_list.Location = new Point(860, 17);
             cbb_course_name_list.Name = "cbb_course_name_list";
             cbb_course_name_list.Size = new Size(99, 28);
             cbb_course_name_list.TabIndex = 3;
@@ -125,7 +132,7 @@
             // 
             lb_course_list.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lb_course_list.AutoSize = true;
-            lb_course_list.Location = new Point(715, 21);
+            lb_course_list.Location = new Point(730, 21);
             lb_course_list.Name = "lb_course_list";
             lb_course_list.Size = new Size(124, 20);
             lb_course_list.TabIndex = 4;
@@ -169,6 +176,7 @@
             // 
             // btn_add_to_course
             // 
+            btn_add_to_course.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btn_add_to_course.Location = new Point(364, 469);
             btn_add_to_course.Name = "btn_add_to_course";
             btn_add_to_course.Size = new Size(94, 29);
@@ -179,6 +187,7 @@
             // 
             // btn_delete_from_course
             // 
+            btn_delete_from_course.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btn_delete_from_course.Location = new Point(364, 513);
             btn_delete_from_course.Name = "btn_delete_from_course";
             btn_delete_from_course.Size = new Size(94, 29);
@@ -204,6 +213,7 @@
             Name = "CourseAndScore";
             Text = "CourseAndScore";
             Load += CourseAndScore_Load;
+            Click += CourseAndScore_Click;
             ((System.ComponentModel.ISupportInitialize)dgv_student_list).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgv_score).EndInit();
             panel1.ResumeLayout(false);

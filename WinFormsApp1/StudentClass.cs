@@ -190,6 +190,11 @@ namespace WinFormsApp1
                     return rowsAffected > 0;           
                 }
             }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("Thông tin trùng khớp với học sinh khác trong lớp học.", "Lỗi cậ nhật", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
             catch (Exception ex)
             {
                 // Log the exception or handle it as needed
